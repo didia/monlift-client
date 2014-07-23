@@ -58,6 +58,20 @@ function($, React, monlift, auth, EventProvider, UI){
 			}
 			
 		}),
+		MyInfosButton: React.createClass({displayName:'myInfosButton',
+			handleClick:function(e){
+				console.log("fire event " + this.props.event );
+				EventProvider.fire(this.props.event);
+			},
+			render: function(){
+				return (
+					<a className="tab-item" onClick={this.handleClick} href="#">
+								<img src="img/profil.png"   height="30" weight="30" id="addlift" href="" />
+                	                              <h5 id="MyInfos">My Infos</h5>
+					</a>
+				);
+			}
+		}),
 		FooterButton: React.createClass({displayName:'FooterButton',
 			handleClick:function(e){
 				console.log("fire event " + this.props.event );

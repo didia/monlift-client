@@ -13,6 +13,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var LogOutButton = component.getLogoutButton();
 	 var ProfilePage = component.getProfilePage();
 	 var ParametterPage = component.getParamettersPage();
+	 var InfosPage = component.getInfosPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -104,17 +105,17 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				
 		},
 		
-		VerifieStatutAndshowProfilePage: function()
-		{	
-			if(ML.isUserLoggedIn())
-				{
-				showProfilePage();
-				}
-			else{
-				showLoginPage();
-			}
+		showMyInfospage:function()
+		{
+			React.renderComponent(
+			<Header page='Infos' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<InfosPage />,
+				document.getElementById('app-body')
+			);
 		}
-		
 		
 		
 		 
@@ -126,6 +127,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showRegisterPage', UI.showRegisterPage);
 	 EventProvider.subscribe('ui.showProfilePage', UI.showProfilePage);
 	 EventProvider.subscribe('ui.showParametterPage', UI.showParametterPage);
+	 EventProvider.subscribe('ui.showMyInfospage', UI.showMyInfospage);
 	 
 	 return UI;
  	

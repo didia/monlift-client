@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 
 
-define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
+define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, React, monlift, buttons){
                 ML = monlift.getInstance();
+				var myInfosButton = buttons.MyInfosButton;
                 
                 return {
                 
@@ -14,7 +15,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
                 	        
                 	          <div id="box">
                 	               <div id="topleft">
-                	                    <img src="img/profil.png"   height="30" weight="30" id="profil" href="" />
+								   		<myInfosButton image = "img/profil.png"   id="profil" href="#"  event= "ui.showMyInfospage"/>
                 	                              <h5 id="MyInfos">My Infos</h5>
                 	               </div>
                 	               
@@ -45,13 +46,17 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
         
            PassengerProfile: React.createClass({displayName:'PassengerProfile',
                 	render: function(){
+						
+               
                 	        return (
+								
 								<div className="content_Passanger_Profil">
                                         <div id="box">
                                           
 										  <div id="topleft">
-                                             <img src="img/profil.png"   height="30" weight="30" id="profil" href="" />
-                                             <h5 id="MyInfos">My Infos</h5>
+										  	
+                                            <myInfosButton  event= {(ML.isUserLoggedIn())?"ui.showMyInfospage":"ui.showLoginPage"}  />
+                                            
                                           </div>
                                         
 										<div id="topright">

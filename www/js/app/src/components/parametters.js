@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], function($, React, monlift, auth, buttons){
+define(['jquery', 'react', 'app/monlift', 'app/auth',], function($, React, monlift, auth){
 
 	ML = monlift.getInstance();
 	return{
@@ -14,7 +14,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 					<a className="pull-right">
 					<div className="slider" id = "logo">
 					  
-					 <img src="img/logoTest.png"  height="100" weight="100" />
+					 <img src="../img/logoTest.png"  height="100" weight="100" />
 					    
 					</div>
 					</a>
