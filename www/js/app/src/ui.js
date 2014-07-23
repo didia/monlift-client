@@ -14,6 +14,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var ProfilePage = component.getProfilePage();
 	 var ParametterPage = component.getParamettersPage();
 	 var InfosPage = component.getInfosPage();
+	 var CarsPage = component.getCarsPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -115,6 +116,17 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				<InfosPage />,
 				document.getElementById('app-body')
 			);
+		},
+		showMyCarspage:function()
+		{
+			React.renderComponent(
+			<Header page='Cars' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<CarsPage />,
+				document.getElementById('app-body')
+			);
 		}
 		
 		
@@ -128,7 +140,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showProfilePage', UI.showProfilePage);
 	 EventProvider.subscribe('ui.showParametterPage', UI.showParametterPage);
 	 EventProvider.subscribe('ui.showMyInfospage', UI.showMyInfospage);
-	 
+	 EventProvider.subscribe('ui.showMyCarspage', UI.showMyCarspage);
+	
 	 return UI;
  	
  });

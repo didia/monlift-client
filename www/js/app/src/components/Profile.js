@@ -4,6 +4,7 @@
 define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, React, monlift, buttons){
                 ML = monlift.getInstance();
 				var myInfosButton = buttons.MyInfosButton;
+				var myCarsButton = buttons.MyCarsButton;
                 
                 return {
                 
@@ -21,7 +22,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	               
                 	               <div id="topright">
                 	                    <img src="img/addlift.png"   height="30" weight="30" id="addlift" href="" />
-                	                              <h5 id="MyAutos">My Autos</h5>
+                	                              <h5 id="MyAutos">My Cars</h5>
                 	               </div>
                 	               
                 	               <div id="bottomleft">
@@ -60,8 +61,8 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                                           </div>
                                         
 										<div id="topright">
-                                         	<img src="img/addlift.png"   height="30" weight="30" id="addlift" href="" />
-                                         	<h5 id="MyAutos">My Autos</h5>
+                                         	<myCarsButton  event= "ui.showMyCarspage"  />
+                                           
                                         </div>
 
                                         <div id="bottomleft">
