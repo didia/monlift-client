@@ -110,6 +110,16 @@ define(["jquery"], function($) {
 			this._userStatus = "connected";
  			window.localStorage.setItem('session', session);
  		},	
+		
+		/*
+ 		 * Function to get the user 
+ 		 * @return user
+ 		 *
+ 		 */
+		getUser:function()
+		{
+			return this._session.user;
+		},
  		
 		/*
  		 * Function to get the login status of the user

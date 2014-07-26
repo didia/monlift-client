@@ -7,6 +7,8 @@ define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftLi
 		render: function(){
 			return (
 				<div id="content">
+				
+                	        
 					<div className="segmented-control">
                 		<a className="control-item active" href="#passenger-welcome">
                      		Passenger
@@ -25,17 +27,12 @@ define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftLi
                 			<div id="driver-welcome" className="control-content">
                     			<input type="text" placeholder="From" />
                     			<input type="text" placeholder="To" />
-                    			<button className="btn btn-primary btn-block">
-                    				<a href="">
-                    					Offer a ride 
-                    				</a>
-                    			</button>
+								<button className="btn btn-primary btn-block" type = "submit">Offer a ride</button>
                 			</div>
 						</div>
             		</div>
-					
-					
-					
+	
+	
 				</div>
 			)
 		}

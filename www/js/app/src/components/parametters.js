@@ -77,7 +77,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth',], function($, React, monli
 				    <a className="navigate-right">
 				      <span className="media-object pull-left icon icon-help"></span>
 				      <div class="media-body">
-				      Condition d'utilistion
+				      Condition d'utilisation
 				      </div>
 				    </a>
 				  </li>
