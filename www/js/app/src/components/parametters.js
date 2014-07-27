@@ -1,4 +1,8 @@
 /** @jsx React.DOM */
+/**
+ * @author Trispa
+ *
+ */
 define(['jquery', 'react', 'app/monlift', 'app/auth',], function($, React, monlift, auth){
 
 	ML = monlift.getInstance();

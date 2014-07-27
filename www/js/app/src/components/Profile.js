@@ -56,7 +56,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                                           
 										  <div id="topleft">
 										  	
-                                            <myInfosButton  event= "ui.showMyInfospage"  />
+                                            <myInfosButton  event=  {(ML.isUserLoggedIn())?"ui.showMyInfospage":"ui.showLoginPage"}  />
                                             
                                           </div>
                                         

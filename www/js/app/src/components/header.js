@@ -17,7 +17,7 @@ function($, React, monlift, auth, buttons){
 						case 'home':
 							Button = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
 							break;
-						case 'login':
+						case 'Login':
 							Button = buttons.RegisterButton;
 							break;
 						case 'register':

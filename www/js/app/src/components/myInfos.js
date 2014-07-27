@@ -1,4 +1,8 @@
 /** @jsx React.DOM */
+/**
+ * @author Trispa
+ *
+ */
 define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], function($, React, monlift, auth, buttons){
 
 	ML = monlift.getInstance();
@@ -12,7 +16,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								
 					 			<img className = "media-object pull-left" src ="../img/D04.png"  height="80" weight="80" />
 								<div class="media-body">
-       							Patrice Diouf
+       							{ML.getUser().getFirstname() }{" "}{ML.getUser().getLastname()}
        							<p><span className="icon icon-star-filled "></span> 
 								<span className="icon icon-star-filled "></span>
 								<span className="icon icon-star-filled "></span>
@@ -25,6 +29,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								Ville 
 								<span className="badge">Québec</span></li>
 								<li className="table-view-cell">
+								Téléphone
+								<span className="badge">{ML.getUser().getPhone()}</span></li>
+  								
+								<li className="table-view-cell">
 								Inscrit depuis  
 								<span className="badge">10/2014</span></li>
 								<li className="table-view-cell">
@@ -36,7 +44,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								<li className="table-view-cell">
 								Retards 
 								<span className="badge">0</span></li>
-  								
+								
 								</ul> 
 								</div>  
 

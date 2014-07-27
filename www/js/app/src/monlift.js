@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery"], function($) {
+define(["jquery", 'entities/user','entities/session'], function($,User, Session ) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
@@ -35,10 +35,13 @@ define(["jquery"], function($) {
 		 *
 		 */
 		_loadSession: function(){
+			console.log("Loading the session");
 			var session = window.localStorage.getItem('session');
 			if(session)
  		 	{
- 		 		this._session = session;
+				console.log(session);
+				session = JSON.parse(session);
+ 		 		this._buildSessionObject(session);
  		 		this._userStatus = "connected";
  		 	}
 		},
@@ -104,12 +107,19 @@ define(["jquery"], function($) {
 		 *  token: The user OAuth Token.
 		 * }
  		 */
- 		setSession: function(session)
+ 		setSession: function(sessionData)
+		
  		{
- 			this._session = session;
+			console.log(sessionData);
+			this._buildSessionObject(sessionData);
 			this._userStatus = "connected";
- 			window.localStorage.setItem('session', session);
+ 			window.localStorage.setItem('session', JSON.stringify(sessionData));
  		},	
+		
+		_buildSessionObject: function(sessionData){
+			var user = new User(sessionData.user);
+			this._session = new Session(user, sessionData.token);
+		},
 		
 		/*
  		 * Function to get the user 
@@ -118,7 +128,8 @@ define(["jquery"], function($) {
  		 */
 		getUser:function()
 		{
-			return this._session.user;
+			console.log(this._session.token);
+			return this._session.getUser();
 		},
  		
 		/*
