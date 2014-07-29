@@ -13,7 +13,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 						  	<FooterButton active="true" image="img/Search.png" event="" />
 							<FooterButton image = "img/addLift.png" event="" />
 							<FooterButton image = "img/road.svg" event="" />
-							<FooterButton image = "img/notification.png" event="" />
+							<FooterButton image = "img/notification.png" event="ui.showRequestALert" />
 							<FooterButton image = "img/profil.png" event= "ui.showProfilePage" />
 						  </div>
                     	);

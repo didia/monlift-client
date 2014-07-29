@@ -9,23 +9,33 @@ function($, React, monlift, auth, buttons){
 			Header: React.createClass({displayName:'Header',
 				
 		    	render: function(){
-					var Button = null;
+					var ButtonRight = null;
+					var ButtonLeft = null;
 					var ParametterButton = buttons.ParametterButton;
 					switch(this.props.page)
 					{
 						case 'index':
 						case 'home':
-							Button = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
+							ButtonRight = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
+							ButtonLeft =  buttons.ParametterButton;
+							
 							break;
 						case 'Login':
-							Button = buttons.RegisterButton;
+							ButtonRight = buttons.RegisterButton;
 							break;
 						case 'register':
-							Button = buttons.LoginButton;
+							ButtonRight = buttons.LoginButton;
 							break;
+						case 'Request':
+							ButtonRight = buttons.AcceptButton;
+							ButtonLeft =  buttons.DeclinerButton;
+							break;
+					
 						
 						default:
-							Button = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
+							ButtonRight = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
+							ButtonLeft =  buttons.ParametterButton;
+							
 							break;
 							
 					}
@@ -33,10 +43,10 @@ function($, React, monlift, auth, buttons){
 		        	return (
 		            	<div>
 		            		
-		            			<ParametterButton  event = "ui.showParametterPage" />
-		            	
 						      <h1 className="title">{this.props.page}</h1>
-							{(Button != null)?<Button />:''}
+							  {(ButtonLeft != null)?<ButtonLeft />:''}
+							  {(ButtonRight != null)?<ButtonRight />:''} 
+							
                         </div>
                     );
                                                
