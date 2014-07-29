@@ -22,6 +22,31 @@ function($, React, monlift, auth, EventProvider, UI){
 		
 		}),
 		
+		AcceptButton:React.createClass({displayName:'AcceptButton',
+			handleClick:function(e){
+				e.preventDefault();
+				
+			},
+			render:function(){
+				return(
+					<a className = "btn btn-positive pull-right" href ="#" onClick={this.handleClick}> Accepter </a>
+				);
+							
+				}
+		}),
+		
+		DeclinerButton:React.createClass({displayName:'AcceptButton',
+			handleClick:function(e){
+				e.preventDefault();
+				
+			},
+			render:function(){
+				return(
+					<a className = "btn btn-negative pull-left" href ="#" onClick={this.handleClick}> Decliner </a>
+				);
+							
+				}
+		}),
 		LoginButton: React.createClass({displayName:'LoginButton',
 			
 			handleClick: function(e){
@@ -48,7 +73,7 @@ function($, React, monlift, auth, EventProvider, UI){
 		ParametterButton:React.createClass({displayName:'parametterButton',
 			
 			handleClick:function(e){
-				EventProvider.fire(this.props.event);
+				EventProvider.fire('ui.showParametterPage');
 				
 			},
 			render:function(){

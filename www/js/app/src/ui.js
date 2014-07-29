@@ -15,6 +15,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var ParametterPage = component.getParamettersPage();
 	 var InfosPage = component.getInfosPage();
 	 var CarsPage = component.getCarsPage();
+	 var RequestAlertPage = component.getRequestAlertPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -127,6 +128,17 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				<CarsPage />,
 				document.getElementById('app-body')
 			);
+		},
+		showRequestALert:function(){
+			
+			React.renderComponent(
+				<Header page='Request' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<RequestAlertPage/>,
+				document.getElementById('app-body')
+			);
 		}
 		
 		
@@ -141,6 +153,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showParametterPage', UI.showParametterPage);
 	 EventProvider.subscribe('ui.showMyInfospage', UI.showMyInfospage);
 	 EventProvider.subscribe('ui.showMyCarspage', UI.showMyCarspage);
+	 EventProvider.subscribe('ui.showRequestALert', UI.showRequestALert);
 	
 	 return UI;
  	
