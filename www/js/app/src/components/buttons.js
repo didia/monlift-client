@@ -105,7 +105,7 @@ function($, React, monlift, auth, EventProvider, UI){
 			render: function(){
 				return (
 					<a className="tab-item" onClick={this.handleClick} href="#">
-								<img src="img/addlift.png"   height="30" weight="30" id="addlift" href="" />
+								<img src="img/lift.png"   height="30" weight="30" id="addlift" href="" />
                 	                              <h5 id="MyCars">My Cars</h5>
 					</a>
 				);
@@ -120,6 +120,7 @@ function($, React, monlift, auth, EventProvider, UI){
 				return (
 					<a className="tab-item" onClick={this.handleClick} href="#">
 								<img src={this.props.image}   height="30" weight="30"  />
+								<span className="tab-label">{this.props.label}</span>
 					</a>
 				);
 			}

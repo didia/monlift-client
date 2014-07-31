@@ -15,12 +15,14 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								<li className="table-view-cell media">
 								
 					 			<img className = "media-object pull-left" src ="../img/D04.png"  height="80" weight="80" />
-								<div class="media-body">
+								<span class="icon icon-edit "></span>
+								<div className="media-body">
        							{ML.getUser().getFirstname() }{" "}{ML.getUser().getLastname()}
        							<p><span className="icon icon-star-filled "></span> 
 								<span className="icon icon-star-filled "></span>
 								<span className="icon icon-star-filled "></span>
 								<span className="badge">(3)</span>
+								 <a className="icon icon-compose pull-right"></a>
 								</p>
       							</div>
 								</li>

@@ -7,7 +7,7 @@ requirejs.config({
     "paths": {
       "app": "../app/build",
 	  "components" : "../app/build/components",
-	  "entities" : "../app/build/entites"
+	  "entities" : "../app/build/entities"
 
     }
 });

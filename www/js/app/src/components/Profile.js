@@ -21,7 +21,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	               </div>
                 	               
                 	               <div id="topright">
-                	                    <img src="img/addlift.png"   height="30" weight="30" id="addlift" href="" />
+                	                    <img src="img/lift.png"   height="30" weight="30" id="addlift" href="" />
                 	                              <h5 id="MyAutos">My Cars</h5>
                 	               </div>
                 	               
