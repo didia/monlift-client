@@ -68,7 +68,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
                 		<input type="checkbox" value="remember-me" />
                  				Remember me
                 		</label>
-                		<a href="#" className="pull-right need-help">Need help? </a><span className="clearfix"></span>
+                		<a href="#" className="pull-right need-help">Need help? </a>
+						<span className="clearfix"></span>
                 		<button className="btn btn-primary btn-block" type = "submit">Sign in</button>
             		</form> 
                 		
@@ -329,11 +330,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
                                 more options
                             </span>
                         </div>
-                        <button className="btn btn-primary btn-block">
-                        	<a href="">
-                            	Search
-                        	</a>
-                        </button>
+						<button className="btn btn-primary btn-block">Search</button>
+						 
                     </form>
 				);
 			}
