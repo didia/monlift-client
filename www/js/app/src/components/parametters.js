@@ -18,7 +18,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth',], function($, React, monli
                     <a className="pull-right">
                     <div className="slider" id = "logo">
                       
-                     <img src="../img/logoTest.png"  height="100" weight="100" />
+                     <img src="img/logoTest.png"  height="100" weight="100" />
                         
                     </div>
                     </a>
