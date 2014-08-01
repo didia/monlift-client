@@ -91,7 +91,7 @@ function($, React, monlift, auth, EventProvider, UI){
 			render: function(){
 				return (
 					<a className="tab-item" onClick={this.handleClick} href="#">
-								<img src="img/profil.png"   height="30" weight="30" id="addlift" href="" />
+								<img src="img/profil.png"   height="30" width="30" id="addlift" href="" />
                 	                              <h5 id="MyInfos">My Infos</h5>
 					</a>
 				);
@@ -105,13 +105,13 @@ function($, React, monlift, auth, EventProvider, UI){
 			render: function(){
 				return (
 					<a className="tab-item" onClick={this.handleClick} href="#">
-								<img src="img/lift.png"   height="30" weight="30" id="addlift" href="" />
+								<img src="img/lift.png"   height="30" width="30" id="addlift" href="" />
                 	                              <h5 id="MyCars">My Cars</h5>
 					</a>
 				);
 			}
 		}),
-		FooterButton: React.createClass({displayName:'FooterButton',
+		ProfilButton: React.createClass({displayName:'FooterButton',
 			handleClick:function(e){
 				console.log("fire event " + this.props.event );
 				EventProvider.fire(this.props.event);
@@ -119,9 +119,29 @@ function($, React, monlift, auth, EventProvider, UI){
 			render: function(){
 				return (
 					<a className="tab-item" onClick={this.handleClick} href="#">
-								<img src={this.props.image}   height="30" weight="30"  />
+						<img src = {this.props.image}  height="30" weight="30" id={this.props.id1} />
+                	    <h5 id={this.props.id2}> {this.props.label}</h5>
+												  
+					</a>
+					
+					
+				);
+			}
+		}),
+		
+		FooterButton: React.createClass({displayName:'FooterButton',
+			handleClick:function(e){
+				console.log("fire event " + this.props.event );
+				EventProvider.fire(this.props.event);
+			},
+			render: function(){
+				return (
+				
+					<a className="tab-item" onClick={this.handleClick} href="#">
+								<img src={this.props.image}   height="30" width="30"  />
 								<span className="tab-label">{this.props.label}</span>
 					</a>
+					
 				);
 			}
 		})

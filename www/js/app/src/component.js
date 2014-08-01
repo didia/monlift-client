@@ -24,7 +24,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		},
 		
  		getHomePage: function(){
-			return Body;
+			return Body.Body;
 		
 		},
 		

@@ -158,6 +158,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 }
 	 
 	 EventProvider.subscribe('auth.login', UI.showHomePage);
+	 EventProvider.subscribe('ui.showHomePage', UI.showHomePage);
 	 EventProvider.subscribe('auth.logout', UI.showHomePage);
 	 EventProvider.subscribe('ui.showLoginPage', UI.showLoginPage);
 	 EventProvider.subscribe('ui.showRegisterPage', UI.showRegisterPage);
@@ -167,6 +168,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showMyCarspage', UI.showMyCarspage);
 	 EventProvider.subscribe('ui.showRequestALert', UI.showRequestALert);
 	 EventProvider.subscribe('ui.showAddLiftPage', UI.showAddLiftPage);
+	 
 	
 	 return UI;
  	

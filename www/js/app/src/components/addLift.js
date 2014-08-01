@@ -17,9 +17,9 @@ define(['jquery', 'react', 'app/monlift','components/forms'], function($,React, 
 								
 					
 						<div className="segmented-control">
-							<a className="control-item active" href ="#fromInfo">From</a>
+							<a className="control-item active" href ="#FromInfo">From</a>
 							<a className="control-item" href ="#ToInfo">To</a>
-							<a className="control-item">Infos Supp</a>
+							<a className="control-item">Infos  <span className="icon icon-info"></span></a>
 						</div>
 						
 						<div className="content2">
