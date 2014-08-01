@@ -26,10 +26,6 @@ function($, React, monlift, auth, buttons){
 						case 'register':
 							ButtonRight = buttons.LoginButton;
 							break;
-						case 'Request':
-							ButtonRight = buttons.AcceptButton;
-							ButtonLeft =  buttons.DeclinerButton;
-							break;
 					
 						
 						default:

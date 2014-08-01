@@ -3,9 +3,11 @@
  * @author Trispa
  *
  */
-define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
+define(['jquery', 'react', 'app/monlift','components/buttons'], function($, React, monlift, buttons){
 
 	ML = monlift.getInstance();
+	buttonAccepter = buttons.AcceptButton;
+	ButtonreDecliner =  buttons.DeclinerButton;
 	return{
 	RequestAlert :React.createClass({displayName:'myInfos',
 	render:function(){
@@ -24,6 +26,13 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 						</header>
 					
 					<div id="popover" className="popover">
+						
+						<header className="bar bar-nav">
+						  <ButtonreDecliner/>
+						  <buttonAccepter/>
+						  
+						  <h1 className="title">OR</h1>
+						</header>
 					  
 					  <ul className="table-view">
 								<li className="table-view-cell">
