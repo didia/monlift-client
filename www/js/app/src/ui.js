@@ -16,6 +16,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var InfosPage = component.getInfosPage();
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
+	 var AddLiftPage = component.getAddLiftPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -139,6 +140,17 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				<RequestAlertPage/>,
 				document.getElementById('app-body')
 			);
+		},
+		showAddLiftPage : function (){
+		
+			React.renderComponent(
+			<Header page ='New Lift'/>,
+			document.getElementById('header')
+			);
+			React.renderComponent(
+			<AddLiftPage/>,
+			document.getElementById('app-body')
+			);
 		}
 		
 		
@@ -146,6 +158,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 }
 	 
 	 EventProvider.subscribe('auth.login', UI.showHomePage);
+	 EventProvider.subscribe('ui.showHomePage', UI.showHomePage);
 	 EventProvider.subscribe('auth.logout', UI.showHomePage);
 	 EventProvider.subscribe('ui.showLoginPage', UI.showLoginPage);
 	 EventProvider.subscribe('ui.showRegisterPage', UI.showRegisterPage);
@@ -154,6 +167,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showMyInfospage', UI.showMyInfospage);
 	 EventProvider.subscribe('ui.showMyCarspage', UI.showMyCarspage);
 	 EventProvider.subscribe('ui.showRequestALert', UI.showRequestALert);
+	 EventProvider.subscribe('ui.showAddLiftPage', UI.showAddLiftPage);
+	 
 	
 	 return UI;
  	

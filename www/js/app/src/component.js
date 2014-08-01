@@ -1,6 +1,6 @@
 
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'components/parametters', 'components/body', 'components/footer', 'components/forms', 'components/buttons', 'components/profile', 'components/myInfos', 'components/myCars', 'components/requestAlert'], 
-		function($, React, monlift, auth, headers, parametters, Body, footers, forms, buttons, profile, myInfos, myCars, requestAlert){
+define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'components/parametters', 'components/body', 'components/footer', 'components/forms', 'components/buttons', 'components/profile', 'components/myInfos', 'components/myCars', 'components/requestAlert', 'components/addLift'], 
+		function($, React, monlift, auth, headers, parametters, Body, footers, forms, buttons, profile, myInfos, myCars, requestAlert,addLift){
 	
 	 
 	 ML = monlift.getInstance();
@@ -24,7 +24,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		},
 		
  		getHomePage: function(){
-			return Body;
+			return Body.Body;
 		
 		},
 		
@@ -70,7 +70,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		},
 		getRequestAlertPage:function(){
 			return requestAlert.RequestAlert;
+		},
+		getAddLiftPage:function(){
+			return addLift.AddLift;
 		}
+		
 		
 		 
 	 }

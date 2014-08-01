@@ -5,6 +5,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 ML = monlift.getInstance();
 				var myInfosButton = buttons.MyInfosButton;
 				var myCarsButton = buttons.MyCarsButton;
+				var profilButton = buttons.ProfilButton;
                 
                 return {
                 
@@ -15,24 +16,22 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	        <div className="content_Driver_Profil">
                 	        
                 	          <div id="box">
+							  
+							  		
                 	               <div id="topleft">
-								   		<myInfosButton image = "img/profil.png"   id="profil" href="#"  event= "ui.showMyInfospage"/>
-                	                              <h5 id="MyInfos">My Infos</h5>
+								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event= {ML.isUserLoggedIn()?"ui.showMyInfospage":"ui.showLoginPage"}/>
                 	               </div>
                 	               
                 	               <div id="topright">
-                	                    <img src="img/addlift.png"   height="30" weight="30" id="addlift" href="" />
-                	                              <h5 id="MyAutos">My Cars</h5>
-                	               </div>
+								   <profilButton image = "img/lift.png" id1="addlift"  id2="MyCars" label = "My Cars" event= {ML.isUserLoggedIn()?"ui.showMyCarspage" :"ui.showLoginPage"}/> 
+								   </div>
                 	               
                 	               <div id="bottomleft">
-                	                    <img src="img/Alert.png"   height="30" weight="30" id="Alert" href="" />
-                	                              <h5 id="MyAlerts">My Alerts</h5>
-                	                              
+								   		<profilButton image = "img/Alert.png" id1="Alert"  id2="MyAlerts" label = "My Alerts" event= ""/>           
                 	                   </div>
+									   
                                 <div id="bottomright">
-                                     <img src="img/reviews.png"   height="30" weight="30"  id ="rev"  href="" />
-                                             <h5 id="MyReviews">My Reviews</h5>
+									 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= {ML.isUserLoggedIn()?"ui.showAddLiftPage": "ui.showLoginPage"}/>     
                                 </div>
 
                            </div>
@@ -51,29 +50,28 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                
                 	        return (
 								
-								<div className="content_Passanger_Profil">
-                                        <div id="box">
-                                          
-										  <div id="topleft">
-										  	
-                                            <myInfosButton  event=  {(ML.isUserLoggedIn())?"ui.showMyInfospage":"ui.showLoginPage"}  />
-                                            
-                                          </div>
-                                        
-										<div id="topright">
-                                         	<myCarsButton  event= "ui.showMyCarspage"  />
-                                           
-                                        </div>
+                	        <div className="content_Driver_Profil">
+                	        
+                	          <div id="box">
+							  
+                	               <div id="topleft">
+								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event= {ML.isUserLoggedIn()?"ui.showMyInfospage": "ui.showLoginPage"}/>
+                	               </div>
+                	               
+                	               <div id="topright">
+								   <profilButton image = "img/road.svg" id1="addlift"  id2="MyCars" label = "See Lifts" event= ""/> 
+								   </div>
+                	               
+                	               <div id="bottomleft">
+								   		<profilButton image = "img/Search.png" id1="Alert"  id2="MyAlerts" label = "Search" event= ""/>           
+                	                   </div>
+									   
+                                <div id="bottomright">
+									 <profilButton image = "img/lift.png" id1="rev"  id2="MyReviews" label = "My Lifts" event= ""/>     
+                                </div>
 
-                                        <div id="bottomleft">
-                                         	<img src="img/Alert.png"   height="30" weight="30" id="Alert" href="" />
-                                         	<h5 id="MyAlerts">My Alerts</h5>
-                                        </div>
-									
-                                      </div>
-
-                                    </div>        
-
+                           </div>
+                        </div>
                    );
                                                
                }

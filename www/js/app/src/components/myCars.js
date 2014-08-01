@@ -12,8 +12,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 		
 		return(
 			<div className = "myCarscomponent" id = "myCarscomponent" >
-							
+			
+								
+								
 								<ul className="table-view">
+								
 								  <li className="table-view-cell media">
 									<a className="navigate-right">
 									  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>

@@ -4,6 +4,14 @@
 #app-body{
 	
 }
+#fromFormInfo
+{
+	margin-top: 12px;
+}
+#fromToInfo
+{
+	margin-top: 12px;
+}
 #search-form
 {
     margin-top: 40px;
@@ -16,6 +24,10 @@
 .more-option span.icon
 {
     font-size: 75%;
+}
+#passenger-welcome
+{
+	 margin-top: 25px;
 }
 #driver-welcome
 {
@@ -116,7 +128,7 @@ border-radius: 15px;
 
 #MyReviews{
 	margin-top:7px;
-	margin-left:8px;
+	margin-left:20px;
 
 }
 

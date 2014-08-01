@@ -1,16 +1,18 @@
 /** @jsx React.DOM */
-define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftList'], function($, React, monlift, forms, LiftList){
+define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftList','components/Profile'], function($, React, monlift, forms, LiftList, profile){
 	
 	var SearchForm = forms.SearchForm;
-	
-	var Body = React.createClass({displayName:'Body', 
+	var passengerPannel =  profile.PassengerProfile;
+	var driverPannel  = profile.DriverProfile;
+	return{
+	Body : React.createClass({displayName:'Body', 
 		render: function(){
 			return (
 				<div id="content">
 				
                 	        
 					<div className="segmented-control">
-                		<a className="control-item active" href="#passenger-welcome">
+                		<a className="control-item " href="#passenger-welcome">
                      		Passenger
                		    </a>
                 		<a className="control-item" href="#driver-welcome">
@@ -19,25 +21,33 @@ define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftLi
             		</div>
 
         			<div className="content2">
-            			<div id="welcome">
-                			<div id="passenger-welcome" className="control-content active">
-                           		<SearchForm />
+            			<div id="welcome" >
+							<div id = "welcome2"  className ="control-content active">
+								<SearchForm />
+							</div>
+                			<div id="passenger-welcome" className="control-content">
+                           		
+								<passengerPannel/>
                				</div>
 
                 			<div id="driver-welcome" className="control-content">
-                    			<input type="text" placeholder="From" />
-                    			<input type="text" placeholder="To" />
-								<button className="btn btn-primary btn-block" type = "submit">Offer a ride</button>
-                			</div>
+                    			<driverPannel/>	
+							</div>
 						</div>
             		</div>
 	
 	
 				</div>
-			)
+			
+                   );
+					
+				}
+			})
 		}
-	});
+})
+
+
 	
-	return Body;
+	/*return Body;*/
 	
-});// JavaScript Document
+// JavaScript Document
