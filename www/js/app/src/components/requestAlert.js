@@ -8,6 +8,7 @@ define(['jquery', 'react', 'app/monlift','components/buttons'], function($, Reac
 	ML = monlift.getInstance();
 	buttonAccepter = buttons.AcceptButton;
 	ButtonreDecliner =  buttons.DeclinerButton;
+	ButtonCanceler = buttons.CancelButton;
 	return{
 	RequestAlert :React.createClass({displayName:'myInfos',
 	render:function(){
@@ -17,13 +18,20 @@ define(['jquery', 'react', 'app/monlift','components/buttons'], function($, Reac
 					<div className = "requestAlertcomponent" id = "requestAlertcomponent" > 
 					
 						<header className="bar bar-nav">
-						  <a href="#popover">
-							<h4 class="title">
-							  Request 1
+						<ul className="table-view">
+						  <li className="table-view-cell media">
+						  
+						  <a href="#popover"  class="tab-item">
+							  <span className="media-object pull-left icon icon-person"></span>
+							  <div className="media-body">
+								Demande de: {ML.getUser().getFirstname() }{" "}{ML.getUser().getLastname()}
 							  <span className="icon icon-caret"></span>
-							</h4>
+							  </div>
 						  </a>
+						  </li>
+						</ul>
 						</header>
+						
 					
 					<div id="popover" className="popover">
 						
@@ -47,7 +55,8 @@ define(['jquery', 'react', 'app/monlift','components/buttons'], function($, Reac
       							</div>
 								</li>
   								
-								</ul> 
+					</ul> 
+					<ButtonCanceler event = "ui.showRequestALert" />
 					</div>
 					</div>
 

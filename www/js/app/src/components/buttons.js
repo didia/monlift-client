@@ -34,6 +34,18 @@ function($, React, monlift, auth, EventProvider, UI){
 							
 				}
 		}),
+		CancelButton:React.createClass({displayName:'CancelButton',
+			handleClick:function(e){
+				e.preventDefault();
+				
+			},
+			render:function(){
+				return(
+					<a className = "btn pull-right" href ="#" onClick={this.handleClick}> Annuler </a>
+				);
+							
+				}
+		}),
 		
 		DeclinerButton:React.createClass({displayName:'AcceptButton',
 			handleClick:function(e){
@@ -110,7 +122,7 @@ function($, React, monlift, auth, EventProvider, UI){
 			render: function(){
 				return (
 				
-					<a className="tab-item" onClick={this.handleClick} href="#">
+					<a className="tab-item" href ="#" onClick={this.handleClick} href="#">
 								<img src={this.props.image}   height="30" width="30"  />
 								<span className="tab-label">{this.props.label}</span>
 					</a>
