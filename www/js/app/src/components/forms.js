@@ -225,6 +225,32 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}
 		}),
 		
+		addCarForm : React.createClass({displayName:'addliftCarForm',
+		render:function(){
+			return(
+			 			
+						<form  id ="fromCarInfo">
+								
+								<input type="text" placeholder= "Nom"/>
+							
+								<input type="text" placeholder= "Matricule"/>
+							
+								<input type="text" placeholder= "Déscription"/>
+				
+								
+							
+							
+						
+							<button className="btn btn-primary btn-block ">Ajouter</button>
+							
+						</form>
+						
+					
+			);
+			
+		}
+		}),
+		
 		
 		
 		SearchForm : React.createClass({displayName:'SearchForm',
