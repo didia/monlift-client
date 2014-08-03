@@ -198,39 +198,25 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		ToDriverForm: function(){
 			
 		},
-		AddLiftFromForm : React.createClass({displayName:'addliftFromForm',
+		addLiftForm : React.createClass({displayName:'addliftFromForm',
 		render:function(){
 			return(
 			 			
 						<form  id ="fromFormInfo">
-							<div className="input-row">
-								<label>Province</label>
-								<input type="text" placeholder="Qc"/>
-							</div>
-							<div className="input-row">
-								<label>Ville</label>
-								<input type="text" placeholder="Québec"/>
-							</div>
-							<div className="input-row">
-								<label>Addresse</label>
-								<input type="text" placeholder="2325,rue vie étudiante"/>
-							</div>
-							<div className="input-row" width  = "30">
-								<label>Code P</label>
-								<input type="text" placeholder="G1V 0B1"/>
-							</div>
-							<div className="input-row">
-								<label>Heure</label>
-								<input type="text" placeholder="12:00"/>
-							</div>
-							<div className="input-row">
-								<label>Auto</label>
-								<input type="text" placeholder="TODO"/>
-							</div>
-							<button className="btn btn-link pull-right">
-								 suivant
-							  <span className="icon icon-right"></span>
-							</button>
+							
+								<input type="text" placeholder=	"Départ"/>
+							
+								<input type="text" placeholder="Arrivée"/>
+							
+							
+								<input type="text" placeholder="Heure"/>
+							
+								<input type="text" placeholder="Lieu de Départ"/>
+							
+							
+						
+							<button className="btn btn-primary btn-block ">Publier</button>
+							
 						</form>
 						
 					
@@ -239,84 +225,32 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}
 		}),
 		
-		AddLiftToForm : React.createClass({displayName:'addliftToForm',
+		addCarForm : React.createClass({displayName:'addliftCarForm',
 		render:function(){
 			return(
 			 			
-						<form  id ="fromToInfo">
-							<div className="input-row">
-								<label>Province</label>
-								<input type="text" placeholder="Qc"/>
-							</div>
-							<div className="input-row">
-								<label>Ville</label>
-								<input type="text" placeholder="Montréal"/>
-							</div>
-							<div className="input-row">
-								<label>Addresse</label>
-								<input type="text" placeholder="2325,rue vie étudiante"/>
-							</div>
-							<div className="input-row" width  = "30">
-								<label>Code P</label>
-								<input type="text" placeholder="G1V 0B1"/>
-							</div>
-							<div className="input-row">
-								<label>Heure</label>
-								<input type="text" placeholder="12:00"/>
-							</div>
-							<div className="input-row">
-								<label>Auto</label>
-								<input type="text" placeholder="TODO"/>
-							</div>
-							<button className="btn btn-link pull-right ">
-								suivant
-							  <span className="icon icon-right"></span>
-							</button>
+						<form  id ="fromCarInfo">
+								
+								<input type="text" placeholder= "Nom"/>
+							
+								<input type="text" placeholder= "Matricule"/>
+							
+								<input type="text" placeholder= "Déscription"/>
+				
+								
+							
+							
+						
+							<button className="btn btn-primary btn-block ">Ajouter</button>
+							
 						</form>
+						
 					
 			);
 			
 		}
 		}),
-		AddLiftInfoForm : React.createClass({displayName:'addliftinfoForm',
-		render:function(){
-			return(
-			 			
-						<form  id ="fromToInfo">
-							<div className="input-row">
-								<label>Province</label>
-								<input type="text" placeholder="Qc"/>
-							</div>
-							<div className="input-row">
-								<label>Ville</label>
-								<input type="text" placeholder="Montréal"/>
-							</div>
-							<div className="input-row">
-								<label>Addresse</label>
-								<input type="text" placeholder="2325,rue vie étudiante"/>
-							</div>
-							<div className="input-row" width  = "30">
-								<label>Code P</label>
-								<input type="text" placeholder="G1V 0B1"/>
-							</div>
-							<div className="input-row">
-								<label>Heure</label>
-								<input type="text" placeholder="12:00"/>
-							</div>
-							<div className="input-row">
-								<label>Auto</label>
-								<input type="text" placeholder="TODO"/>
-							</div>
-							<button className="btn btn-link pull-right ">
-								suivant
-							  <span className="icon icon-right"></span>
-							</button>
-						</form>
-					
-			);
-			
-		}
-		}),
+		
 		
 		
 		SearchForm : React.createClass({displayName:'SearchForm',
