@@ -100,7 +100,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				if(!lastname)
 					missing_fields.push("lastname");
 				if(!email)
-					misssing_fields.push("email");
+					missing_fields.push("email");
 				if(!password)
 					missing_fields.push("password");
 				if(!phone)
@@ -199,19 +199,83 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			
 		},
 		addLiftForm : React.createClass({displayName:'addliftFromForm',
+			handleSubmit: function(e){
+				e.preventDefault();
+				var from = this.refs.from.getDOMNode().value;
+				var to = this.refs.to.getDOMNode().value;
+				var time = this.refs.time.getDOMNode().value;
+				var meetingPlace = this.refs.meetingPlace.getDOMNode().value;
+				var totalPlace = this.refs.totalPlace.getDOMNode().value;
+				var car = this.refs.car.getDOMNode().value;
+				
+				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
+				{
+					var endpoint = "lifts/create";
+ 					var jsonRequest = {
+						"from" : from,
+						"to": to,
+						"time" : time,
+						"meetingPlace" : meetingPlace,
+						"totalPLace" : totalPlace,
+						"car" : car
+ 					
+ 						}
+				ML.post(endpoint, jsonRequest, function(response, status){
+						if(status === "ok")
+						{
+							ML.log("lift  ajouté");
+							
+							
+						}
+						else
+						{
+							ML.log("add lift  failed: " + response);
+							
+						}
+ 						})
+					}		
+			},
+			validateForm: function(from, to, time, meetingPlace, totalPlace, car)
+			{
+				var missing_fields = [];
+				if(!from)
+					missing_fields.push("from");
+				if(!to)
+					missing_fields.push("to");
+				if(!time)
+					missing_fields.push("time");
+				if(!meetingPlace)
+					missing_fields.push("meetingPlace");
+				if(!totalPlace)
+					missing_fields.push("totalPlace");
+				if(!car)
+					missing_fields.push("car");
+					
+				if(missing_fields.length == 0)
+					return true;
+				if(missing_fields.length == 1)
+					var message = "The value for field \"" + missing_fields[0] +" is missing";  
+				else
+					var message = "The values for fields \"" + missing_fields.toString() + " are missing";
+				this.setState({errorMessage:message});
+				return false;
+			},
 		render:function(){
 			return(
 			 			
-						<form  id ="fromFormInfo">
+						<form  id ="fromFormInfo" onSubmit={this.handleSubmit}>
 							
-								<input type="text" placeholder=	"Départ"/>
+								<input type="text" placeholder=	"Départ" ref="from"/>
 							
-								<input type="text" placeholder="Arrivée"/>
+								<input type="text" placeholder="Arrivée" ref="to"/>
+					
+								<input type="text" placeholder="Heure" ref="time"/>
 							
-							
-								<input type="text" placeholder="Heure"/>
-							
-								<input type="text" placeholder="Lieu de Départ"/>
+								<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
+								
+								<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
+								
+								<input type="text" placeholder="Car" ref="car"/>
 							
 							
 						
@@ -237,10 +301,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							
 								<input type="text" placeholder= "Déscription"/>
 				
-								
-							
-							
-						
 							<button className="btn btn-primary btn-block ">Ajouter</button>
 							
 						</form>
