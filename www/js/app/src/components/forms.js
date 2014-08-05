@@ -276,7 +276,14 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 								<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
 								
 								<input type="text" placeholder="Car" ref="car"/>
-							
+								
+								
+								<select name="carlist" form="fromFormInfo">
+								  <option value="volvo">Volvo</option>
+								  <option value="saab">Saab</option>
+								  <option value="opel">Opel</option>
+								  <option value="audi">Audi</option>
+								</select>
 							
 						
 							<button className="btn btn-primary btn-block ">Publier</button>
