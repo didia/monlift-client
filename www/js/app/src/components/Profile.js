@@ -63,7 +63,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 								   </div>
                 	               
                 	               <div id="bottomleft">
-								   		<profilButton image = "img/Search.png" id1="Alert"  id2="MyAlerts" label = "Search" event= ""/>           
+								   		<profilButton image = "img/Search.png" id1="Alert"  id2="MyAlerts" label = "Search" event= "ui.showSearchPage"/>           
                 	                   </div>
 									   
                                 <div id="bottomright">

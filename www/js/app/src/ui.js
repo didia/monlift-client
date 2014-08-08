@@ -82,6 +82,19 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		
+		showSearchPage: function()
+		{
+			React.renderComponent(
+				<Header page='Search' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<SearchForm />,
+				document.getElementById('app-body')
+			);
+		},
+		
 		showProfilePage: function()
 		{	
 			React.renderComponent(
@@ -168,6 +181,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showMyCarspage', UI.showMyCarspage);
 	 EventProvider.subscribe('ui.showRequestALert', UI.showRequestALert);
 	 EventProvider.subscribe('ui.showAddLiftPage', UI.showAddLiftPage);
+	 EventProvider.subscribe('ui.showSearchPage', UI.showSearchPage);
+	
 	 
 	
 	 return UI;
