@@ -19,11 +19,11 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 							  
 							  		
                 	               <div id="topleft">
-								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event= {ML.isUserLoggedIn()?"ui.showMyInfospage":"ui.showLoginPage"}/>
+								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event= "ui.showLoginPage"/>
                 	               </div>
                 	               
                 	               <div id="topright">
-								   <profilButton image = "img/lift.png" id1="addlift"  id2="MyCars" label = "My Cars" event= {ML.isUserLoggedIn()?"ui.showMyCarspage" :"ui.showLoginPage"}/> 
+								   <profilButton image = "img/lift.png" id1="addlift"  id2="MyCars" label = "My Cars" event= "showLoginPage"/> 
 								   </div>
                 	               
                 	               <div id="bottomleft">
@@ -31,7 +31,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	                   </div>
 									   
                                 <div id="bottomright">
-									 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= {ML.isUserLoggedIn()?"ui.showAddLiftPage": "ui.showLoginPage"}/>     
+									 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= "ui.showLoginPage"/>     
                                 </div>
 
                            </div>
@@ -55,7 +55,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	          <div id="box">
 							  
                 	               <div id="topleft">
-								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event= {ML.isUserLoggedIn()?"ui.showMyInfospage": "ui.showLoginPage"}/>
+								   		<profilButton image = "img/profil.png" id1="profil"  id2="MyInfos" label = "My Infos" event=  "ui.showLoginPage"/>
                 	               </div>
                 	               
                 	               <div id="topright">

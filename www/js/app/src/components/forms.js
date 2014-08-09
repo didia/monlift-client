@@ -276,8 +276,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 								
 							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
 
-								
-							<input type="text" placeholder="Car" ref="car"/>
 	
 							<select name="carlist" form="fromFormInfo" ref = "car">
 								<option value="volvo">Car1</option>
