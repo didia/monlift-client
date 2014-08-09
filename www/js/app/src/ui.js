@@ -84,6 +84,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showProfilePage: function()
 		{	
+			ML.loginRequired();
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
@@ -110,6 +111,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showMyInfospage:function()
 		{
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page='Infos' />,
 				document.getElementById('header')
@@ -121,6 +123,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		},
 		showMyCarspage:function()
 		{
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page='Cars' />,
 				document.getElementById('header')
@@ -131,7 +134,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		showRequestALert:function(){
-			
+			ML.loginRequired();
 			React.renderComponent(
 				<Header page='Request' />,
 				document.getElementById('header')
@@ -142,7 +145,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		showAddLiftPage : function (){
-		
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page ='New Lift'/>,
 			document.getElementById('header')

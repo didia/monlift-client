@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-define([], function(){
+define(["app/exceptions"], function(exceptions){
 	
 	return {
 		
@@ -50,16 +50,27 @@ define([], function(){
   		},
 		
 		fire: function() {
-    		var
-      			args = Array.prototype.slice.call(arguments),
-      			name = args.shift();
+			try{
+    			var
+      				args = Array.prototype.slice.call(arguments),
+      				name = args.shift();
 
-    		this.subscribers()[name].forEach(function(sub) {
-    	  		if (sub) {
-        			sub.apply(this, args);
-      			}
-    		});
-  		}
+				this.subscribers()[name].forEach(function(sub) {
+					if (sub) {
+						sub.apply(this, args);
+					}
+				});
+			} catch(e){
+				if(e instanceof exceptions.LoginException) {
+					
+					console.log(e.message);
+				}
+				else {
+					throw e;
+				}
+  			} 
+			
+		}
 		
 	}
 	

@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery", 'entities/user','entities/session'], function($,User, Session ) {
+define(["jquery", 'entities/user','entities/session','app/event','app/exceptions'], function($,User, Session, EventProvider, exceptions) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
@@ -148,6 +148,11 @@ define(["jquery", 'entities/user','entities/session'], function($,User, Session 
 			return this.userStatus == "connected"?true:false;
  		 },
 		 
+		 isCurrentUserDriver : function()
+		 {
+			return getUser().isDriver(); 
+		 },
+		 
 		 bind: function(toObject, methodName){
     			return function(){toObject[methodName](Array.prototype.slice.call(arguments))};
 	     },
@@ -162,6 +167,14 @@ define(["jquery", 'entities/user','entities/session'], function($,User, Session 
 			 this._session = null;
 			 window.localStorage.removeItem('session'); 
 			 this._userStatus = "not connected";
+		 },
+		 
+		 loginRequired: function()
+		 {
+			 if(!this.isUserLoggedIn()){
+				 EventProvider.fire('ui.showLoginPage');
+				 throw new exceptions.LoginException("User required to log in");
+			 }
 		 }
 			
 		
