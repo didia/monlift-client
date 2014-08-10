@@ -264,7 +264,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		render:function(){
 			return(
 			 			
-						<form  id ="fromFormInfo" onSubmit={this.handleSubmit}>
+						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
 							
 							<input type="text" placeholder=	"Départ" ref="from"/>
 							
