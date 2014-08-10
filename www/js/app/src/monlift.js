@@ -150,7 +150,7 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 isCurrentUserDriver : function()
 		 {
-			return getUser().isDriver(); 
+			return this.getUser().isDriver(); 
 		 },
 		 
 		 bind: function(toObject, methodName){
@@ -159,7 +159,7 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 getToken: function()
 		 {
-			return ML._session? ML._session.token:null;
+			return this._session? this._session.token:null;
 		 },
 		 
 		 deleteSession: function()

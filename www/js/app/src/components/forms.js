@@ -273,11 +273,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							<input type="datetime" placeholder="Heure" ref="time"/>
 							
 							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
-								
 							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
-
-								
-							<input type="text" placeholder="Car" ref="car"/>
 	
 							<select name="carlist" form="fromFormInfo" ref = "car">
 								<option value="volvo">Car1</option>
@@ -312,18 +308,23 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			}
 		}),
 		
-		addUserName: React.createClass({displayName: "UserName Form",
+		AddUsernameForm: React.createClass({displayName: "UserName Form",
 			render:function(){
 				return(
 					
-					<form id = "UserNameForm">
-						<h3> To protect their privacy, we ask drivers to have a username that will be shown to public </h3>
-						<div className="control-group">
-							<label className="control-label">Please choose a public username</label>
-							<div className="controls">
-								<input type = "text" name = "username" placeholder = "Username"/>
+					<form id = "UserNameForm" className = "input-group">
+						<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "username" placeholder = "Add your driver username here" />
 							</div>
 						</div>
+						
+						<div className = "control-group submit-button">
+							<div className = "controls">
+								<button type = "submit" className="btn btn-primary btn-block">Next <span className="icon icon-right"></span> </button>
+							</div>
+						</div>
+						
 					</form>
 				);
 			}

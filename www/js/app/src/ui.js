@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/event', 'app/monlift'], function($,React, auth, component, forms, EventProvider, monlift){
+define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/event', 'app/monlift', 'app/exceptions'], function($,React, auth, component, forms, EventProvider, monlift, exceptions){
 	 
 	 // because JSX component do not understand the "." in forms.X, define a variable for them instead
 	ML = monlift.getInstance();
@@ -17,6 +17,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
 	 var AddLiftPage = component.getAddLiftPage();
+	 var AddUsernamePage = component.getAddUsernamePage();
+	 
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -157,16 +159,47 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
+		
 		showAddLiftPage : function (){
 			ML.loginRequired();
+			
 			React.renderComponent(
-			<Header page ='New Lift'/>,
-			document.getElementById('header')
+				<Header page ='New Lift'/>,
+				document.getElementById('header')
 			);
+			
+			if(!ML.isCurrentUserDriver()) {
+				try {
+					UI.showAddUsernamePage();
+					return;
+				}catch(e) {
+					if(e instanceof exceptions.PageAccessDeniedException) {
+						// this case cannot really happen here but ignore it anyway
+					}
+					else {
+						throw e;
+					}
+				}
+			}
+			
+			
 			React.renderComponent(
-			<AddLiftPage/>,
-			document.getElementById('app-body')
+				<AddLiftPage/>,
+				document.getElementById('app-body')
 			);
+		},
+		
+		showAddUsernamePage : function () {
+			ML.loginRequired();
+			if(ML.isCurrentUserDriver()) {
+				throw new exceptions.PageAccessDeniedException("User is already a driver");
+			}
+			
+			React.renderComponent(
+				<AddUsernamePage />,
+				document.getElementById('app-body')
+			);
+			
 		}
 		
 		
