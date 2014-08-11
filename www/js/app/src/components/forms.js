@@ -198,6 +198,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		ToDriverForm: function(){
 			
 		},
+		
 		addLiftForm : React.createClass({displayName:'addliftFromForm',
 			handleSubmit: function(e){
 				e.preventDefault();
@@ -263,29 +264,27 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		render:function(){
 			return(
 			 			
-						<form  id ="fromFormInfo" onSubmit={this.handleSubmit}>
+						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
 							
-								<input type="text" placeholder=	"Départ" ref="from"/>
+							<input type="text" placeholder=	"Départ" ref="from"/>
 							
-								<input type="text" placeholder="Arrivée" ref="to"/>
+							<input type="text" placeholder="Arrivée" ref="to"/>
 					
-								<input type="text" placeholder="Heure" ref="time"/>
+							<input type="datetime" placeholder="Heure" ref="time"/>
 							
-								<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
+							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
 								
-								<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
+							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
+
+	
+							<select name="carlist" form="fromFormInfo" ref = "car">
+								<option value="volvo">Car1</option>
+								<option value="saab">Car2</option>
+								<option value="opel">Car3</option>
+								<option value="audi">Car4</option>
 								
+							</select>
 								
-								
-								<select name="carlist" form="fromFormInfo" ref = "car">
-								  <option value="volvo">Car1</option>
-								  <option value="saab">Car2</option>
-								  <option value="opel">Car3</option>
-								  <option value="audi">Car4</option>
-								
-								</select>
-								
-							
 						
 							<button className="btn btn-primary btn-block ">Publier</button>
 							
@@ -298,27 +297,35 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}),
 		
 		addCarForm : React.createClass({displayName:'addliftCarForm',
-		render:function(){
-			return(
-			 			
-						<form  id ="fromCarInfo">
-								
-								<input type="text" placeholder= "Nom"/>
-							
-								<input type="text" placeholder= "Matricule"/>
-							
-								<input type="text" placeholder= "Déscription"/>
-				
-							<button className="btn btn-primary btn-block ">Ajouter</button>
-							
-						</form>
-						
-					
-			);
+			render:function(){
+				return(
+					<form  id ="fromCarInfo">
+						<input type = "text" name = "name" placeholder = "Name"/>
+						<input type = "text" name = "matricule" placeholder = "Matricule"/>
+						<textarea name = "description" placeholder = "Description"></textarea>
+						<button type = "submit" className = "btn btn-primary btn-block ">Add</button>	
+					</form>				
+				);
 			
-		}
+			}
 		}),
 		
+		addUserName: React.createClass({displayName: "UserName Form",
+			render:function(){
+				return(
+					
+					<form id = "UserNameForm">
+						<h3> To protect their privacy, we ask drivers to have a username that will be shown to public </h3>
+						<div className="control-group">
+							<label className="control-label">Please choose a public username</label>
+							<div className="controls">
+								<input type = "text" name = "username" placeholder = "Username"/>
+							</div>
+						</div>
+					</form>
+				);
+			}
+		}),
 		
 		
 		SearchForm : React.createClass({displayName:'SearchForm',

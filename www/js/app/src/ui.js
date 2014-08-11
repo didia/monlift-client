@@ -17,6 +17,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
 	 var AddLiftPage = component.getAddLiftPage();
+	 var LiftListPage = component. getLiftListPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -97,6 +98,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showProfilePage: function()
 		{	
+			ML.loginRequired();
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
@@ -123,6 +125,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showMyInfospage:function()
 		{
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page='Infos' />,
 				document.getElementById('header')
@@ -134,6 +137,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		},
 		showMyCarspage:function()
 		{
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page='Cars' />,
 				document.getElementById('header')
@@ -143,8 +147,20 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
+		
+		showLiftsListPage:function(){
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Rides offered' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<LiftListPage/>,
+				document.getElementById('app-body')
+			);
+		},
 		showRequestALert:function(){
-			
+			ML.loginRequired();
 			React.renderComponent(
 				<Header page='Request' />,
 				document.getElementById('header')
@@ -155,7 +171,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		showAddLiftPage : function (){
-		
+			ML.loginRequired();
 			React.renderComponent(
 			<Header page ='New Lift'/>,
 			document.getElementById('header')
@@ -182,6 +198,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showRequestALert', UI.showRequestALert);
 	 EventProvider.subscribe('ui.showAddLiftPage', UI.showAddLiftPage);
 	 EventProvider.subscribe('ui.showSearchPage', UI.showSearchPage);
+	 EventProvider.subscribe('ui.showLiftsListPage', UI.showLiftsListPage);
 	
 	 
 	
