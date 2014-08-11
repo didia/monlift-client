@@ -1,30 +1,69 @@
-#header{
-	
+/**********************************
+ *   GENERAL CSS                  *
+ **********************************/
+.centered {
+	text-align:center;
 }
-#app-body{
-	
+.vertical-centered-container {
+	display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
-#fromFormInfo
-{
-	margin-top: 12px;
+.vertical-centered-container .vertical-centered {
+	display: table-row;
+    vertical-align: middle;
 }
-#fromToInfo
-{
-	margin-top: 12px;
+
+.vertical-centered-container .non-vertical-centered {
+	display: table-row;
 }
-#search-form
-{
-    margin-top: 40px;
-}
+
+
+
+
 .more-option
 {
     margin:5px;
     margin-bottom: 50px;
 }
+
+.bar{
+	background-color:#FFF;
+}
+
+#header{
+	
+}
+
+#app-body{
+
+}
+
+
+
+#fromFormInfo
+{
+	margin-top: 12px;
+}
+
+#fromToInfo
+{
+	margin-top: 12px;
+}
+
+#search-form
+{
+    margin-top: 40px;
+}
+
+
+
 .more-option span.icon
 {
     font-size: 75%;
 }
+
 #passenger-welcome
 {
 	 margin-top: 25px;
@@ -48,21 +87,16 @@
 	background-color: green ;
 }
 
-.bar{
-	background-color:#FFF;
-}
+
 
 #box {
+	margin-top: 90px;
+	margin-left: 40px;
 
-
-
-margin-top: 90px;
-margin-left: 40px;
-
-padding: 1px;
-display: block;
-position: absolute;
-border-radius: 15px;
+	padding: 1px;
+	display: block;
+	position: absolute;
+	border-radius: 15px;
 }
 #topleft {
 background: #33CCFF;
@@ -167,3 +201,21 @@ border-radius: 15px;
 #myCarscomponent{
 	 margin-top: 40px
 }
+
+/**********************************
+ *   AddUsername Page             *
+ **********************************/
+#username-page{
+}
+#UserNameForm{
+}
+
+#UserNameForm .control-group {
+	
+}
+
+#UserNameForm .submit-button {
+	margin-top: 20px;
+}
+
+

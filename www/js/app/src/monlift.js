@@ -121,6 +121,16 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 			this._session = new Session(user, sessionData.token);
 		},
 		
+		//TODO : separate session object and user object into distinct object
+		updateUser: function(userData) {
+			var user = new User(userData);
+			this._session.user = user;
+		},
+		
+		setUsername: function(username) {
+			this._session.user.setUsername(username);
+		},
+		
 		/*
  		 * Function to get the user 
  		 * @return user
@@ -150,7 +160,7 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 isCurrentUserDriver : function()
 		 {
-			return getUser().isDriver(); 
+			return this.getUser().isDriver(); 
 		 },
 		 
 		 bind: function(toObject, methodName){
@@ -159,7 +169,7 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 getToken: function()
 		 {
-			return ML._session? ML._session.token:null;
+			return this._session? this._session.token:null;
 		 },
 		 
 		 deleteSession: function()
@@ -175,7 +185,36 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 				 EventProvider.fire('ui.showLoginPage');
 				 throw new exceptions.LoginException("User required to log in");
 			 }
+		 },
+		 
+		 promoteUserToDriver : function(username) {
+			 if(!this.isCurrentUserDriver()) {
+			 	var endpoint = this.getUser().getId() + "/promote/";
+				var jsonRequest = {
+ 					"username":username
+ 				}
+				
+				ML.post(endpoint, jsonRequest, function(response, status){
+ 					if(status === "ok")
+ 					{
+ 						ML.setUsername(username);
+						EventProvider.fire('ML.userPromoted');
+						
+ 					}
+ 					else
+ 					{
+						ML.log("Promote user failed: " + response);
+						EventProvider.fire('ML.promoteUserFailed', response);
+ 					}
+ 					
+					
+ 				});
+
+				
+				
+			 }
 		 }
+		 
 			
 		
 	}
