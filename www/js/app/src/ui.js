@@ -7,6 +7,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
 	 var RegisterForm = forms.RegisterForm;
+	 var AddCarForm = forms.AddCarForm;
 	 var HomePage = component.getHomePage();
 	 var Header = component.getHeader();
 	 var Footer = component.getFooter();
@@ -171,6 +172,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			if(!ML.isCurrentUserDriver()) {
 				try {
 					UI.showAddUsernamePage();
+					EventProvider.subscribe('ML.userPromoted', ML.bind(UI, 'showAddFirstCarPage'));
 					return;
 				}catch(e) {
 					if(e instanceof exceptions.PageAccessDeniedException) {
@@ -200,6 +202,14 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 			
+		},
+		
+		showAddFirstCarPage : function () {
+			ML.loginRequired();
+			React.renderComponent(
+				<AddCarForm />,
+				document.getElementById('app-body')
+			);
 		}
 		
 		

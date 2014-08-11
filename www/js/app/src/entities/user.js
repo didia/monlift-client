@@ -9,7 +9,7 @@
 		if(!(this instanceof User)){
 			throw new typeError("User constructor conot be called as a function.");
 		}
-		
+		this.id = user.id;
 		this.firstname = user.firstname ;
 		this.lastname = user.lastname;
 		this.email = user.email;
@@ -22,7 +22,11 @@
  
 	User.prototype = {
 		constructor: User,
-	 
+	 	
+		getId : function() {
+			return this.id;
+		},
+		
 	 	getFirstname:function() {
 		 	return this.firstname;
 	 	},
@@ -45,6 +49,11 @@
 		
 		isDriver:function() {
 			return this.isdriver;
+		},
+		
+		setUsername:function(username){
+			this.username = username;
+			this.isdriver = true;
 		}
 	
 	 

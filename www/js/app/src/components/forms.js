@@ -62,6 +62,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			render: function(){
 				return (
 					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
 						<input type="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
 						<input type="password" className ="form-control" placeholder="Password" ref = "password" required />
                 		<label className="checkbox pull-left">
@@ -294,7 +295,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}
 		}),
 		
-		addCarForm : React.createClass({displayName:'addliftCarForm',
+		AddCarForm : React.createClass({displayName:'addliftCarForm',
 			render:function(){
 				return(
 					<form  id ="fromCarInfo">
@@ -309,13 +310,55 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}),
 		
 		AddUsernameForm: React.createClass({displayName: "UserName Form",
-			render:function(){
+			
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			promoteFailed: function(message){
+				console.log("promoteFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
+			
+			handleSubmit:function(e){
+				e.preventDefault();
+				var username = this.refs.username.getDOMNode().value;
+				console.log(username);
+				if(this.validateForm(username))
+				{
+					ML.promoteUserToDriver(username);
+				}
+				console.log(ML._session.user);	
+			},
+			
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.promoteUserFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.promoteUserFailed', ML.bind(that, 'promoteFailed'));
+			},
+			validateForm : function(username) {
+				if(!username) {
+					var message = "The username is required";
+					this.setState({errorMessage:message});
+					return false;
+				}
+				
+				return true;
+			},
+			
+			render:function() {
+				
 				return(
 					
-					<form id = "UserNameForm" className = "input-group">
+					<form id = "UserNameForm" className = "input-group" onSubmit= {this.handleSubmit}>
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
 						<div className = "control-group">
 							<div className = "controls">
-								<input type = "text" name = "username" placeholder = "Add your driver username here" />
+								<input type = "text" name = "username" ref = "username" placeholder = "Add your driver username here" />
 							</div>
 						</div>
 						
