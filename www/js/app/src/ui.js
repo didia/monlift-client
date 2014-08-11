@@ -6,6 +6,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 console.log(component);
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
+	 var addCarForm = forms.addCarForm;
 	 var RegisterForm = forms.RegisterForm;
 	 var HomePage = component.getHomePage();
 	 var Header = component.getHeader();
@@ -18,7 +19,9 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var RequestAlertPage = component.getRequestAlertPage();
 	 var AddLiftPage = component.getAddLiftPage();
 	 var LiftListPage = component. getLiftListPage();
+	
 	 console.log(Header, HomePage, Footer);
+	 
 	 
 	 UI =  {
  		
@@ -83,6 +86,18 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		
+		showAddCarFormPage : function()
+		{
+			React.renderComponent(
+				<Header page='Add Cars' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<addCarForm/>,
+				document.getElementById('app-body')
+			);
+		},
 		showSearchPage: function()
 		{
 			React.renderComponent(
@@ -159,6 +174,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
+		
 		showRequestALert:function(){
 			ML.loginRequired();
 			React.renderComponent(
@@ -199,6 +215,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showAddLiftPage', UI.showAddLiftPage);
 	 EventProvider.subscribe('ui.showSearchPage', UI.showSearchPage);
 	 EventProvider.subscribe('ui.showLiftsListPage', UI.showLiftsListPage);
+	 EventProvider.subscribe('ui.showAddCarFormPage', UI.showAddCarFormPage);
 	
 	 
 	

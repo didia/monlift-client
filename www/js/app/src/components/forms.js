@@ -286,7 +286,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							</select>
 								
 						
-							<button className="btn btn-primary btn-block ">Publier</button>
+							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
 						</form>
 						
@@ -297,12 +297,63 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}),
 		
 		addCarForm : React.createClass({displayName:'addliftCarForm',
+		handleSubmit: function(e){
+				e.preventDefault();
+				var name = this.refs.name.getDOMNode().value;
+				var matricule = this.refs.matricule.getDOMNode().value;
+				var description = this.refs.description.getDOMNode().value;
+				
+				if(this.validateForm(name, matricule, description))
+				{
+					var endpoint = "cars/create";
+ 					var jsonRequest = {
+						"name" : name,
+						"matricule": matricule,
+						"description" : description,
+						
+ 					
+ 						}
+				ML.post(endpoint, jsonRequest, function(response, status){
+						if(status === "ok")
+						{
+							ML.log("lift  ajouté");
+							
+							
+						}
+						else
+						{
+							ML.log("add car  failed: " + response);
+							
+						}
+ 						})
+					}		
+			},
+			validateForm: function(name, matricule, description)
+			{
+				var missing_fields = [];
+				if(!name)
+					missing_fields.push("name");
+				if(!matricule)
+					missing_fields.push("matricule");
+				if(!description)
+					missing_fields.push("description");
+				
+					
+				if(missing_fields.length == 0)
+					return true;
+				if(missing_fields.length == 1)
+					var message = "The value for field \"" + missing_fields[0] +" is missing";  
+				else
+					var message = "The values for fields \"" + missing_fields.toString() + " are missing";
+				this.setState({errorMessage:message});
+				return false;
+			},
 			render:function(){
 				return(
-					<form  id ="fromCarInfo">
-						<input type = "text" name = "name" placeholder = "Name"/>
-						<input type = "text" name = "matricule" placeholder = "Matricule"/>
-						<textarea name = "description" placeholder = "Description"></textarea>
+					<form  CalssName = "input-groupid" ="fromCarInfo" onSubmit={this.handleSubmit}>
+						<input type = "text" name = "name" placeholder = "Name" ref = "name"/>
+						<input type = "text" name = "matricule" placeholder = "Matricule" ref = "matricule"/>
+						<textarea name = "description" placeholder = "Description" ref = "description"></textarea>
 						<button type = "submit" className = "btn btn-primary btn-block ">Add</button>	
 					</form>				
 				);
