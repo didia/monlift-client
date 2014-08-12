@@ -3,6 +3,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 	 
 	 ML = monlift.getInstance();
 	 
+	 
+	 
+	 
 	 return {
  		
 		LoginForm:React.createClass({displayName:'LoginForm',
@@ -432,7 +435,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		SearchForm : React.createClass({displayName:'SearchForm',
 			render: function(){
 				return (
-					<form id="search-form">
+					<form id="search-form" className = "input-group">
                         <input type="text" name="from-place" placeholder="From" />
                         <input type="text" name="to-place" placeholder="To" />
                         <div className="more-option">

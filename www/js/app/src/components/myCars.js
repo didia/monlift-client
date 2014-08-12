@@ -3,9 +3,10 @@
  * @author Trispa
  *
  */
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], function($, React, monlift, auth, buttons){
+define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, monlift ,Car){
 
 	ML = monlift.getInstance();
+	var maapCars = ML.getUserCars();
 	return{
 	MyCars :React.createClass({displayName:'myCars',
 	render:function(){
@@ -16,41 +17,22 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								
 								
 								<ul className="table-view">
+									$.each(maapCars, function(key, value) {
+										
+											var  InfosCar = Value;
+										
+										$.each(InfosCar, function(key, value) {
+										nom = (value == "id")? "nom" :"";
+										matricule = (value == "matricule")? "matricule" : "";
+										description = (value == "description")? "description" : ""; 	
+										
+									});
+									<Car name  = value.get('nom') matricule = value.get('matricule') description = value.get('description') />
+									});
 								
-								  <li className="table-view-cell media">
-									<a className="navigate-right">
-									  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
-									  <div className="media-body">
-										voiture 1
-										<p>Marque voiture
-										infos sur voiture</p>
-									  </div>
-									</a>
-								  </li>
+								 </ul>
 								 
 							
-								  <li className="table-view-cell media">
-									<a className="navigate-right">
-									  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
-									  <div className="media-body">
-										Voiture 2
-										<p>renauld Megane with .... or Similar
-										compact Manual</p>
-									  </div>
-									</a>
-								  </li>
-								  
-								  <li className="table-view-cell media">
-									<a className="navigate-right">
-									  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80" />
-									  <div className="media-body">
-										Voiture 3
-										<p>renauld Megane with .... or Similar
-										compact Manuals</p>
-									  </div>
-									</a>
-								  </li>
-								</ul>
 			</div>
 									
 								  
