@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/event', 'app/monlift'], function($,React, auth, component, forms, EventProvider, monlift){
+define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/event', 'app/monlift', 'app/exceptions'], function($,React, auth, component, forms, EventProvider, monlift, exceptions){
 	 
 	 // because JSX component do not understand the "." in forms.X, define a variable for them instead
 	ML = monlift.getInstance();
@@ -7,6 +7,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
 	 var RegisterForm = forms.RegisterForm;
+	 var AddCarForm = forms.AddCarForm;
 	 var HomePage = component.getHomePage();
 	 var Header = component.getHeader();
 	 var Footer = component.getFooter();
@@ -17,7 +18,9 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
 	 var AddLiftPage = component.getAddLiftPage();
+	 var AddUsernamePage = component.getAddUsernamePage();
 	 var LiftListPage = component. getLiftListPage();
+
 	 console.log(Header, HomePage, Footer);
 	 
 	 UI =  {
@@ -170,15 +173,61 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
+		
 		showAddLiftPage : function (){
 			ML.loginRequired();
+			
 			React.renderComponent(
-			<Header page ='New Lift'/>,
-			document.getElementById('header')
+				<Header page ='New Lift'/>,
+				document.getElementById('header')
 			);
+			
+			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
+			if(!ML.isCurrentUserDriver()) {
+				try {
+					UI.showAddUsernamePage();
+					EventProvider.subscribe('ML.userPromoted', ML.bind(UI, 'showAddFirstCarPage'));
+					return;
+				}catch(e) {
+					if(e instanceof exceptions.PageAccessDeniedException) {
+						// this case cannot really happen here but ignore it anyway
+					}
+					else {
+						throw e;
+					}
+				}
+			}
+			
+			if(!ML.userHasCar()) {
+				UI.showAddFirstCarPage();
+				EventProvider.subscribe('ML.carCreated', ML.bind(UI, 'showAddLiftPage'));
+				return;
+			}
+				
 			React.renderComponent(
-			<AddLiftPage/>,
-			document.getElementById('app-body')
+				<AddLiftPage/>,
+				document.getElementById('app-body')
+			);
+		},
+		
+		showAddUsernamePage : function () {
+			ML.loginRequired();
+			if(ML.isCurrentUserDriver()) {
+				throw new exceptions.PageAccessDeniedException("User is already a driver");
+			}
+			
+			React.renderComponent(
+				<AddUsernamePage />,
+				document.getElementById('app-body')
+			);
+			
+		},
+		
+		showAddFirstCarPage : function () {
+			ML.loginRequired();
+			React.renderComponent(
+				<AddCarForm />,
+				document.getElementById('app-body')
 			);
 		}
 		

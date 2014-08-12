@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+
 /**
  * @author Trispa
  *
@@ -26,6 +27,3 @@ define(['jquery', 'react', 'app/monlift','components/forms'], function($,React, 
 }
 	
 })
-			
-			
-// JavaScript Document
