@@ -15,7 +15,7 @@
 		this.email = user.email;
 		this.phone = user.phone;
 		this.username = user.username;
-		this.isdriver = user.isDriver;
+		this.isDriver = user.isDriver;
 		
 		
 	}
@@ -47,13 +47,13 @@
 			return this.username;
 	 	},
 		
-		isDriver:function() {
-			return this.isdriver;
+		isUserDriver:function() {
+			return this.isDriver;
 		},
 		
 		setUsername:function(username){
 			this.username = username;
-			this.isdriver = true;
+			this.isDriver = true;
 		}
 	
 	 

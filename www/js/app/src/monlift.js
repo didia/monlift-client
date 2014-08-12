@@ -5,17 +5,21 @@
 *
 */
 
-define(["jquery", 'entities/user','entities/session','app/event','app/exceptions'], function($,User, Session, EventProvider, exceptions) {
+define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User, EventProvider, exceptions) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
 	{
-		this._session = null;
 		this._userStatus = 'unknow';
 		this._logging = true;
 		this._domain = {
 			api: window.DEVELOPPEMENT?'http://localhost:8080/api':'https://monliftca.appspot.com/api'
 		};
+		this._token = null;
+		this._user = null;
+		this._cars = null;
+	
+		
 	}
 	
 	
@@ -30,20 +34,44 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 			
 		},
 		
+		saveToLocalStorage : function(key, object) {
+			window.localStorage.setItem(key, JSON.stringify(object));
+		},
+		
+		getFromLocalStorage : function(key) {
+			var object = window.localStorage.getItem(key);
+			if(!object) {
+				return null;
+			}
+			return JSON.parse(object);
+		},
+		
+		deleteFromLocalStorage : function(key) {
+			window.localStorage.removeItem(key); 
+		},
+		
 		/*
 		 * Load a session from localStorage if one exists
 		 *
 		 */
 		_loadSession: function(){
 			console.log("Loading the session");
-			var session = window.localStorage.getItem('session');
-			if(session)
+			
+			var token = this.getFromLocalStorage("token");
+			var user = this.getFromLocalStorage("user");
+			
+			if(token && user)
  		 	{
-				console.log(session);
-				session = JSON.parse(session);
- 		 		this._buildSessionObject(session);
+				console.log(token);
+				this._token = token;
+				this._user = new User(user);
  		 		this._userStatus = "connected";
+				
+				//Load cars
+				this._cars = this.getFromLocalStorage("cars");
  		 	}
+			
+			
 		},
 		
 		
@@ -55,9 +83,9 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 */
 		 post:function(endpoint, request, cb) {
 			 	
-			 if(this._session != null)
+			 if(this._token != null)
 			 {
-				 request != null?request["token"] = ML._session.token:request={"token":ML._session.token};
+				 request != null?request["token"] = this._token:request={"token":this._token};
 			 }
 			 request = JSON.stringify(request);
 		     if(endpoint[0] != "/")
@@ -111,24 +139,25 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		
  		{
 			console.log(sessionData);
-			this._buildSessionObject(sessionData);
+			this._user = new User(sessionData.user);
+			this.saveToLocalStorage("user", this._user);
+			
+			this._token = sessionData.token;
+			this.saveToLocalStorage("token", this._token);
+			
 			this._userStatus = "connected";
- 			window.localStorage.setItem('session', JSON.stringify(sessionData));
+			
+ 			
  		},	
+	
 		
-		_buildSessionObject: function(sessionData){
-			var user = new User(sessionData.user);
-			this._session = new Session(user, sessionData.token);
-		},
-		
-		//TODO : separate session object and user object into distinct object
-		updateUser: function(userData) {
-			var user = new User(userData);
-			this._session.user = user;
+		updateUser: function() {
+			this.saveToLocalStorage("user", this._user);
 		},
 		
 		setUsername: function(username) {
-			this._session.user.setUsername(username);
+			this._user.setUsername(username);
+			this.updateUser();
 		},
 		
 		/*
@@ -138,8 +167,8 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
  		 */
 		getUser:function()
 		{
-			console.log(this._session.token);
-			return this._session.getUser();
+			
+			return this._user;
 		},
  		
 		/*
@@ -160,7 +189,7 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 isCurrentUserDriver : function()
 		 {
-			return this.getUser().isDriver(); 
+			return this.getUser().isUserDriver(); 
 		 },
 		 
 		 bind: function(toObject, methodName){
@@ -169,13 +198,15 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 		 
 		 getToken: function()
 		 {
-			return this._session? this._session.token:null;
+			return this._token? this._token:null;
 		 },
 		 
 		 deleteSession: function()
 		 {
-			 this._session = null;
-			 window.localStorage.removeItem('session'); 
+			 this._user = null;;
+			 this._token = null;
+			 this.deleteFromLocalStorage("user");
+			 this.deleteFromLocalStorage("token");
 			 this._userStatus = "not connected";
 		 },
 		 
@@ -213,6 +244,49 @@ define(["jquery", 'entities/user','entities/session','app/event','app/exceptions
 				
 				
 			 }
+		 },
+		 
+		 createCar : function(name, matricule, description) {
+			var endpoint = "cars/create";
+			var jsonRequest = {
+				"name":name,
+				"description" : description,
+				"matricule" : matricule
+			}
+			
+			ML.post(endpoint, jsonRequest, function(response, status){
+				if(status === "ok")
+				{
+					ML.addCar(response);
+					EventProvider.fire('ML.carCreated');
+					
+				}
+				else
+				{
+					ML.log("create car failed " + response);
+					EventProvider.fire('ML.createCarFailed', response);
+				}
+				
+				
+			});
+
+		 },
+		 
+		 addCar : function(car) {
+			 if(!this._cars) {
+				 this.cars = {};
+			 }
+			 this._cars[car.id] = car;
+			 this.saveToLocalStorage("cars", this._cars);
+		 },
+		 
+		 userHasCar : function() {
+			
+			 return this._cars?true:false;
+		 },
+		 
+		 getUserCars : function() {
+			 return this._cars;
 		 }
 		 
 			

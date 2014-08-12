@@ -169,6 +169,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('header')
 			);
 			
+			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
 			if(!ML.isCurrentUserDriver()) {
 				try {
 					UI.showAddUsernamePage();
@@ -184,7 +185,12 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				}
 			}
 			
-			
+			if(!ML.userHasCar()) {
+				UI.showAddFirstCarPage();
+				EventProvider.subscribe('ML.carCreated', ML.bind(UI, 'showAddLiftPage'));
+				return;
+			}
+				
 			React.renderComponent(
 				<AddLiftPage/>,
 				document.getElementById('app-body')

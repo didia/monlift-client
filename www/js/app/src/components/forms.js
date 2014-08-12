@@ -296,13 +296,56 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}),
 		
 		AddCarForm : React.createClass({displayName:'addliftCarForm',
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			createCarFailed: function(message){
+				console.log("addCarFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
+			
+			handleSubmit:function(e){
+				e.preventDefault();
+				var name = this.refs.name.getDOMNode().value;
+				var matricule = this.refs.matricule.getDOMNode().value;
+				var description = this.refs.description.getDOMNode().value;
+				console.log(name + " " + matricule + " " + description);
+				if(this.validateForm(matricule))
+				{
+					ML.createCar(name, matricule, description);
+				}
+				console.log(ML._cars);	
+			},
+			
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.createCarFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.createCarFailed', ML.bind(that, 'createCarFailed'));
+			},
+			// Rework the validate function for add Car
+			validateForm : function(matricule) {
+				if(!matricule) {
+					var message = "The matricule is required";
+					this.setState({errorMessage:message});
+					return false;
+				}
+				
+				return true;
+			},
+			
 			render:function(){
 				return(
-					<form  id ="fromCarInfo">
-						<input type = "text" name = "name" placeholder = "Name"/>
-						<input type = "text" name = "matricule" placeholder = "Matricule"/>
-						<textarea name = "description" placeholder = "Description"></textarea>
-						<button type = "submit" className = "btn btn-primary btn-block ">Add</button>	
+					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
+						<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
+						<textarea name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that"></textarea>
+						<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>	
 					</form>				
 				);
 			
