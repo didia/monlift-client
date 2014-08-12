@@ -265,7 +265,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		render:function(){
 			return(
 			 			
-						<form  id ="fromFormInfo" onSubmit={this.handleSubmit}>
+						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
 							
 							<input type="text" placeholder=	"Départ" ref="from"/>
 							
@@ -275,7 +275,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							
 							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
 							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
-	
+
 							<select name="carlist" form="fromFormInfo" ref = "car">
 								<option value="volvo">Car1</option>
 								<option value="saab">Car2</option>

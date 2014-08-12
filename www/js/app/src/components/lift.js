@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 	
+	ML  = monlift.getInstance();
 	var Lift = React.createClass({displayName:'Lift', 
 		render: function(){
 			return (
@@ -8,18 +9,22 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
                                
                  <div>
 
-                        <ul class="table-view">
+                        <ul className="table-view">
+						
     
-                           <li class="table-view-cell media">
+                           <li className="table-view-cell media">
+								<a className="navigate-right">
+                           		<img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
 
-                           		<img  src="img/photo.jpg" height="70" weight="70" />
-
-                           		<div class="media-body">
-        
-                            		<a href="">  fredy   </a>              
-
-                           			<img src="img/car2.png"  height="100" weight="100" />
+                           		<div className = "media-body">
+								  <h1>{this.props.heure} </h1>
+								  <p>
+								  <h3>{this.props.depart}{"==>"} {this.props.arrivee}</h3>
+								  <h3>Places: {this.props.places}</h3>
+								  {this.props.autreInfos}
+								  </p>
 								</div>
+								</a>
 							</li>
 						</ul>
               	</div>
