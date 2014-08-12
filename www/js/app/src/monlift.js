@@ -274,7 +274,7 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		 
 		 addCar : function(car) {
 			 if(!this._cars) {
-				 this.cars = {};
+				 this._cars = {};
 			 }
 			 this._cars[car.id] = car;
 			 this.saveToLocalStorage("cars", this._cars);
