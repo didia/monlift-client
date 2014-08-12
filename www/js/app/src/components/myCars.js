@@ -19,8 +19,8 @@ define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, 
 								<ul className="table-view">
 									$.each(maapCars, function(key, value) {
 										
-											var  InfosCar = Value;
-										
+											
+										var  InfosCar = value;
 										$.each(InfosCar, function(key, value) {
 										nom = (value == "id")? "nom" :"";
 										matricule = (value == "matricule")? "matricule" : "";
