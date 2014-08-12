@@ -18,10 +18,9 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var InfosPage = component.getInfosPage();
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
-	 var AddLiftPage = forms.addLiftForm;
-	 var LiftListPage = component. getLiftListPage();
+	 var AddLiftPage = component.getAddLiftPage();
 	 var AddUsernamePage = component.getAddUsernamePage();
-	 
+	 var LiftListPage = component. getLiftListPage();
 
 	 console.log(Header, HomePage, Footer);
 	 

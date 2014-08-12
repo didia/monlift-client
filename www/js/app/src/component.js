@@ -1,9 +1,9 @@
 
+
 define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'components/parametters', 'components/body', 'components/footer', 'components/forms', 'components/buttons', 'components/profile', 'components/myInfos', 'components/myCars', 'components/requestAlert', 'components/addLift', 'components/liftList','components/addUsername'], 
 		function($, React, monlift, auth, headers, parametters, Body, footers, forms, buttons, profile, myInfos, myCars, requestAlert,addLift, liftList, addUsername){
 
-	
-	 
+
 	 ML = monlift.getInstance();
 	 
 	 return {
@@ -75,12 +75,22 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 			return requestAlert.RequestAlert;
 		},
 		
-		getLiftListPage : function(){
-			return liftList.LiftList;
+
+		getAddLiftPage:function(){
+			return addLift.AddLift;
 		},
+
+		
+
 		getAddUsernamePage : function () {
 			return addUsername.AddUsername;
 		},
+
+
+		getLiftListPage : function(){
+			return liftList.LiftList;
+		}
+
 
 		
 		

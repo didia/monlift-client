@@ -275,7 +275,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
 							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
 
-	
 							<select name="carlist" form="fromFormInfo" ref = "car">
 								<option value="volvo">Car1</option>
 								<option value="saab">Car2</option>
@@ -294,7 +293,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			
 		}
 		}),
-		
+
 		AddCarForm : React.createClass({displayName:'addliftCarForm',
 			getInitialState: function() {
     			return {errorMessage: ''};
@@ -307,10 +306,12 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			},
 			
 			handleSubmit:function(e){
+
 				e.preventDefault();
 				var name = this.refs.name.getDOMNode().value;
 				var matricule = this.refs.matricule.getDOMNode().value;
 				var description = this.refs.description.getDOMNode().value;
+
 				console.log(name + " " + matricule + " " + description);
 				if(this.validateForm(matricule))
 				{
@@ -347,6 +348,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 						<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
 						<textarea name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that"></textarea>
 						<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>	
+
 					</form>				
 				);
 			
