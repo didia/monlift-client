@@ -62,6 +62,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			render: function(){
 				return (
 					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
 						<input type="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
 						<input type="password" className ="form-control" placeholder="Password" ref = "password" required />
                 		<label className="checkbox pull-left">
@@ -273,10 +274,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 							<input type="datetime" placeholder="Heure" ref="time"/>
 							
 							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
-								
 							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
 
-	
 							<select name="carlist" form="fromFormInfo" ref = "car">
 								<option value="volvo">Car1</option>
 								<option value="saab">Car2</option>
@@ -296,83 +295,126 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}
 		}),
 		
-		addCarForm : React.createClass({displayName:'addliftCarForm',
-		handleSubmit: function(e){
+
+		AddCarForm : React.createClass({displayName:'addliftCarForm',
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			createCarFailed: function(message){
+				console.log("addCarFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
+			
+			handleSubmit:function(e){
+
 				e.preventDefault();
 				var name = this.refs.name.getDOMNode().value;
 				var matricule = this.refs.matricule.getDOMNode().value;
 				var description = this.refs.description.getDOMNode().value;
-				
-				if(this.validateForm(name, matricule, description))
+
+				console.log(name + " " + matricule + " " + description);
+				if(this.validateForm(matricule))
 				{
-					var endpoint = "cars/create";
- 					var jsonRequest = {
-						"name" : name,
-						"matricule": matricule,
-						"description" : description,
-						
- 					
- 						}
-				ML.post(endpoint, jsonRequest, function(response, status){
-						if(status === "ok")
-						{
-							ML.log("lift  ajouté");
-							
-							
-						}
-						else
-						{
-							ML.log("add car  failed: " + response);
-							
-						}
- 						})
-					}		
+					ML.createCar(name, matricule, description);
+				}
+				console.log(ML._cars);	
 			},
-			validateForm: function(name, matricule, description)
-			{
-				var missing_fields = [];
-				if(!name)
-					missing_fields.push("name");
-				if(!matricule)
-					missing_fields.push("matricule");
-				if(!description)
-					missing_fields.push("description");
+			
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.createCarFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.createCarFailed', ML.bind(that, 'createCarFailed'));
+			},
+			// Rework the validate function for add Car
+			validateForm : function(matricule) {
+				if(!matricule) {
+					var message = "The matricule is required";
+					this.setState({errorMessage:message});
+					return false;
+				}
 				
-					
-				if(missing_fields.length == 0)
-					return true;
-				if(missing_fields.length == 1)
-					var message = "The value for field \"" + missing_fields[0] +" is missing";  
-				else
-					var message = "The values for fields \"" + missing_fields.toString() + " are missing";
-				this.setState({errorMessage:message});
-				return false;
+				return true;
 			},
+			
 			render:function(){
 				return(
-					<form  CalssName = "input-groupid" ="fromCarInfo" onSubmit={this.handleSubmit}>
-						<input type = "text" name = "name" placeholder = "Name" ref = "name"/>
-						<input type = "text" name = "matricule" placeholder = "Matricule" ref = "matricule"/>
-						<textarea name = "description" placeholder = "Description" ref = "description"></textarea>
-						<button type = "submit" className = "btn btn-primary btn-block ">Add</button>	
+					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
+						<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
+						<textarea name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that"></textarea>
+						<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>	
+
 					</form>				
 				);
 			
 			}
 		}),
 		
-		addUserName: React.createClass({displayName: "UserName Form",
-			render:function(){
+		AddUsernameForm: React.createClass({displayName: "UserName Form",
+			
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			promoteFailed: function(message){
+				console.log("promoteFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
+			
+			handleSubmit:function(e){
+				e.preventDefault();
+				var username = this.refs.username.getDOMNode().value;
+				console.log(username);
+				if(this.validateForm(username))
+				{
+					ML.promoteUserToDriver(username);
+				}
+				console.log(ML._session.user);	
+			},
+			
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.promoteUserFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.promoteUserFailed', ML.bind(that, 'promoteFailed'));
+			},
+			validateForm : function(username) {
+				if(!username) {
+					var message = "The username is required";
+					this.setState({errorMessage:message});
+					return false;
+				}
+				
+				return true;
+			},
+			
+			render:function() {
+				
 				return(
 					
-					<form id = "UserNameForm">
-						<h3> To protect their privacy, we ask drivers to have a username that will be shown to public </h3>
-						<div className="control-group">
-							<label className="control-label">Please choose a public username</label>
-							<div className="controls">
-								<input type = "text" name = "username" placeholder = "Username"/>
+					<form id = "UserNameForm" className = "input-group" onSubmit= {this.handleSubmit}>
+						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "username" ref = "username" placeholder = "Add your driver username here" />
 							</div>
 						</div>
+						
+						<div className = "control-group submit-button">
+							<div className = "controls">
+								<button type = "submit" className="btn btn-primary btn-block">Next <span className="icon icon-right"></span> </button>
+							</div>
+						</div>
+						
 					</form>
 				);
 			}
