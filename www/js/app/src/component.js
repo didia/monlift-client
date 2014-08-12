@@ -75,10 +75,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 			return requestAlert.RequestAlert;
 		},
 		
-		getAddLiftPage:function(){
-			return addLift.AddLift;
-		},
-
 		getLiftListPage : function(){
 			return liftList.LiftList;
 		},

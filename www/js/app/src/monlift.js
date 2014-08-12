@@ -246,6 +246,33 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 			 }
 		 },
 		 
+		 createLift: function (from, to, time, meetingPlace, totalPlace, car){
+		 
+				var endpoint = "lifts/create";
+ 					var jsonRequest = {
+						"from" : from,
+						"to": to,
+						"time" : time,
+						"meetingPlace" : meetingPlace,
+						"totalPlace" : totalPlace,
+						"car" : car
+ 					
+ 						}
+				ML.post(endpoint, jsonRequest, function(response, status){
+						if(status === "ok")
+						{
+							ML.log("lift  created");
+							
+							
+						}
+						else
+						{
+							ML.log("add lift  failed: " + response);
+							
+						}
+ 						})		
+			},
+		 
 		 createCar : function(name, matricule, description) {
 			var endpoint = "cars/create";
 			var jsonRequest = {

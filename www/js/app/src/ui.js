@@ -6,7 +6,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 console.log(component);
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
-	 var addCarForm = forms.addCarForm;
+	 var addCarForm = forms.AddCarForm;
 	 var RegisterForm = forms.RegisterForm;
 	 var AddCarForm = forms.AddCarForm;
 	 var HomePage = component.getHomePage();
@@ -18,7 +18,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var InfosPage = component.getInfosPage();
 	 var CarsPage = component.getCarsPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
-	 var AddLiftPage = component.getAddLiftPage();
+	 var AddLiftPage = forms.addLiftForm;
 	 var LiftListPage = component. getLiftListPage();
 	 var AddUsernamePage = component.getAddUsernamePage();
 	 

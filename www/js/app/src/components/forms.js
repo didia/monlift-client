@@ -204,6 +204,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		},
 		
 		addLiftForm : React.createClass({displayName:'addliftFromForm',
+		
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			createCarFailed: function(message){
+				console.log("addLiftFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
 			handleSubmit: function(e){
 				e.preventDefault();
 				var from = this.refs.from.getDOMNode().value;
@@ -215,30 +225,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				
 				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
 				{
-					var endpoint = "lifts/create";
- 					var jsonRequest = {
-						"from" : from,
-						"to": to,
-						"time" : time,
-						"meetingPlace" : meetingPlace,
-						"totalPLace" : totalPlace,
-						"car" : car
- 					
- 						}
-				ML.post(endpoint, jsonRequest, function(response, status){
-						if(status === "ok")
-						{
-							ML.log("lift  ajouté");
-							
-							
-						}
-						else
-						{
-							ML.log("add lift  failed: " + response);
-							
-						}
- 						})
-					}		
+					ML.createLif( from, to, time, meetingPlace, totalPlace, car)
+				}
+			},
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.createLiftFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.createLiftFailed', ML.bind(that, 'createLiftFailed'));
 			},
 			validateForm: function(from, to, time, meetingPlace, totalPlace, car)
 			{
@@ -254,7 +250,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				if(!totalPlace)
 					missing_fields.push("totalPlace");
 				if(!car)
-					missing_fields.push("car");
+					missing_fields.push(car);
 					
 				if(missing_fields.length == 0)
 					return true;
@@ -319,6 +315,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				if(this.validateForm(matricule))
 				{
 					ML.createCar(name, matricule, description);
+					
 				}
 				console.log(ML._cars);	
 			},
@@ -418,52 +415,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 						
 					</form>
 				);
-			}
-		}),
-		
-		
-		addCarForm : React.createClass({displayName:'addCarForm',
-			handleSubmit: function(e){
-				e.preventDefault();
-				var name = this.refs.name.getDOMNode().value;
-				var matricule = this.refs.matricule.getDOMNode().value;
-				var description = this.refs.description.getDOMNode().value;
-				
-				if(this.validateForm(name, matricule, description))
-				{
-					ML.createCar(name, matricule, description);
-			},
-			validateForm: function(name, matricule, description)
-			{
-				var missing_fields = [];
-				if(!name)
-					missing_fields.push("name");
-				if(!matricule)
-					missing_fields.push("matricule");
-				if(!description)
-					missing_fields.push("description");
-				
-					
-				if(missing_fields.length == 0)
-					return true;
-				if(missing_fields.length == 1)
-					var message = "The value for field \"" + missing_fields[0] +" is missing";  
-				else
-					var message = "The values for fields \"" + missing_fields.toString() + " are missing";
-				this.setState({errorMessage:message});
-				return false;
-			}
-			,
-			render:function(){
-				return(
-					<form  CalssName = "input-groupid" onSubmit={this.handleSubmit}>
-						<input type = "text" name = "name" placeholder = "Name" ref = "name"/>
-						<input type = "text" name = "matricule" placeholder = "Matricule" ref = "matricule"/>
-						<textarea name = "description" placeholder = "Description" ref = "description"></textarea>
-						<button type = "submit" className = "btn btn-primary btn-block ">Add</button>	
-					</form>				
-				);
-			
 			}
 		}),
 		
