@@ -345,8 +345,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				return(
 					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-
-						<div className = "control-group">
+				<div className = "control-group">
 							<div className = "controls">
 								<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
 							</div>
@@ -360,7 +359,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 						
 						<div className = "control-group">
 							<div className = "controls">
-								<textarea rows = 4 name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
+				<textarea rows = "4" name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
 							</div>
 						</div>
 						
