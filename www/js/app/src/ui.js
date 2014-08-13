@@ -6,7 +6,6 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 console.log(component);
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
-	 var addCarForm = forms.AddCarForm;
 	 var RegisterForm = forms.RegisterForm;
 	 var AddCarForm = forms.AddCarForm;
 	 var HomePage = component.getHomePage();
@@ -21,8 +20,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var AddLiftPage = component.getAddLiftPage();
 	 var AddUsernamePage = component.getAddUsernamePage();
 	 var LiftListPage = component. getLiftListPage();
-
-
+	 var addCarForm = component.getAddCarPage();
 	 var AddFirstCarPage = component.getAddFirstCarPage();
 
 	 console.log(Header, HomePage, Footer);
@@ -91,18 +89,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 		
-		showAddCarFormPage : function()
-		{
-			React.renderComponent(
-				<Header page='Add Cars' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<addCarForm/>,
-				document.getElementById('app-body')
-			);
-		},
+		
 		showSearchPage: function()
 		{
 			React.renderComponent(
@@ -244,6 +231,18 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 			
+		},
+		showAddCarFormPage : function()
+		{
+			React.renderComponent(
+				<Header page='Add Cars' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<addCarForm/>,
+				document.getElementById('app-body')
+			);
 		},
 		
 		showAddFirstCarPage : function () {

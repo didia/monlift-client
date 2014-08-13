@@ -11,26 +11,18 @@ define(['jquery', 'react', 'app/monlift','components/forms' ], function($,React,
 	ML = monlift.getInstance();
 	return{
 		AddCar : React.createClass({displayName : "AddCar",
-		render:function(){
-		
-			return(
-			
-			<div id = "username-page" className = "vertical-centered-container"> 
+			render:function(){
+				return(
+					<div id = "username-page" className = "vertical-centered-container"> 
 						<div className = "centered non-vertical-centered">
 							<h5> Add A new Car </h5>
-						</div>
-						
-						
+						</div>	
 						<div className = "vertical-centered">	
 							<addCarForm /> 
 						</div>
-						
-								
+							
+									
 					</div>
-			
-			
-				
-				
 			);
 		}
 	})

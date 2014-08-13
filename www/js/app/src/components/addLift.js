@@ -6,7 +6,7 @@
  */
 define(['jquery', 'react', 'app/monlift','components/forms' ], function($,React, monlift, forms ){
 	
-	var addLiftFromForm = forms.addLiftForm;
+	var addLiftForm = forms.addLiftForm;
 	
 	ML = monlift.getInstance();
 	return{
@@ -14,12 +14,18 @@ define(['jquery', 'react', 'app/monlift','components/forms' ], function($,React,
 		render:function(){
 		
 			return(
-				<div className = "addLiftComponent" id = "addLiftComponent"> 
-				
-									<addLiftFromForm/> 
+				<div id = "username-page" className = "vertical-centered-container"> 
+						<div className = "centered non-vertical-centered">
+							<h5> Publier un Lift </h5>
+						</div>
+						
+						
+						<div className = "vertical-centered">	
+							<addLiftForm  /> 
+						</div>
+						
 								
-					
-				</div>
+					</div>
 			);
 		}
 	})
