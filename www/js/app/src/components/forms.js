@@ -350,10 +350,32 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return(
 					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-						<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
-						<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
-						<textarea name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that"></textarea>
-						<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>	
+				<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
+							</div>
+						</div>
+						
+						<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
+							</div>
+						</div>
+						
+						<div className = "control-group">
+							<div className = "controls">
+
+								<textarea rows = "4" name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
+
+							</div>
+						</div>
+						
+						<div className = "control-group submit-button">
+							<div className = "controls">
+								<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>
+							</div>
+						</div>
+							
 
 					</form>				
 				);
