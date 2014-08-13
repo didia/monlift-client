@@ -7,7 +7,7 @@
 .vertical-centered-container {
 	display: table;
     position: absolute;
-    height: 100%;
+    height: 70%;
     width: 100%;
 }
 .vertical-centered-container .vertical-centered {
@@ -19,7 +19,9 @@
 	display: table-row;
 }
 
-
+form .submit-button {
+	margin-top: 20px;
+}
 
 
 .more-option
@@ -205,8 +207,7 @@ border-radius: 15px;
 /**********************************
  *   AddUsername Page             *
  **********************************/
-#username-page{
-}
+
 #UserNameForm{
 }
 
