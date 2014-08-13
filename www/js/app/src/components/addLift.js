@@ -4,10 +4,10 @@
  * @author Trispa
  *
  */
-define(['jquery', 'react', 'app/monlift','components/forms'], function($,React, monlift, forms ){
+define(['jquery', 'react', 'app/monlift','components/forms' ], function($,React, monlift, forms ){
 	
 	var addLiftFromForm = forms.addLiftForm;
-	var addLiftToForm = forms.AddLiftToForm;
+	
 	ML = monlift.getInstance();
 	return{
 		AddLift : React.createClass({displayName : "AddLift",
@@ -15,7 +15,6 @@ define(['jquery', 'react', 'app/monlift','components/forms'], function($,React, 
 		
 			return(
 				<div className = "addLiftComponent" id = "addLiftComponent"> 
-								
 				
 									<addLiftFromForm/> 
 								

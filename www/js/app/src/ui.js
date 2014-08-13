@@ -6,7 +6,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 console.log(component);
 	 var SearchForm = forms.SearchForm;
 	 var LoginForm = forms.LoginForm;
-	 var addCarForm = forms.addCarForm;
+	 var addCarForm = forms.AddCarForm;
 	 var RegisterForm = forms.RegisterForm;
 	 var AddCarForm = forms.AddCarForm;
 	 var HomePage = component.getHomePage();
@@ -22,7 +22,10 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var AddUsernamePage = component.getAddUsernamePage();
 	 var LiftListPage = component. getLiftListPage();
 
+<<<<<<< HEAD
 	 var AddFirstCarPage = component.getAddFirstCarPage();
+=======
+>>>>>>> TK-01023
 	 console.log(Header, HomePage, Footer);
 	 
 	 
