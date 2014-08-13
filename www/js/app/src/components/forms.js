@@ -281,7 +281,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							
 							<select  id  = "cars" ref = "car" required >
 			
-							<option value = "car1"> car1</option>
+							<option value = "id"> car1 </option>
+							console.log(maapCars);
+							{$.each(maapCars, function(id , cars) {
+									console.log(cars.name);
+									console.log(cars);
+									console.log(id);
+									<option value = "id">cars.name</option>
+								
+								})
+								}
 						
 							</select>
 							
