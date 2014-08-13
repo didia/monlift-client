@@ -359,7 +359,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 						
 						<div className = "control-group">
 							<div className = "controls">
-				<textarea rows = "4" name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
+
+								<textarea rows = "4" name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
+
 							</div>
 						</div>
 						
