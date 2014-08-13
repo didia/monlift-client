@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, React, monlift, auth, EventProvider){
+define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/buttons'], function($, React, monlift, auth, EventProvider,buttons){
 	 
 	 ML = monlift.getInstance();
 	 
-	 
+	 var maapCars = ML.getUserCars();
 	 
 	 
 	 return {
@@ -225,7 +225,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				
 				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
 				{
-					ML.createLif( from, to, time, meetingPlace, totalPlace, car)
+					ML.createLift( from, to, time, meetingPlace, totalPlace, car)
 				}
 			},
 			componentWillUnmount: function(){
@@ -261,29 +261,33 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				this.setState({errorMessage:message});
 				return false;
 			},
+			
+		
 		render:function(){
 			return(
 			 			
 						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
 							
-							<input type="text" placeholder=	"Départ" ref="from"/>
+							<input type="text" placeholder=	"Départ" ref="from" required/>
 							
-							<input type="text" placeholder="Arrivée" ref="to"/>
+							<input type="text" placeholder="Arrivée" ref="to" required/>
 					
-							<input type="datetime" placeholder="Heure" ref="time"/>
+							<input type="datetime" placeholder="Heure" ref="time" required/>
 							
-							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
-							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
+							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+							
+							<input type="text" placeholder="Nombre de place" ref="totalPlace" required/>
 
-							<select name="carlist" form="fromFormInfo" ref = "car">
-								<option value="volvo">Car1</option>
-								<option value="saab">Car2</option>
-								<option value="opel">Car3</option>
-								<option value="audi">Car4</option>
-								
-							</select>
-								
+							
+							<select  id  = "cars" ref = "car" required >
+			
+							$.each(maapCars, function(id, cars){
+								 <selectCarsbutton name  = {cars.name}/>
+							});
 						
+							</select>
+							);
+										 
 							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
 						</form>
@@ -293,6 +297,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			
 		}
 		}),
+		
+		
 
 		AddCarForm : React.createClass({displayName:'addliftCarForm',
 			getInitialState: function() {
