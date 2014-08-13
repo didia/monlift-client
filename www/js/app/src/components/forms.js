@@ -281,12 +281,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							
 							<select  id  = "cars" ref = "car" required >
 			
-							$.each(maapCars, function(id, cars){
-								 <selectCarsbutton name  = {cars.name}/>
-							});
+							<option value = "car1"> car1</option>
 						
 							</select>
-							);
+							
 										 
 							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
