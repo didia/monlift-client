@@ -21,11 +21,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var AddLiftPage = component.getAddLiftPage();
 	 var AddUsernamePage = component.getAddUsernamePage();
 	 var LiftListPage = component. getLiftListPage();
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 22e7e530ba7d7ecec83afd03b585bd2c36b443c3
+	 var AddFirstCarPage = component.getAddFirstCarPage();
 	 console.log(Header, HomePage, Footer);
 	 
 	 
@@ -195,12 +192,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showAddLiftPage : function (){
 			ML.loginRequired();
-			
-			React.renderComponent(
-				<Header page ='New Lift'/>,
-				document.getElementById('header')
-			);
-			
+		
 			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
 			if(!ML.isCurrentUserDriver()) {
 				try {
@@ -222,7 +214,12 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				EventProvider.subscribe('ML.carCreated', ML.bind(UI, 'showAddLiftPage'));
 				return;
 			}
-				
+			
+			React.renderComponent(
+				<Header page ='New Lift'/>,
+				document.getElementById('header')
+			);
+			
 			React.renderComponent(
 				<AddLiftPage/>,
 				document.getElementById('app-body')
@@ -236,6 +233,11 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			}
 			
 			React.renderComponent(
+				<Header page ='Add a username'/>,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
 				<AddUsernamePage />,
 				document.getElementById('app-body')
 			);
@@ -244,8 +246,14 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showAddFirstCarPage : function () {
 			ML.loginRequired();
+			
 			React.renderComponent(
-				<AddCarForm />,
+				<Header page ='Add a car'/>,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<AddFirstCarPage />,
 				document.getElementById('app-body')
 			);
 		}
