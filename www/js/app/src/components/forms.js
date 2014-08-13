@@ -287,7 +287,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 									console.log(cars.name);
 									console.log(cars);
 									console.log(id);
-									<option value = "id">cars.name</option>
+									<option value = "id">{cars.name}</option>
 								
 								})
 								}
