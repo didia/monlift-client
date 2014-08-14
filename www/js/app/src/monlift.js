@@ -301,10 +301,11 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		 
 		 addCar : function(car) {
 			 if(!this._cars) {
-				 this._cars = {};
+				 this._cars = [];
 			 }
-			 this._cars[car.id] = car;
+			 this._cars.push(car);
 			 this.saveToLocalStorage("cars", this._cars);
+			 
 		 },
 		 
 		 userHasCar : function() {

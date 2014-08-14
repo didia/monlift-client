@@ -3,7 +3,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 	 
 	 ML = monlift.getInstance();
 	 
-	 var maapCars = ML.getUserCars();
+	 
 	 
 	 
 	 return {
@@ -264,34 +264,48 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			
 		
 		render:function(){
+			var cars = ML.getUserCars();
+			console.log(this.props.cars);
 			return(
 			 			
 						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder=	"Départ" ref="from" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder=	"Départ" ref="from" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Arrivée" ref="to" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Arrivée" ref="to" required/>
-					
-							<input type="datetime" placeholder="Heure" ref="time" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="datetime-local" placeholder="Heure" ref="time" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Nombre de place" ref="totalPlace" required/>
-
+							<div className="control-group">
+								<div className="controls">
+									<input type="number" placeholder="Nombre de place" ref="totalPlace" required/>
+								</div>
+							</div>
 							
-							<select  id  = "cars" ref = "car" required >
-			
-							<option value = "id"> car1 </option>
-							console.log(maapCars);
-							{$.each(maapCars, function(id , cars) {
-									console.log(cars.name);
-									console.log(cars);
-									console.log(id);
-									<option value = "id">{cars.name}</option>
-								
+							<select className="" ref = "car" name = "car" required >
+								{
+									this.props.cars.map(function(car, i){
+									return <option value = {car.id}> {car.name} </option>;
 								})
 								}
-						
+
 							</select>
 							
 										 
@@ -357,7 +371,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return(
 					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-				<div className = "control-group">
+						<div className = "control-group">
 							<div className = "controls">
 								<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
 							</div>
