@@ -95,7 +95,17 @@ function($, React, monlift, auth, EventProvider, UI){
 			}
 			
 		}),
-		
+		selectCAr: React.createClass({displayName:'selectCar',
+			
+			render: function(){
+				return (
+					
+					<option value = {this.props.id}> {this.props.nom}</option>
+					
+					
+				);
+			}
+		}),
 		ProfilButton: React.createClass({displayName:'FooterButton',
 			handleClick:function(e){
 				console.log("fire event " + this.props.event );

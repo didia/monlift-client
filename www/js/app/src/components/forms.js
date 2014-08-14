@@ -5,7 +5,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 	 
 	 var maapCars = ML.getUserCars();
 	 
-	 
+	 var selectCAr  = buttons.selectCAr;
 	 return {
  		
 		LoginForm:React.createClass({displayName:'LoginForm',
@@ -278,22 +278,20 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							
 							<input type="text" placeholder="Nombre de place" ref="totalPlace" required/>
 
+							<select>
 							
-							<select  id  = "cars" ref = "car" required >
-			
-							<option value = "id"> car1 </option>
 							console.log(maapCars);
 							{$.each(maapCars, function(id , cars) {
 									console.log(cars.name);
 									console.log(cars);
 									console.log(id);
-									<option value = "id">{cars.name}</option>
+									return <option value = {id}>{cars.name}</option>
 								
 								})
 								}
-						
+								
 							</select>
-							
+														
 										 
 							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
