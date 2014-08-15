@@ -1,17 +1,30 @@
 /** @jsx React.DOM */
+/**
+ * @author Trispa
+ *
+ */
 define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React, monlift, Lift){
 	
 	return{
 	LiftList : React.createClass({displayName:'LiftList', 
 		render: function(){
+			
+			console.log("les lift sont : "+ML. getUserCars());
+							
 			return (
-				<div>
-          	    	<ul className="table-view">
-					
-						<Lift  image = "img/car2.png" heure = "12:00" depart = "ville1" arrivee ="ville2" places = "2" autreInfos = "plus d'info....." />
-						
-					</ul>
-        		</div>
+					<div className="control-group">
+						<div className="controls">
+								
+							<ul className="table-view">
+							{	
+								this.props.lifts.map(function(lift, i){
+								return <Lift  image = "img/car2.png" date = {lift.date} depart = {lift.from} arrivee = {lift.to} placesdisponible = {lift.availablePlace} prix = {lift.price +" $"}  driver = {lift.driver.fullname}  infosVoiture = {lift.car.name + " " +lift.car.description}/>
+								})
+							}
+						</ul>
+					</div>
+				</div>
+        			
 			);
 		}
 	})

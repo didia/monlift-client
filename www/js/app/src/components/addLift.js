@@ -12,18 +12,19 @@ define(['jquery', 'react', 'app/monlift','components/forms' ], function($,React,
 	return{
 		AddLift : React.createClass({displayName : "AddLift",
 		render:function(){
-		
+			var cars = ML.getUserCars();
 			return(
-				<div id = "username-page" className = "vertical-centered-container"> 
+				<div id = "addlift-page" className = "vertical-centered-container"> 
 						<div className = "centered non-vertical-centered">
 							<h5> Publier un Lift </h5>
 						</div>
 						
 						
 						<div className = "vertical-centered">	
-							<addLiftForm  /> 
+							<addLiftForm cars={cars} /> 
 						</div>
 						
+
 								
 					</div>
 			);

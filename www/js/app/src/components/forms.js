@@ -3,7 +3,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 	 
 	 ML = monlift.getInstance();
 	 
-	 var maapCars = ML.getUserCars();
+	 
 	 
 	 var selectCAr  = buttons.selectCAr;
 	 return {
@@ -219,13 +219,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				var from = this.refs.from.getDOMNode().value;
 				var to = this.refs.to.getDOMNode().value;
 				var time = this.refs.time.getDOMNode().value;
+				var price = this.refs.price.getDOMNode().value;
 				var meetingPlace = this.refs.meetingPlace.getDOMNode().value;
 				var totalPlace = this.refs.totalPlace.getDOMNode().value;
 				var car = this.refs.car.getDOMNode().value;
-				
-				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
+				console.log("ce que je recupere du temp" + time);
+				if(this.validateForm(from, to, time,price, meetingPlace, totalPlace, car))
 				{
-					ML.createLift( from, to, time, meetingPlace, totalPlace, car)
+					ML.createLift( from, to, time, price, meetingPlace, totalPlace, car)
+					console.log(" ce que je recois du select est " + car);
+				
 				}
 			},
 			componentWillUnmount: function(){
@@ -236,7 +239,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				var that = this;
 				EventProvider.subscribe('ML.createLiftFailed', ML.bind(that, 'createLiftFailed'));
 			},
-			validateForm: function(from, to, time, meetingPlace, totalPlace, car)
+			validateForm: function(from, to, time, price, meetingPlace, totalPlace, car)
 			{
 				var missing_fields = [];
 				if(!from)
@@ -245,6 +248,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 					missing_fields.push("to");
 				if(!time)
 					missing_fields.push("time");
+				if(!price)
+					missing_fields.push("price");
 				if(!meetingPlace)
 					missing_fields.push("meetingPlace");
 				if(!totalPlace)
@@ -264,34 +269,64 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			
 		
 		render:function(){
+			//var cars = ML.getUserCars();
+			console.log(this.props.cars);
 			return(
 			 			
 						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder=	"Départ" ref="from" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder=	"Départ" ref="from" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Arrivée" ref="to" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Arrivée" ref="to" required/>
-					
-							<input type="datetime" placeholder="Heure" ref="time" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="date" placeholder="Heure" ref="time" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="number" placeholder="Prix en $ CAD" ref="price" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Nombre de place" ref="totalPlace" required/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+								</div>
+							</div>
+							
 
-							<select>
+							<div className="control-group">
+								<div className="controls">
+									<input type="number" placeholder="Nombre de place" ref="totalPlace" required/>
+								</div>
+							</div>
 							
-							console.log(maapCars);
-							{$.each(maapCars, function(id , cars) {
-									console.log(cars.name);
-									console.log(cars);
-									console.log(id);
-									return <option value = {id}>{cars.name}</option>
-								
+							
+							
+							<select className="" ref = "car" name = "car" required >
+								<div className="control-group">
+								<div className="controls">
+								{
+									this.props.cars.map(function(car, i){
+									return <option value = {car.id}> {car.name}  </option>;
 								})
 								}
-								
+								</div>
+							</div>
+
 							</select>
-														
+							
+															
 										 
 							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
@@ -355,7 +390,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return(
 					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-				<div className = "control-group">
+						<div className = "control-group">
 							<div className = "controls">
 								<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
 							</div>
