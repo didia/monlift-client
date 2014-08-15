@@ -306,7 +306,31 @@ define(["jquery", 'entities/user','entities/liftEntitie','app/event','app/except
 			});
 
 		 },
-		 
+		//à verifier .. pour les contener et leur mise en forme 
+		 createSlidePanel: function(/*string*/ gridid, /*int*/ cellWidth,  /*int*/ padding) {
+			var x = padding;
+			
+			$(gridid).each(function() {
+				$(this).css({
+					'position': 'relative',
+					'left': '0px'
+				});
+				
+				$(this).parent().css('overflow', 'hidden');
+				$(this).children('.cell').each(function() {
+					$(this).css({
+						width: cellWidth + 'px',
+						height: '90%',
+						position: 'absolute',
+						left: x + 'px',
+						top: padding + 'px'
+					});
+		
+					x += cellWidth + padding;
+				});
+			});
+		 },
+			
 		 addLift:function(lifts){
 			 
 			 if(!this._lifts)
@@ -341,7 +365,7 @@ define(["jquery", 'entities/user','entities/liftEntitie','app/event','app/except
 		 
 			
 		
-	}
+	},
 	
 	
 	MonLift.instance = null;
@@ -356,5 +380,4 @@ define(["jquery", 'entities/user','entities/liftEntitie','app/event','app/except
 			return MonLift.instance;
 		}
 	}
-
 })

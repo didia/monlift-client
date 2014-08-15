@@ -218,7 +218,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				e.preventDefault();
 				var from = this.refs.from.getDOMNode().value;
 				var to = this.refs.to.getDOMNode().value;
-				var time = this.refs.time.getDOMNode().value;
+				var time = this.refs.time.getDOMNode().value +":00";
 				var price = this.refs.price.getDOMNode().value;
 				var meetingPlace = this.refs.meetingPlace.getDOMNode().value;
 				var totalPlace = this.refs.totalPlace.getDOMNode().value;
@@ -288,7 +288,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							
 							<div className="control-group">
 								<div className="controls">
-									<input type="date" placeholder="Heure" ref="time" required/>
+									<input type="datetime-local" placeholder="Heure" ref="time" required/>
 								</div>
 							</div>
 							

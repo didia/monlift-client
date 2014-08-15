@@ -14,7 +14,9 @@ define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React,
 			return (
 					<div className="control-group">
 						<div className="controls">
-								
+							<div className = "centered non-vertical-centered">
+							<h5> Lifts Disponibles </h5>
+						</div>	
 							<ul className="table-view">
 							{	
 								this.props.lifts.map(function(lift, i){
