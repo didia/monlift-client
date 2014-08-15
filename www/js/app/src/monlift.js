@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User, EventProvider, exceptions) {
+define(["jquery", 'entities/user','entities/liftEntitie','app/event','app/exceptions'], function($,User,Lift, EventProvider, exceptions) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
@@ -18,6 +18,7 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		this._token = null;
 		this._user = null;
 		this._cars = null;
+		this._lifts = null;
 	
 		
 	}
@@ -57,8 +58,9 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		_loadSession: function(){
 			console.log("Loading the session");
 			
-			var token = this.getFromLocalStorage("token");
+			var token= this.getFromLocalStorage("token");
 			var user = this.getFromLocalStorage("user");
+			var lift = this.getFromLocalStorage ("lifts");
 			
 			if(token && user)
  		 	{
@@ -66,9 +68,11 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 				this._token = token;
 				this._user = new User(user);
  		 		this._userStatus = "connected";
-				
+				//charger la list de lifts
+				this._lifts =this.getFromLocalStorage ("lifts");
 				//Load cars
 				this._cars = this.getFromLocalStorage("cars");
+				
  		 	}
 			
 			
@@ -246,28 +250,32 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 			 }
 		 },
 		 
-		 createLift: function (from, to, time, meetingPlace, totalPlace, car){
+		 createLift: function (from, to, time, price, meetingPlace, totalPlace, car){
 		 
 				var endpoint = "lifts/create";
  					var jsonRequest = {
 						"from" : from,
 						"to": to,
 						"time" : time,
+						"price": price,
 						"meetingPlace" : meetingPlace,
 						"totalPlace" : totalPlace,
-						"car" : car
- 					
+						"carId" : car,
+						
  						}
 				ML.post(endpoint, jsonRequest, function(response, status){
 						if(status === "ok")
 						{
+							console.log("lift  created");
+							ML.addLift(response);
 							ML.log("lift  created");
-							
-							
+						
 						}
 						else
 						{
 							ML.log("add lift  failed: " + response);
+							console.log("lift  note created" + response);
+							
 							
 						}
  						})		
@@ -298,6 +306,41 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 			});
 
 		 },
+		//à verifier .. pour les contener et leur mise en forme 
+		 createSlidePanel: function(/*string*/ gridid, /*int*/ cellWidth,  /*int*/ padding) {
+			var x = padding;
+			
+			$(gridid).each(function() {
+				$(this).css({
+					'position': 'relative',
+					'left': '0px'
+				});
+				
+				$(this).parent().css('overflow', 'hidden');
+				$(this).children('.cell').each(function() {
+					$(this).css({
+						width: cellWidth + 'px',
+						height: '90%',
+						position: 'absolute',
+						left: x + 'px',
+						top: padding + 'px'
+					});
+		
+					x += cellWidth + padding;
+				});
+			});
+		 },
+			
+		 addLift:function(lifts){
+			 
+			 if(!this._lifts)
+			 {
+				 this._lifts = [];
+			 }
+			 this._lifts.push(lifts);
+			 this.saveToLocalStorage("lifts", this._lifts);
+		 },
+			 
 		 
 		 addCar : function(car) {
 			 if(!this._cars) {
@@ -315,11 +358,15 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		 
 		 getUserCars : function() {
 			 return this._cars;
+		 },
+		 getlifts:function(){
+		 	return this._lifts;
 		 }
 		 
 			
 		
-	}
+	},
+	
 	
 	MonLift.instance = null;
 	return {
@@ -333,5 +380,4 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 			return MonLift.instance;
 		}
 	}
-
 })

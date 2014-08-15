@@ -3,19 +3,19 @@
  *
  */
  define(function(){
- function Lift(p_from, p_to, p_time, p_meetingPlace, p_totalPlace, p_availablePlace, p_driver, p_car)
+ function Lift(lift)
  {
 	if(!(this instanceof Lift)){
 		throw new typeError("Lift constructor conot be called as a function.");
-	}
-		this.m_from = p_from;
-		this.m_to = p_to;
-		this.m_time = p_time;
-		this.m_meetingPLace = p_meetingPlace;
-		this.m_totalPlace = p_totalPlace;
-		this.m_availablePLace = p_availablePlace;
-		this.m_driver = p_driver;
-		this.m_car = p_car;
+	}	this.id = lift.id;
+		this.m_from = lift.from;
+		this.m_to = lif.to;
+		this.m_time = lif.time;
+		this.m_meetingPLace = lift.meetingPlace;
+		this.m_totalPlace = lift.totalPlace;
+		this.m_availablePLace = lift.availablePlace;
+		this.m_driver = lift.p_driver;
+		this.m_car = lift.p_car;
  }
  
  Lift.prototype = {

@@ -5,7 +5,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 	 
 	 
 	 
-	 
+	 var selectCAr  = buttons.selectCAr;
 	 return {
  		
 		LoginForm:React.createClass({displayName:'LoginForm',
@@ -218,14 +218,17 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				e.preventDefault();
 				var from = this.refs.from.getDOMNode().value;
 				var to = this.refs.to.getDOMNode().value;
-				var time = this.refs.time.getDOMNode().value;
+				var time = this.refs.time.getDOMNode().value +":00";
+				var price = this.refs.price.getDOMNode().value;
 				var meetingPlace = this.refs.meetingPlace.getDOMNode().value;
 				var totalPlace = this.refs.totalPlace.getDOMNode().value;
 				var car = this.refs.car.getDOMNode().value;
-				
-				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
+				console.log("ce que je recupere du temp" + time);
+				if(this.validateForm(from, to, time,price, meetingPlace, totalPlace, car))
 				{
-					ML.createLift( from, to, time, meetingPlace, totalPlace, car)
+					ML.createLift( from, to, time, price, meetingPlace, totalPlace, car)
+					console.log(" ce que je recois du select est " + car);
+				
 				}
 			},
 			componentWillUnmount: function(){
@@ -236,7 +239,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				var that = this;
 				EventProvider.subscribe('ML.createLiftFailed', ML.bind(that, 'createLiftFailed'));
 			},
-			validateForm: function(from, to, time, meetingPlace, totalPlace, car)
+			validateForm: function(from, to, time, price, meetingPlace, totalPlace, car)
 			{
 				var missing_fields = [];
 				if(!from)
@@ -245,6 +248,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 					missing_fields.push("to");
 				if(!time)
 					missing_fields.push("time");
+				if(!price)
+					missing_fields.push("price");
 				if(!meetingPlace)
 					missing_fields.push("meetingPlace");
 				if(!totalPlace)
@@ -264,7 +269,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			
 		
 		render:function(){
-			var cars = ML.getUserCars();
+			//var cars = ML.getUserCars();
 			console.log(this.props.cars);
 			return(
 			 			
@@ -289,28 +294,42 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							
 							<div className="control-group">
 								<div className="controls">
+									<input type="number" placeholder="Prix en $ CAD" ref="price" required/>
+								</div>
+							</div>
+							
+							<div className="control-group">
+								<div className="controls">
 									<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
 								</div>
 							</div>
 							
+
 							<div className="control-group">
 								<div className="controls">
 									<input type="number" placeholder="Nombre de place" ref="totalPlace" required/>
 								</div>
 							</div>
 							
-							<select className="" ref = "car" name = "car" required >
-								{
-									this.props.cars.map(function(car, i){
-									return <option value = {car.id}> {car.name} </option>;
-								})
-								}
+							<div className="control-group">
+								<div className="controls">
+									<select className="" ref = "car" name = "car" required >
+										{
+											this.props.cars.map(function(car, i){
+												return <option value = {car.id}> {car.name} </option>;
+											})
+										}
 
-							</select>
+									</select>
+								</div>
+							</div>
+>>>>>>> enclose select and submit button of createLift form in a div
 							
-										 
-							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
-							
+							<div className = "control-group submit-button">
+								<div className = "controls">			 
+									<button type="submit" className="btn btn-primary btn-block ">Publier</button>
+								</div>
+							</div>	
 						</form>
 						
 					
