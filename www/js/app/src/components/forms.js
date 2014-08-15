@@ -311,25 +311,25 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 								</div>
 							</div>
 							
-							
-							
-							<select className="" ref = "car" name = "car" required >
-								<div className="control-group">
+							<div className="control-group">
 								<div className="controls">
-								{
-									this.props.cars.map(function(car, i){
-									return <option value = {car.id}> {car.name}  </option>;
-								})
-								}
+									<select className="" ref = "car" name = "car" required >
+										{
+											this.props.cars.map(function(car, i){
+												return <option value = {car.id}> {car.name} </option>;
+											})
+										}
+
+									</select>
 								</div>
 							</div>
-
-							</select>
+>>>>>>> enclose select and submit button of createLift form in a div
 							
-															
-										 
-							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
-							
+							<div className = "control-group submit-button">
+								<div className = "controls">			 
+									<button type="submit" className="btn btn-primary btn-block ">Publier</button>
+								</div>
+							</div>	
 						</form>
 						
 					
