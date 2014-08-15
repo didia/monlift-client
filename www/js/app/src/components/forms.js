@@ -1,7 +1,10 @@
 /** @jsx React.DOM */
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, React, monlift, auth, EventProvider){
+define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/buttons'], function($, React, monlift, auth, EventProvider,buttons){
 	 
 	 ML = monlift.getInstance();
+	 
+	 
+	 
 	 
 	 return {
  		
@@ -201,6 +204,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		},
 		
 		addLiftForm : React.createClass({displayName:'addliftFromForm',
+		
+			getInitialState: function() {
+    			return {errorMessage: ''};
+  			},
+			
+			createCarFailed: function(message){
+				console.log("addLiftFailed called with message: ");
+				console.log(arguments);
+				this.setState({errorMessage:message});
+			},
 			handleSubmit: function(e){
 				e.preventDefault();
 				var from = this.refs.from.getDOMNode().value;
@@ -212,30 +225,16 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				
 				if(this.validateForm(from, to, time, meetingPlace, totalPlace, car))
 				{
-					var endpoint = "lifts/create";
- 					var jsonRequest = {
-						"from" : from,
-						"to": to,
-						"time" : time,
-						"meetingPlace" : meetingPlace,
-						"totalPLace" : totalPlace,
-						"car" : car
- 					
- 						}
-				ML.post(endpoint, jsonRequest, function(response, status){
-						if(status === "ok")
-						{
-							ML.log("lift  ajouté");
-							
-							
-						}
-						else
-						{
-							ML.log("add lift  failed: " + response);
-							
-						}
- 						})
-					}		
+					ML.createLift( from, to, time, meetingPlace, totalPlace, car)
+				}
+			},
+			componentWillUnmount: function(){
+				EventProvider.clear('ML.createLiftFailed');
+			},
+			
+			componentDidMount: function(){
+				var that = this;
+				EventProvider.subscribe('ML.createLiftFailed', ML.bind(that, 'createLiftFailed'));
 			},
 			validateForm: function(from, to, time, meetingPlace, totalPlace, car)
 			{
@@ -251,7 +250,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				if(!totalPlace)
 					missing_fields.push("totalPlace");
 				if(!car)
-					missing_fields.push("car");
+					missing_fields.push(car);
 					
 				if(missing_fields.length == 0)
 					return true;
@@ -262,30 +261,55 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				this.setState({errorMessage:message});
 				return false;
 			},
+			
+		
 		render:function(){
+			var cars = ML.getUserCars();
+			console.log(this.props.cars);
 			return(
 			 			
 						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder=	"Départ" ref="from" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder=	"Départ" ref="from"/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Arrivée" ref="to" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Arrivée" ref="to"/>
-					
-							<input type="datetime" placeholder="Heure" ref="time"/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="datetime-local" placeholder="Heure" ref="time" required/>
+								</div>
+							</div>
 							
-							<input type="text" placeholder="Lieu de Départ" ref="meetingPlace"/>
-							<input type="text" placeholder="Nombre de place" ref="totalPlace"/>
+							<div className="control-group">
+								<div className="controls">
+									<input type="text" placeholder="Lieu de Départ" ref="meetingPlace" required/>
+								</div>
+							</div>
+							
+							<div className="control-group">
+								<div className="controls">
+									<input type="number" placeholder="Nombre de place" ref="totalPlace" required/>
+								</div>
+							</div>
+							
+							<select className="" ref = "car" name = "car" required >
+								{
+									this.props.cars.map(function(car, i){
+									return <option value = {car.id}> {car.name} </option>;
+								})
+								}
 
-							<select name="carlist" form="fromFormInfo" ref = "car">
-								<option value="volvo">Car1</option>
-								<option value="saab">Car2</option>
-								<option value="opel">Car3</option>
-								<option value="audi">Car4</option>
-								
 							</select>
-								
-						
-							<button className="btn btn-primary btn-block ">Publier</button>
+							
+										 
+							<button type="submit" className="btn btn-primary btn-block ">Publier</button>
 							
 						</form>
 						
@@ -295,6 +319,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 		}
 		}),
 		
+		
+
 		AddCarForm : React.createClass({displayName:'addliftCarForm',
 			getInitialState: function() {
     			return {errorMessage: ''};
@@ -307,14 +333,17 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			},
 			
 			handleSubmit:function(e){
+
 				e.preventDefault();
 				var name = this.refs.name.getDOMNode().value;
 				var matricule = this.refs.matricule.getDOMNode().value;
 				var description = this.refs.description.getDOMNode().value;
+
 				console.log(name + " " + matricule + " " + description);
 				if(this.validateForm(matricule))
 				{
 					ML.createCar(name, matricule, description);
+					
 				}
 				console.log(ML._cars);	
 			},
@@ -342,15 +371,39 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 				return(
 					<form  id ="fromCarInfo" className="input-group" onSubmit = {this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-						<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
-						<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
-						<textarea name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that"></textarea>
-						<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>	
+						<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "name" ref = "name" placeholder = "Name" required />
+							</div>
+						</div>
+						
+						<div className = "control-group">
+							<div className = "controls">
+								<input type = "text" name = "matricule" ref = "matricule" placeholder = "Matricule" required/>
+							</div>
+						</div>
+						
+						<div className = "control-group">
+							<div className = "controls">
+
+								<textarea rows = "4" name = "description" ref = "description" placeholder = "Add car description like color, year or stuff like that here"></textarea>
+
+							</div>
+						</div>
+						
+						<div className = "control-group submit-button">
+							<div className = "controls">
+								<button type = "submit" className = "btn btn-primary btn-block ">Add car</button>
+							</div>
+						</div>
+							
+
 					</form>				
 				);
 			
 			}
 		}),
+
 		
 		AddUsernameForm: React.createClass({displayName: "UserName Form",
 			
@@ -416,11 +469,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event'], function($, 
 			}
 		}),
 		
-		
 		SearchForm : React.createClass({displayName:'SearchForm',
 			render: function(){
 				return (
-					<form id="search-form">
+					<form id="search-form" className = "input-group">
                         <input type="text" name="from-place" placeholder="From" />
                         <input type="text" name="to-place" placeholder="To" />
                         <div className="more-option">

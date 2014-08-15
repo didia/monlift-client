@@ -246,6 +246,33 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 			 }
 		 },
 		 
+		 createLift: function (from, to, time, meetingPlace, totalPlace, car){
+		 
+				var endpoint = "lifts/create";
+ 					var jsonRequest = {
+						"from" : from,
+						"to": to,
+						"time" : time,
+						"meetingPlace" : meetingPlace,
+						"totalPlace" : totalPlace,
+						"car" : car
+ 					
+ 						}
+				ML.post(endpoint, jsonRequest, function(response, status){
+						if(status === "ok")
+						{
+							ML.log("lift  created");
+							
+							
+						}
+						else
+						{
+							ML.log("add lift  failed: " + response);
+							
+						}
+ 						})		
+			},
+		 
 		 createCar : function(name, matricule, description) {
 			var endpoint = "cars/create";
 			var jsonRequest = {
@@ -274,10 +301,11 @@ define(["jquery", 'entities/user','app/event','app/exceptions'], function($,User
 		 
 		 addCar : function(car) {
 			 if(!this._cars) {
-				 this._cars = {};
+				 this._cars = [];
 			 }
-			 this._cars[car.id] = car;
+			 this._cars.push(car);
 			 this.saveToLocalStorage("cars", this._cars);
+			 
 		 },
 		 
 		 userHasCar : function() {
