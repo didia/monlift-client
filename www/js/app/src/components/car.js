@@ -12,7 +12,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 									  <div className="media-body">
 										{this.props.nom}
 										<p>{this.props.matricule}
-										this.props.description</p>
+										{this.props.description}</p>
 									  </div>
 									</a>
 								 </li>
