@@ -54,7 +54,7 @@ define(["app/exceptions"], function(exceptions){
     			var
       				args = Array.prototype.slice.call(arguments),
       				name = args.shift();
-
+				console.log("Firing event: " + name);
 				this.subscribers()[name].forEach(function(sub) {
 					if (sub) {
 						sub.apply(this, args);

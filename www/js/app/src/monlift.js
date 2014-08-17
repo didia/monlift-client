@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery", 'entities/user','entities/liftEntitie','app/event','app/exceptions'], function($,User,Lift, EventProvider, exceptions) {
+define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'], function($,User,Lift, EventProvider, exceptions) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()

@@ -323,7 +323,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 									</select>
 								</div>
 							</div>
->>>>>>> enclose select and submit button of createLift form in a div
 							
 							<div className = "control-group submit-button">
 								<div className = "controls">			 
