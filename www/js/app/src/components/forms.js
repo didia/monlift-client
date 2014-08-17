@@ -323,7 +323,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 									</select>
 								</div>
 							</div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2bd09e22da93e89ace915cb7feb13d94d6901cec
 							
 							<div className = "control-group submit-button">
 								<div className = "controls">			 
