@@ -4,25 +4,12 @@
  *
  */
  
- /**
-									$.each(maapCars, function(key, value) {
-										var  InfosCar = value;
-										$.each(InfosCar, function(key, value) {
-										nom = (value == "id")? "nom" :"";
-										matricule = (value == "matricule")? "matricule" : "";
-										description = (value == "description")? "description" : ""; 	
-										
-									});
-									<Car name  = value.get('nom') matricule = value.get('matricule') description = value.get('description') />
-									});
-									*/
 define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, monlift ,Car){
 
 	ML = monlift.getInstance();
-	var maapCars = ML.getUserCars();
-	var  InfosCar = null;
-	return{
-	MyCars :React.createClass({displayName:'myCars',
+	
+	
+	var MyCars =React.createClass({displayName:'myCars',
 	render:function(){
 		
 		return(
@@ -32,8 +19,12 @@ define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, 
 								
 								<ul className="table-view">
 								
+									{
+											this.props.cars.map(function(car, i){
+												return <Car  nom = {car.name} description = {car.description}/>;
+											})
+										}
 									
-									<Car  />
 									
 								
 								 </ul>
@@ -41,10 +32,10 @@ define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, 
 						</div>
 				
                    );
-					
-				}
-			})
 		}
-})
-
+	});
+	
+	return MyCars;
+	
+});
 

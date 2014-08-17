@@ -66,7 +66,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return (
 					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
-						<input type="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
+						<input type ="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
 						<input type="password" className ="form-control" placeholder="Password" ref = "password" required />
                 		<label className="checkbox pull-left">
                 		<input type="checkbox" value="remember-me" />
@@ -323,7 +323,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 									</select>
 								</div>
 							</div>
->>>>>>> enclose select and submit button of createLift form in a div
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2bd09e22da93e89ace915cb7feb13d94d6901cec
 							
 							<div className = "control-group submit-button">
 								<div className = "controls">			 

@@ -1,3 +1,4 @@
+
  /**
  * @author Trispa
  *
@@ -9,7 +10,14 @@
 		throw new typeError("Car constructor conot be called as a function.");
 	}
 		 this.nom = p_nom
-		 this.matricule = p_matricule ;
+                       if(p_matricule.length >= 5 && p_matricule.length <= 7)
+		 {
+                            this.matricule = p_matricule ;
+                       }
+                       else
+                       {
+                            this.matricule = " ";
+                       }
 		 this.description = p_description;
 		 this.owner = p_owner;
  }

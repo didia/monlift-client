@@ -15,11 +15,11 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var ProfilePage = component.getProfilePage();
 	 var ParametterPage = component.getParamettersPage();
 	 var InfosPage = component.getInfosPage();
-	 var CarsPage = component.getCarsPage();
+	 var CarsListPage = component.getCarsListPage();
 	 var RequestAlertPage = component.getRequestAlertPage();
 	 var AddLiftPage = component.getAddLiftPage();
 	 var AddUsernamePage = component.getAddUsernamePage();
-	 var LiftListPage = component. getLiftListPage();
+	 var LiftListComponent = component. getLiftListPage();
 	 var addCarForm = component.getAddCarPage();
 	 var AddFirstCarPage = component.getAddFirstCarPage();
 
@@ -150,7 +150,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<CarsPage />,
+				<CarsListPage />,
 				document.getElementById('app-body')
 			);
 		},
@@ -162,7 +162,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<LiftListPage/>,
+				<LiftListComponent/>,
 				document.getElementById('app-body')
 			);
 		},

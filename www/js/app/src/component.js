@@ -1,5 +1,5 @@
 
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'components/parametters', 'components/body', 'components/footer', 'components/forms', 'components/buttons', 'components/profile', 'components/myInfos', 'components/myCars', 'components/requestAlert', 'components/addLift', 'components/addUsername', 'components/listLiftComponent', 'components/addFirstCar','components/addCar'], 
+define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'components/parametters', 'components/body', 'components/footer', 'components/forms', 'components/buttons', 'components/profile', 'components/myInfos', 'components/carListComponent', 'components/requestAlert', 'components/addLift', 'components/addUsername', 'components/listLiftComponent', 'components/addFirstCar','components/addCar'], 
 		function($, React, monlift, auth, headers, parametters, Body, footers, forms, buttons, profile, myInfos, myCars, requestAlert,addLift, addUsername, liftListcomponent, addFirstCar, addCar) {
  
 
@@ -65,9 +65,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 			return myInfos.MyInfos;
 		},
 		
-		getCarsPage: function()
+		getCarsListPage: function()
 		{
-			return myCars.MyCars;
+			return myCars.MyCarslistcomponent;
 		},
 		
 		getRequestAlertPage:function(){

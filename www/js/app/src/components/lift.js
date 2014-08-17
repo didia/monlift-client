@@ -17,17 +17,11 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
                            		<img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
 
                            		<div className = "vertical-centered">	
-								  <h1>{this.props.heure} </h1>
-								  <p>
-								  <h5>date   : {this.props.date}</h5>
-								  <h5>Départ : {this.props.depart}</h5>
-								  <h5>Arrivée: {this.props.arrivee}</h5>
-								  <h5>Places : {this.props.placesdisponible}</h5>
-								  <h5>Prix   : {this.props.prix}</h5>
-								  <h5>Conducteur: {this.props.driver}</h5>
-								  <h5>Voiture : {this.props.infosVoiture}</h5>
-								  {this.props.autreInfos}
-								  </p>
+								 {this.props.date}
+								  <p>De {" "+ this.props.depart} vers{" "+ this.props.arrivee +" "} au prix de {" "+this.props.prix +"."} Conducteur : {this.props.driver}</p>  	
+								  
+								 <p>{this.props.placesdisponible} </p>
+								 
 								</div>
 								</a>
 							</li>
