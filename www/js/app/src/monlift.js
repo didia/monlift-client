@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'], function($,User,Lift, EventProvider, exceptions) {
+define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 'app/globals'], function($,User,Lift, EventProvider, exceptions, globals) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
@@ -60,7 +60,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			
 			var token= this.getFromLocalStorage("token");
 			var user = this.getFromLocalStorage("user");
-			var lift = this.getFromLocalStorage ("lifts");
+			
 			
 			if(token && user)
  		 	{
@@ -69,9 +69,9 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 				this._user = new User(user);
  		 		this._userStatus = "connected";
 				//charger la list de lifts
-				this._lifts =this.getFromLocalStorage ("lifts");
+				this._lifts =this.getFromLocalStorage (this.getLiftsLocalStorageKey());
 				//Load cars
-				this._cars = this.getFromLocalStorage("cars");
+				this._cars = this.getFromLocalStorage(this.getCarsLocalStorageKey());
 				
  		 	}
 			
@@ -332,22 +332,23 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 },
 			
 		 addLift:function(lifts){
-			 
+			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
 			 if(!this._lifts)
 			 {
 				 this._lifts = [];
 			 }
 			 this._lifts.push(lifts);
-			 this.saveToLocalStorage("lifts", this._lifts);
+			 this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
 		 },
 			 
 		 
 		 addCar : function(car) {
+			 var carsLocalStorageKey = this.getCarsLocalStorageKey();
 			 if(!this._cars) {
 				 this._cars = [];
 			 }
 			 this._cars.push(car);
-			 this.saveToLocalStorage("cars", this._cars);
+			 this.saveToLocalStorage(carsLocalStorageKey, this._cars);
 			 
 		 },
 		 
@@ -357,10 +358,29 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 },
 		 
 		 getUserCars : function() {
+			 
+			 if(!this._cars) {
+				 var carsLocalStorageKey = this.getCarsLocalStorageKey();
+				 this._cars = this.getFromLocalStorage(carsLocalStorageKey);
+			 }
+			 
 			 return this._cars;
 		 },
-		 getlifts:function(){
+		 getlifts:function() {
+			 
+			 if(!this._lifts) {
+				 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
+				 this._lifts = this.getFromLocalStorage(liftsLocalStorageKey);
+			 }
+			 
 		 	return this._lifts;
+		 },
+		 
+		 getCarsLocalStorageKey : function() {
+			 return this.isUserLoggedIn()?globals.CARS_KEY_PREFIX + this._user.getId():null;
+		 },
+		 getLiftsLocalStorageKey : function() {
+			 return this.isUserLoggedIn()?globals.LIFTS_KEY_PREFIX + this._user.getId():null;
 		 }
 		 
 			
@@ -378,6 +398,10 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			MonLift.instance = new MonLift();
 			MonLift.instance.init();
 			return MonLift.instance;
+		},
+		destroy : function() {
+			MonLift.instance = new MonLift();
+			MonLift.instance.init();
 		}
 	}
 })
