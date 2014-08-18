@@ -274,6 +274,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			return(
 			 			
 						<form  className="input-group" id ="fromFormInfo" onSubmit={this.handleSubmit}>
+							
 							<div className="control-group">
 								<div className="controls">
 									<input type="text" placeholder=	"Départ" ref="from" required/>
@@ -491,6 +492,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 		SearchForm : React.createClass({displayName:'SearchForm',
 			render: function(){
 				return (
+					<div className="card">
 					<form id="search-form" className = "input-group">
                         <input type="text" name="from-place" placeholder="From" />
                         <input type="text" name="to-place" placeholder="To" />
@@ -499,9 +501,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
                                 more options
                             </span>
                         </div>
+						
 						<button className="btn btn-primary btn-block">Search</button>
-						 
+						
                     </form>
+					</div>
 				);
 			}
 		

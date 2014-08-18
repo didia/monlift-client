@@ -10,17 +10,18 @@ define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftLi
 			return (
 				<div id="content">
 				
-                	        
-					<div className="segmented-control">
-                		<a className="control-item " href="#passenger-welcome">
+                	<div className="card">      
+						<div className="segmented-control">
+                			<a className="control-item " href="#passenger-welcome">
                      		Passenger
-               		    </a>
-                		<a className="control-item" href="#driver-welcome">
+               		   		</a>
+                			<a className="control-item" href="#driver-welcome">
                      		Driver
-                		</a>
-            		</div>
-
-        			<div className="content2">
+                			</a>
+            			</div>
+					</div>
+        			
+					<div className="content2">
             			<div id="welcome" >
 							<div id = "welcome2"  className ="control-content active">
 								<SearchForm />

@@ -12,7 +12,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	DriverProfile: React.createClass({displayName:'DriverProfile',
                 	render: function(){
                 	        return (
-                	        
+                	        <div className="card">
                 	        <div className="content_Driver_Profil">
                 	        
                 	          <div id="box">
@@ -36,6 +36,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 
                            </div>
                         </div>
+						</div>
                     );
                                                
                }
@@ -49,7 +50,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 						
                
                 	        return (
-								
+							<div className="card">	
                 	        <div className="content_Driver_Profil">
                 	        
                 	          <div id="box">
@@ -72,6 +73,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 
                            </div>
                         </div>
+						</div>
                    );
                                                
                }

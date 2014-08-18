@@ -19,7 +19,7 @@ define(['jquery', 'react', 'app/monlift','components/forms'], function($,React, 
 						</div>
 						
 						
-						<div className = "vertical-centered">	
+						<div className="card">	
 							<addCarForm /> 
 						</div>
 						
