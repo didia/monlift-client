@@ -5,17 +5,20 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 	var Car = React.createClass({displayName:'Lift', 
 		render: function(){
 			return (
-								<li className="table-view-cell media">
-             
-									<a className="navigate-right">
-									  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
-									  <div className="media-body">
+							<div className="card">
+							<a className="navigate-right">
+                        
+								  <img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
+									  
 										{this.props.nom}
 										<p>{this.props.matricule}
 										{this.props.description}</p>
-									  </div>
-									</a>
-								 </li>
+							</a>
+							</div>
+						
+							
+									
+								
                        
 
 
