@@ -1,7 +1,6 @@
 /**********************************
  *   GENERAL CSS                  *
  **********************************/
-
 .centered {
 	text-align:center;
 }
@@ -44,20 +43,11 @@ form .submit-button {
 }
 
 
-
-#fromFormInfo
-{
-	margin-top: 12px;
-}
-
-#fromToInfo
-{
-	margin-top: 12px;
-}
-
 #search-form
 {
     margin-top: 40px;
+	opacity: ="0.5";
+	background:#E0E0E0;
 }
 
 
@@ -93,50 +83,10 @@ form .submit-button {
 
 
 #box {
-	margin-top: 90px;
-	margin-left: 40px;
-
 	padding: 1px;
 	display: block;
 	position: absolute;
-	border-radius: 15px;
-}
-#topleft {
-background: #33CCFF;
-width: 100px;
-height: 100px;
-margin: 10px;
-display: block;
-float: left;
-border-radius: 15px;
-}
-#topright {
-background: #33CCFF;
-width: 100px;
-height: 100px;
-margin: 10px;
-display: block;
-float: left;
-border-radius: 15px;
-}
-#bottomleft {
-background: #33CCFF;
-width: 100px;
-height: 100px;
-margin: 10px;
-display: block;
-float: left;
-clear: left;
-border-radius: 15px;
-}
-#bottomright {
-background: #33CCFF;
-width: 100px;
-height: 100px;
-margin: 10px;
-display: block;
-float: left;
-border-radius: 15px;
+	
 }
 
 #profil
@@ -205,7 +155,6 @@ border-radius: 15px;
 	 margin-top: 40px
 }
 
-
 /**********************************
  *   AddUsername Page             *
  **********************************/
@@ -220,8 +169,6 @@ border-radius: 15px;
 #UserNameForm .submit-button {
 	margin-top: 20px;
 }
-
-
 /**********************************
 * lift lift Page  as cards        *
 **********************************/
@@ -283,7 +230,32 @@ body {
     columns:300px 3;
     -webkit-columns:300px 3;
 }
-
+.card1 {
+    background:#E0E0E0;
+    padding:0px;
+    margin:15px;
+    overflow:hidden;
+	opacity: = "0.5";
+	
+}
+.cardProfil {
+    background:#FFF;
+    border:1px solid #AAA;
+    border-bottom:3px solid #BBB;
+	border-radius: 15px;
+    padding:0px;
+    margin:15px;
+    overflow:hidden;
+}
+.card {
+    background:#FFF;
+    border:1px solid #AAA;
+    border-bottom:3px solid #BBB;
+    padding:0px;
+    margin:15px;
+    overflow:hidden;
+	
+}
 
 
 .card h1 {
