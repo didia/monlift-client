@@ -179,6 +179,8 @@ body {
     margin:0px;
     color:#333;
     min-height:100%;
+	background-image:url(../../../../../../../wamp/www/Gamepays/bg.png);
+   
 }
 
 .header {
@@ -196,8 +198,8 @@ body {
 
 .content {  
     position:fixed;
-	background:#E0E0E0;
-    top:62px;
+	background-image:url(../img/bg.png);
+	top:0px;
     bottom:0px;
     left:0px;
     right:0px;
@@ -231,7 +233,7 @@ body {
     -webkit-columns:300px 3;
 }
 .card1 {
-    background:#E0E0E0;
+    
     padding:0px;
     margin:15px;
     overflow:hidden;
