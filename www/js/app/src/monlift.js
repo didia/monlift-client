@@ -5,7 +5,7 @@
 *
 */
 
-define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'], function($,User,Lift, EventProvider, exceptions) {
+define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 'app/globals'], function($,User,Lift, EventProvider, exceptions, globals) {
 	
 	window.DEVELOPPEMENT = true;
 	function MonLift()
@@ -30,7 +30,9 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		constructor: MonLift,
 		
 		init: function(options){
-			this.opts = options;
+			if(options != null) {
+				this.opts = options;
+			}
 			this._loadSession();
 			
 		},
@@ -60,7 +62,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			
 			var token= this.getFromLocalStorage("token");
 			var user = this.getFromLocalStorage("user");
-			var lift = this.getFromLocalStorage ("lifts");
+			
 			
 			if(token && user)
  		 	{
@@ -68,10 +70,11 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 				this._token = token;
 				this._user = new User(user);
  		 		this._userStatus = "connected";
-				//charger la list de lifts
-				this._lifts =this.getFromLocalStorage ("lifts");
-				//Load cars
-				this._cars = this.getFromLocalStorage("cars");
+	
+				if(this.isCurrentUserDriver()) {
+					this._loadUserCars();
+					this._loadLiftsByUser();
+				}
 				
  		 	}
 			
@@ -139,19 +142,10 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 *  token: The user OAuth Token.
 		 * }
  		 */
- 		setSession: function(sessionData)
-		
- 		{
-			console.log(sessionData);
-			this._user = new User(sessionData.user);
-			this.saveToLocalStorage("user", this._user);
-			
-			this._token = sessionData.token;
-			this.saveToLocalStorage("token", this._token);
-			
-			this._userStatus = "connected";
-			
- 			
+ 		setSession: function(sessionData) {
+			this.saveToLocalStorage("user", sessionData.user);
+			this.saveToLocalStorage("token", sessionData.token);
+			this._loadSession();
  		},	
 	
 		
@@ -223,22 +217,23 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 },
 		 
 		 promoteUserToDriver : function(username) {
-			 if(!this.isCurrentUserDriver()) {
-			 	var endpoint = this.getUser().getId() + "/promote/";
+			 var self = this;
+			 if(!self.isCurrentUserDriver()) {
+			 	var endpoint = self.getUser().getId() + "/promote/";
 				var jsonRequest = {
  					"username":username
  				}
 				
-				ML.post(endpoint, jsonRequest, function(response, status){
+				self.post(endpoint, jsonRequest, function(response, status){
  					if(status === "ok")
  					{
- 						ML.setUsername(username);
+ 						self.setUsername(username);
 						EventProvider.fire('ML.userPromoted');
 						
  					}
  					else
  					{
-						ML.log("Promote user failed: " + response);
+						self.log("Promote user failed: " + response);
 						EventProvider.fire('ML.promoteUserFailed', response);
  					}
  					
@@ -251,9 +246,9 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 },
 		 
 		 createLift: function (from, to, time, price, meetingPlace, totalPlace, car){
-		 
+		 		var self = this;
 				var endpoint = "lifts/create";
- 					var jsonRequest = {
+ 				var jsonRequest = {
 						"from" : from,
 						"to": to,
 						"time" : time,
@@ -263,17 +258,17 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 						"carId" : car,
 						
  						}
-				ML.post(endpoint, jsonRequest, function(response, status){
+				self.post(endpoint, jsonRequest, function(response, status){
 						if(status === "ok")
 						{
 							console.log("lift  created");
-							ML.addLift(response);
-							ML.log("lift  created");
+							self.addLift(response);
+							self.log("lift  created");
 						
 						}
 						else
 						{
-							ML.log("add lift  failed: " + response);
+							self.log("add lift  failed: " + response);
 							console.log("lift  note created" + response);
 							
 							
@@ -282,6 +277,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			},
 		 
 		 createCar : function(name, matricule, description) {
+			var self = this;
 			var endpoint = "cars/create";
 			var jsonRequest = {
 				"name":name,
@@ -289,16 +285,16 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 				"matricule" : matricule
 			}
 			
-			ML.post(endpoint, jsonRequest, function(response, status){
+			self.post(endpoint, jsonRequest, function(response, status){
 				if(status === "ok")
 				{
-					ML.addCar(response);
+					self.addCar(response);
 					EventProvider.fire('ML.carCreated');
 					
 				}
 				else
 				{
-					ML.log("create car failed " + response);
+					self.log("create car failed " + response);
 					EventProvider.fire('ML.createCarFailed', response);
 				}
 				
@@ -331,24 +327,36 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			});
 		 },
 			
-		 addLift:function(lifts){
-			 
+		 addLift:function(lift){
+			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
 			 if(!this._lifts)
 			 {
 				 this._lifts = [];
 			 }
-			 this._lifts.push(lifts);
-			 this.saveToLocalStorage("lifts", this._lifts);
+			 this._lifts.push(lift);
+			 this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
 		 },
-			 
+		 
+		 setLifts : function(liftsData) {
+			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
+			 this._lifts = liftsData;
+			 this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
+		 },
 		 
 		 addCar : function(car) {
+			 var carsLocalStorageKey = this.getCarsLocalStorageKey();
 			 if(!this._cars) {
 				 this._cars = [];
 			 }
 			 this._cars.push(car);
-			 this.saveToLocalStorage("cars", this._cars);
+			 this.saveToLocalStorage(carsLocalStorageKey, this._cars);
 			 
+		 },
+		 
+		 setCars : function(carsData) {
+			 var carsLocalStorageKey = this.getCarsLocalStorageKey();
+			 this._cars = carsData;
+			 this.saveToLocalStorage(carsLocalStorageKey, this._cars);
 		 },
 		 
 		 userHasCar : function() {
@@ -357,10 +365,83 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 		 },
 		 
 		 getUserCars : function() {
+			 
+			 if(!this._cars) {
+				 var carsLocalStorageKey = this.getCarsLocalStorageKey();
+				 this._cars = this.getFromLocalStorage(carsLocalStorageKey);
+			 }
+			 
 			 return this._cars;
 		 },
-		 getlifts:function(){
+		 getUserLifts:function() {
+			 
+			 if(!this._lifts) {
+				 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
+				 this._lifts = this.getFromLocalStorage(liftsLocalStorageKey);
+			 }
+			 
 		 	return this._lifts;
+		 },
+		 
+		 getCarsLocalStorageKey : function() {
+			 return this.isUserLoggedIn()?globals.CARS_KEY_PREFIX + this._user.getId():null;
+		 },
+		 
+		 getLiftsLocalStorageKey : function() {
+			 return this.isUserLoggedIn()?globals.LIFTS_KEY_PREFIX + this._user.getId():null;
+		 },
+		 
+		 _loadUserCars : function() {
+			 this.getUserCars();
+			 if(this._cars == null) {
+				this._loadUserCarsFromServer();
+			 }
+		 },
+		 
+		 _loadUserCarsFromServer : function() {
+			 var self = this;
+			 console.log(this.getUser());
+			 
+			 var endpoint = this.getUser().getLinkTo("userCars");
+			 self.post(endpoint, null, function(response, status) {
+				if(status === "ok")
+				{
+					console.log("Load User Cars response: " + response);
+					self.setCars(response);
+					
+				}
+				else
+				{
+					self.log("Load User cars from the server car failed : " + response);
+					
+				}
+				
+			});
+		 },
+		 
+		 _loadLiftsByUser : function() {
+			 this.getUserLifts();
+			 if(this._lifts == null) {
+				 this._loadLiftsByUserFromServer();
+			 }
+		 },
+		 
+		 _loadLiftsByUserFromServer : function() {
+			 var self = this;
+			 var endpoint = this.getUser().getLinkTo("liftsByUser");
+			 self.post(endpoint, null, function(response, status) {
+				if(status === "ok")
+				{
+					self.setLifts(response);
+					
+				}
+				else
+				{
+					self.log("Load User lifts from the server car failed : " + response);
+					
+				}
+				
+			});
 		 }
 		 
 			
@@ -378,6 +459,10 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions'],
 			MonLift.instance = new MonLift();
 			MonLift.instance.init();
 			return MonLift.instance;
+		},
+		destroy : function() {
+			MonLift.instance = new MonLift();
+			MonLift.instance.init();
 		}
 	}
 })

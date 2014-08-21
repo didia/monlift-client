@@ -1,4 +1,4 @@
-define(function($, monlift, auth){
+define(function(){
 	 
 	 return {
  		
@@ -9,6 +9,9 @@ define(function($, monlift, auth){
 		SEARCH_FORM_ID			: 'search-form-id',
 		LOGIN_BUTTON_CLASS 		: 'login-button-class',
 		REGISTER_BUTTON_CLASS	: 'register-button-class',
+		CARS_KEY_PREFIX			: 'cars-',
+		LIFTS_KEY_PREFIX		: 'lifts-',
+		
 			
 		 
 	 }

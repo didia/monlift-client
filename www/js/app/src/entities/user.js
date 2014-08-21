@@ -16,6 +16,7 @@
 		this.phone = user.phone;
 		this.username = user.username;
 		this.isDriver = user.isDriver;
+		this.linkTo = user.linkTo;
 		
 		
 	}
@@ -54,7 +55,13 @@
 		setUsername:function(username){
 			this.username = username;
 			this.isDriver = true;
+		},
+		
+		getLinkTo : function(theLink) {
+			return this.linkTo[theLink];
 		}
+		
+		
 	
 	 
  };
