@@ -10,7 +10,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth',], function($, React, monli
     Parametters :React.createClass({displayName:'parametters',
     render:function(){
         return(
-                <div className="paramComponents" id = "paramComponents">
+                <div className="card">
                 
                 
                 <ul className="table-view">

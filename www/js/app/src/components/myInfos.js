@@ -10,7 +10,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 	MyInfos :React.createClass({displayName:'myInfos',
 	render:function(){
 		return(
-			<div className = "myInfoscomponent" id = "myInfsocomponent" >
+			<div className = "card" >
 								<ul className="table-view">
 								<li className="table-view-cell media">
 								

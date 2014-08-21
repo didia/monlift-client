@@ -14,9 +14,10 @@ define(['jquery', 'react', 'app/monlift', 'components/liftList'], function($, Re
 			
 						
 			return (
-						<div className = "vertical-centered-container" id = "listLiftcomponent" >
+						
+					
 							<liftLists lifts = {lifts}/> 
-        				</div>
+        				
 			);
 		}
 	})
