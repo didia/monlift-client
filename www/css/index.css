@@ -196,7 +196,7 @@ body {
 .content {  
     position:fixed;
 	background-image:url(../img/bg.png);
-	top:0px;
+	top:15px;
     bottom:0px;
     left:0px;
     right:0px;
@@ -234,6 +234,7 @@ body {
     margin:30px;
     overflow:hidden;
 	opacity: = "0.5";
+	
 	
 }
 .cardProfil {

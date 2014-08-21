@@ -19,9 +19,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
                            		<img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
 
                            		 {this.props.date}
-								  <p>De {" "+ this.props.depart} vers{" "+ this.props.arrivee +" "} au prix de {" "+this.props.prix +"."} Conducteur : {this.props.driver}</p>  	
-								  
-								 <p>{this.props.placesdisponible} </p>
+								  <p>De {" "+ this.props.depart} vers{" "+ this.props.arrivee +" "} au prix de {" "+this.props.prix +"."} Conducteur : {this.props.driver} Nombre de place : {this.props.placesdisponible} </p>
 								</a>	 
 							</div>
 							

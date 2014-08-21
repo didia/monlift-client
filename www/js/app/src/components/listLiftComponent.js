@@ -10,7 +10,7 @@ define(['jquery', 'react', 'app/monlift', 'components/liftList'], function($, Re
 	LiftListcomponent : React.createClass({displayName:'LiftList', 
 		render: function(){
 			
-			var lifts= ML.getlifts();
+			var lifts= ML.getUserLifts();
 			
 						
 			return (

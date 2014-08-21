@@ -64,8 +64,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			
 			render: function(){
 				return (
+				<div className = "card1">
 					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						
 						<input type ="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
 						<input type="password" className ="form-control" placeholder="Password" ref = "password" required />
                 		<label className="checkbox pull-left">
@@ -75,8 +77,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
                 		<a href="#" className="pull-right need-help">Need help? </a>
 						<span className="clearfix"></span>
                 		<button className="btn btn-primary btn-block" type = "submit">Sign in</button>
+						
             		</form> 
-                		
+                </div>	
 				);
 			}
 		
@@ -144,6 +147,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return (
 					<form id="register" className="form-horizontal" onSubmit={this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						<div className = "card">
 						<div className="control-group">
 							<div className="controls">
 								<div className="input-prepend">
@@ -192,6 +196,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							<div className="controls">
 								<button type="submit" className="btn btn-primary btn-block">Create My Account</button>
 							</div>
+						</div>
 						</div>
 	  				</form>
 
