@@ -50,7 +50,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				{
 					auth.login(email, password);
 				}
-				console.log(ML._session);	
+			
 			},
 			
 			componentWillUnmount: function(){
@@ -443,7 +443,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				{
 					ML.promoteUserToDriver(username);
 				}
-				console.log(ML._session.user);	
+					
 			},
 			
 			componentWillUnmount: function(){
