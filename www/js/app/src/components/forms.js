@@ -492,22 +492,23 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 		SearchForm : React.createClass({displayName:'SearchForm',
 			render: function(){
 				return (
-					
-					
+					<div className = "card">
 					<form id="search-form" className = "input-group">
-						<div className = "card">
-                        <input type="text" name="from-place" placeholder="From" />
-                        <input type="text" name="to-place" placeholder="To" />
-                        <div className="more-option">
-                            <span className="icon icon-caret">
-                                more options
-                            </span>
-                        </div>
-						</div>
-						<div className = "card">
-						<button className="btn btn-primary btn-block">Search</button>
-						</div>
+						
+							<input type="text" name="from-place" placeholder="From" />
+							<input type="text" name="to-place" placeholder="To" />
+							<div className="more-option">
+								<span className="icon icon-caret">
+									more options
+								</span>
+							</div>
+						
+						
+							<button className="btn btn-primary btn-block">Search</button>
+						
+						
                     </form>
+					</div>
 					
 				);
 			}
