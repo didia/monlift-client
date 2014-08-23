@@ -89,11 +89,13 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 		 * @param cb
 		 */
 		 post:function(endpoint, request, cb) {
-			 	
-			 if(this._token != null)
-			 {
-				 request != null?request["token"] = this._token:request={"token":this._token};
+			 if(request == null) {
+				 request = {};
 			 }
+			 if(this._token != null) {
+				 request["token"] = this._token;
+			 }
+			 
 			 request = JSON.stringify(request);
 		     if(endpoint[0] != "/")
 		    	  endpoint = "/" + endpoint;
