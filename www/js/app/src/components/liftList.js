@@ -10,8 +10,13 @@ define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React,
 		render: function(){
 			
 			return (
-						<div className="content">
-								
+						<div id = "username-page" className = "vertical-centered-container"> 
+						<div className = "centered non-vertical-centered">
+							<h5> Lifts </h5>
+						</div>
+						
+						<div className = "vertical-centered">
+							
 							
 							{	
 								this.props.lifts.map(function(lift, i){
@@ -20,8 +25,10 @@ define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React,
 								})
 								
 							}
-											
+							
+							</div>				
 						</div>
+						
         			
 			);
 		}

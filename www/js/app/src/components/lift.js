@@ -10,10 +10,9 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 		render: function(){
 			
 			return (               
-               
-			   				
+              			
                         	<div className="card">
-								<a className="navigate-right">
+								<a className="navigate-right" href ="#">
                         
                            	
                            		<img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
@@ -22,6 +21,10 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 								  <p>De {" "+ this.props.depart} vers{" "+ this.props.arrivee +" "} au prix de {" "+this.props.prix +"."} Conducteur : {this.props.driver} Nombre de place : {this.props.placesdisponible} </p>
 								</a>	 
 							</div>
+						
+					
+							
+							
 							
 						
                        

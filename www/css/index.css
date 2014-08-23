@@ -196,7 +196,7 @@ body {
 .content {  
     position:fixed;
 	background-image:url(../img/bg.png);
-	top:15px;
+	margin-top:45px;
     bottom:0px;
     left:0px;
     right:0px;

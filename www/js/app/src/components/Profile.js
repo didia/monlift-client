@@ -12,22 +12,26 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 					Home: React.createClass({displayName:'Home',
                 	render: function(){
                 	        return (
+							<div id = "username-page" className = "vertical-centered-container"> 
+						
+								<div className = "vertical-centered">	
                 	        
-                	       	<div className="card1">
-                	        
-                	          		<div className="leftColumn">
-									   <div className="cardProfil">
-										 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= "ui.showAddLiftPage"/>     
-									   </div>
-									 </div>
-								  	<div className="rightColumn">
-									   <div className="cardProfil">
-								   		<profilButton image = "img/Search.png" id1="Alert"  id2="MyAlerts" label = "Search" event= "ui.showSearchPage"/>           
-                	              	   </div>
-									 </div>  
-									  
-									 
-                          	</div>
+									<div className="card1">
+									
+											<div className="leftColumn">
+											   <div className="cardProfil">
+												 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= "ui.showAddLiftPage"/>     
+											   </div>
+											 </div>
+											<div className="rightColumn">
+											   <div className="cardProfil">
+												<profilButton image = "img/Search.png" id1="Alert"  id2="MyAlerts" label = "Search" event= "ui.showSearchPage"/>           
+											   </div>
+											 </div>  
+											 
+									</div>
+								</div>
+							</div>
 								
                        	
                     );

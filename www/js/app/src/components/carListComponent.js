@@ -14,8 +14,16 @@ define(['jquery', 'react', 'app/monlift', 'components/myCars'], function($, Reac
 			
 						
 			return (
+					<div className ="content">
 						
+						
+						
+							
 							<myCars cars = {cars}/> 
+						
+						
+						
+						</div>
         				
 			);
 		}
