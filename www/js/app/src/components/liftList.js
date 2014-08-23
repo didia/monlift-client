@@ -9,8 +9,6 @@ define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React,
 	LiftList : React.createClass({displayName:'LiftList', 
 		render: function(){
 			
-			console.log("les lift sont : "+ML. getUserCars());
-							
 			return (
 						<div className="content">
 								

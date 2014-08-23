@@ -7,15 +7,9 @@ define(['jquery', 'react', 'app/monlift', 'components/forms', 'components/liftLi
 	Body : React.createClass({displayName:'Body', 
 		render: function(){
 			return (
-				<div id="content">
 				
-                	 
-					
-                		<hom/>
-					
-            		
-	
-	
+				<div id="content">
+					<hom/>
 				</div>
 			
                    );

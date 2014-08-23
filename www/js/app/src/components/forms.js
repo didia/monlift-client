@@ -50,7 +50,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				{
 					auth.login(email, password);
 				}
-				console.log(ML._session);	
+			
 			},
 			
 			componentWillUnmount: function(){
@@ -64,8 +64,10 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			
 			render: function(){
 				return (
+				<div className = "card1">
 					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						
 						<input type ="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
 						<input type="password" className ="form-control" placeholder="Password" ref = "password" required />
                 		<label className="checkbox pull-left">
@@ -75,8 +77,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
                 		<a href="#" className="pull-right need-help">Need help? </a>
 						<span className="clearfix"></span>
                 		<button className="btn btn-primary btn-block" type = "submit">Sign in</button>
+						
             		</form> 
-                		
+                </div>	
 				);
 			}
 		
@@ -144,6 +147,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				return (
 					<form id="register" className="form-horizontal" onSubmit={this.handleSubmit}>
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
+						<div className = "card">
 						<div className="control-group">
 							<div className="controls">
 								<div className="input-prepend">
@@ -192,6 +196,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 							<div className="controls">
 								<button type="submit" className="btn btn-primary btn-block">Create My Account</button>
 							</div>
+						</div>
 						</div>
 	  				</form>
 
@@ -324,7 +329,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 									</select>
 								</div>
 							</div>
-
 							
 							<div className = "control-group submit-button">
 								<div className = "controls">			 
@@ -445,7 +449,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				{
 					ML.promoteUserToDriver(username);
 				}
-				console.log(ML._session.user);	
+					
 			},
 			
 			componentWillUnmount: function(){
@@ -492,22 +496,23 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 		SearchForm : React.createClass({displayName:'SearchForm',
 			render: function(){
 				return (
-					
-					
+					<div className = "card">
 					<form id="search-form" className = "input-group">
-						<div className = "card">
-                        <input type="text" name="from-place" placeholder="From" />
-                        <input type="text" name="to-place" placeholder="To" />
-                        <div className="more-option">
-                            <span className="icon icon-caret">
-                                more options
-                            </span>
-                        </div>
-						</div>
-						<div className = "card">
-						<button className="btn btn-primary btn-block">Search</button>
-						</div>
+						
+							<input type="text" name="from-place" placeholder="From" />
+							<input type="text" name="to-place" placeholder="To" />
+							<div className="more-option">
+								<span className="icon icon-caret">
+									more options
+								</span>
+							</div>
+						
+						
+							<button className="btn btn-primary btn-block">Search</button>
+						
+						
                     </form>
+					</div>
 					
 				);
 			}

@@ -98,6 +98,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 			
 			React.renderComponent(
+				
 				<SearchForm />,
 				document.getElementById('app-body')
 			);
