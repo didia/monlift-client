@@ -15,6 +15,8 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 		this._domain = {
 			api: window.DEVELOPPEMENT?'http://localhost:8080/api':'https://monliftca.appspot.com/api'
 		};
+		this._startEndpoint = "/start";
+		this._baseEndpoints = {};
 		this._token = null;
 		this._user = null;
 		this._cars = null;
@@ -30,13 +32,35 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 		constructor: MonLift,
 		
 		init: function(options){
+			
 			if(options != null) {
 				this.opts = options;
 			}
+			this._initStartingUrl();
 			this._loadSession();
 			
 		},
 		
+		_initStartingUrl: function() {
+			var self = this;
+			
+			self.post(this._startEndpoint, null, function(response, status) {
+ 				if(status === "ok") {
+ 					// TODO set the base url
+					console.log("Setting base endpoints: " + response);
+					self._baseEndpoints["login"] = response.linkTo.login;
+					self._baseEndpoints["register"] = response.linkTo.register;
+					
+						
+ 				}
+ 				else {
+					self.log("Starting the application failed: " + response);
+				}
+ 					
+					
+			});
+
+		},
 		saveToLocalStorage : function(key, object) {
 			window.localStorage.setItem(key, JSON.stringify(object));
 		},
@@ -70,6 +94,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 				this._token = token;
 				this._user = new User(user);
  		 		this._userStatus = "connected";
+				this._baseEndpoints["logout"] = this.getFromLocalStorage("logout");
 	
 				if(this.isCurrentUserDriver()) {
 					this._loadUserCars();
@@ -147,6 +172,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
  		setSession: function(sessionData) {
 			this.saveToLocalStorage("user", sessionData.user);
 			this.saveToLocalStorage("token", sessionData.token);
+			this.saveToLocalStorage("logout", sessionData.linkTo.logout);
 			this._loadSession();
  		},	
 	
@@ -207,6 +233,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 			 this._token = null;
 			 this.deleteFromLocalStorage("user");
 			 this.deleteFromLocalStorage("token");
+			 this.deleteFromLocalStorage("logout");
 			 this._userStatus = "not connected";
 		 },
 		 
@@ -392,7 +419,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 		 getLiftsLocalStorageKey : function() {
 			 return this.isUserLoggedIn()?globals.LIFTS_KEY_PREFIX + this._user.getId():null;
 		 },
-		 
+
 		 _loadUserCars : function() {
 			 this.getUserCars();
 			 if(this._cars == null) {
@@ -444,8 +471,19 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 				}
 				
 			});
-		 }
+		 },
 		 
+		 getLoginEndpoint : function() {
+			 return this._baseEndpoints["login"];
+		 },
+		 
+		 getRegisterEndpoint : function() {
+			 return this._baseEndpoints["register"];
+		 },
+		 
+		 getLogoutEndpoint : function() {
+		 	return this._baseEndpoints["logout"];
+		 }
 			
 		
 	},
