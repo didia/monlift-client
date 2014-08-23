@@ -11,6 +11,7 @@ define(function(){
 		REGISTER_BUTTON_CLASS	: 'register-button-class',
 		CARS_KEY_PREFIX			: 'cars-',
 		LIFTS_KEY_PREFIX		: 'lifts-',
+		LOGOUT_KEY_PREFIX		: 'logout-',
 		
 			
 		 
