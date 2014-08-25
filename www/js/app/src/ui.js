@@ -12,7 +12,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var Header = component.getHeader();
 	 var Footer = component.getFooter();
 	 var LogOutButton = component.getLogoutButton();
-	 var ProfilePage = component.getProfilePage();
+	 var PassengerProfilePage = component.getPassengerProfilePage();
+	 var DriverProfilePage = component.getDriverProfilePage();
 	 var ParametterPage = component.getParamettersPage();
 	 var InfosPage = component.getInfosPage();
 	 var CarsListPage = component.getCarsListPage();
@@ -107,12 +108,56 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		showProfilePage: function()
 		{	
 			ML.loginRequired();
+			
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<ProfilePage />,
+				<PassengerProfilePage />,
+				document.getElementById('app-body')
+			);
+
+		},
+		showProfilePage: function()
+		{	
+			ML.loginRequired();
+			
+			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
+			if(!ML.isCurrentUserDriver()) {
+				try {
+					UI.showDriverProfilePage();
+					EventProvider.subscribe('ML.iscurrentUserDriver()', ML.bind(UI, 'showDriverProfilePage'));
+					return;
+				}catch(e) {
+					if(e instanceof exceptions.PageAccessDeniedException) {
+						
+					}
+					else {
+						throw e;
+					}
+				}
+			}
+			React.renderComponent(
+				<Header page='Profil' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<PassengerProfilePage />,
+				document.getElementById('app-body')
+			);
+
+		},
+		showDriverProfilePage: function()
+		{	
+			ML.loginRequired();
+			
+			React.renderComponent(
+				<Header page='Profil' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<DriverProfilePage />,
 				document.getElementById('app-body')
 			);
 

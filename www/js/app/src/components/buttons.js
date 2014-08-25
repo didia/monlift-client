@@ -113,13 +113,15 @@ function($, React, monlift, auth, EventProvider, UI){
 			},
 			render: function(){
 				return (
-					<div className = "box">
+				
+					
 					<a className="tab-item" onClick={this.handleClick} href="#">
+						<div className = "box">
 						<img src = {this.props.image}  height="30" weight="30" id={this.props.id1} />
                 	    <h5 id={this.props.id2}> {this.props.label}</h5>
-												  
+						</div>						  
 					</a>
-					</div>
+					
 					
 				);
 			}
@@ -134,6 +136,7 @@ function($, React, monlift, auth, EventProvider, UI){
 				return (
 				
 					<a className="tab-item" href ="#" onClick={this.handleClick} href="#">
+					
 								<img src={this.props.image}   height="30" width="30"  />
 								<span className="tab-label">{this.props.label}</span>
 					</a>

@@ -51,9 +51,13 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		
 		},
 		
-		getProfilePage: function()
+		getPassengerProfilePage: function()
 		{
 			return profile.PassengerProfile;
+		},
+		getDriverProfilePage: function()
+		{
+			return profile.DriverProfile;
 		},
 		
 		getParamettersPage : function()
