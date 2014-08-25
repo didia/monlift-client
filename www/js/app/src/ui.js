@@ -48,138 +48,33 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			
 		},
 		
-		showLoginPage: function()
+		showAddCarFormPage : function()
 		{
 			React.renderComponent(
-				<Header page='Login' />,
+				<Header page='Add Cars' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<LoginForm />,
-				document.getElementById('app-body')
-			);
-					
-		},
-		
-		showHomePage: function()
-		{
-			
-			React.renderComponent(
-				<Header page='Home' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<HomePage />,
+				<addCarForm/>,
 				document.getElementById('app-body')
 			);
 		},
-		
-		showRegisterPage: function()
-		{
-			React.renderComponent(
-				<Header page='Register' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<RegisterForm />,
-				document.getElementById('app-body')
-			);
-		},
-		
-		
-		showSearchPage: function()
-		{
-			React.renderComponent(
-				<Header page='Search' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				
-				<SearchForm />,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showProfilePage: function()
-		{	
-			ML.loginRequired();
-			React.renderComponent(
-				<Header page='Profil' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<ProfilePage />,
-				document.getElementById('app-body')
-			);
 
-		},
-		showParametterPage: function()
-		{	
+		showAddFirstCarPage : function () {
+			ML.loginRequired();
 			
 			React.renderComponent(
-				<Header page='Parametters' />,
+				<Header page ='Add a car'/>,
 				document.getElementById('header')
 			);
+			
 			React.renderComponent(
-				<ParametterPage />,
-				document.getElementById('app-body')
-			);
-				
-		},
-		
-		showMyInfospage:function()
-		{
-			ML.loginRequired();
-			React.renderComponent(
-			<Header page='Infos' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<InfosPage />,
+				<AddFirstCarPage />,
 				document.getElementById('app-body')
 			);
 		},
-		showMyCarspage:function()
-		{
-			ML.loginRequired();
-			React.renderComponent(
-			<Header page='Cars' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<CarsListPage />,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showLiftsListPage:function(){
-			ML.loginRequired();
-			React.renderComponent(
-				<Header page='Rides offered' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<LiftListComponent/>,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showRequestALert:function(){
-			ML.loginRequired();
-			React.renderComponent(
-				<Header page='Request' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<RequestAlertPage/>,
-				document.getElementById('app-body')
-			);
-		},
-		
+
 		showAddLiftPage : function (){
 			ML.loginRequired();
 		
@@ -215,7 +110,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
-		
+
 		showAddUsernamePage : function () {
 			ML.loginRequired();
 			if(ML.isCurrentUserDriver()) {
@@ -233,33 +128,140 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 			
 		},
-		showAddCarFormPage : function()
+
+		showHomePage: function()
 		{
+			
 			React.renderComponent(
-				<Header page='Add Cars' />,
+				<Header page='Home' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<addCarForm/>,
+				<HomePage />,
+				document.getElementById('app-body')
+			);
+		},
+
+		showLiftsListPage:function(){
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Rides offered' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<LiftListComponent/>,
+				document.getElementById('app-body')
+			);
+		},
+
+		showLoginPage: function()
+		{
+			React.renderComponent(
+				<Header page='Login' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<LoginForm />,
+				document.getElementById('app-body')
+			);
+					
+		},
+		
+		showMyCarspage:function()
+		{
+			ML.loginRequired();
+			React.renderComponent(
+			<Header page='Cars' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<CarsListPage />,
 				document.getElementById('app-body')
 			);
 		},
 		
-		showAddFirstCarPage : function () {
+		showMyInfospage:function()
+		{
 			ML.loginRequired();
+			React.renderComponent(
+			<Header page='Infos' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<InfosPage />,
+				document.getElementById('app-body')
+			);
+		},
+
+		showParametterPage: function()
+		{	
 			
 			React.renderComponent(
-				<Header page ='Add a car'/>,
+				<Header page='Parametters' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<ParametterPage />,
+				document.getElementById('app-body')
+			);
+				
+		},
+
+		showProfilePage: function()
+		{	
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Profil' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<ProfilePage />,
+				document.getElementById('app-body')
+			);
+
+		},
+		
+		showRegisterPage: function()
+		{
+			React.renderComponent(
+				<Header page='Register' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<AddFirstCarPage />,
+				<RegisterForm />,
+				document.getElementById('app-body')
+			);
+		},
+		
+		showRequestALert:function(){
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Request' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<RequestAlertPage/>,
+				document.getElementById('app-body')
+			);
+		},
+		
+		showSearchPage: function()
+		{
+			React.renderComponent(
+				<Header page='Search' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				
+				<SearchForm />,
 				document.getElementById('app-body')
 			);
 		}
-		
+	
 		
 		 
 	 }

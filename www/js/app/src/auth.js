@@ -12,6 +12,16 @@
 	 ML = monlift.getInstance();
 	 
 	 return {
+	 	/*
+ 		 * Function to get the login status of the user
+ 		 * @return boolean
+ 		 *
+ 		 */
+ 		 isUserLoggedIn : function()
+ 		 {
+			 return ML.isUserLoggedIn();
+		 },
+
  		/*
  		 * Function to login to the server, return a token
  		 *
@@ -42,10 +52,24 @@
  		},
 
  		/*
+ 		 * function to logout user how allready connect
+ 		 */
+ 		logout: function()
+ 		{
+ 			var endpoint = ML.getLogoutEndpoint();
+ 			ML.post(endpoint, null, function(response, status){
+ 				console.log("The post succeeded");
+ 				ML.deleteSession();
+ 				EventProvider.fire('auth.logout')
+	
+			});
+ 			
+ 		},
+
+ 		/*
  		 * Function to register a new user
  		 *
- 		 */ 
-		 
+ 		 */  
  		register:function(firstname, lastname, email, password, phone){
  			if(firstname && lastname && password && email && phone)
  			{
@@ -69,39 +93,14 @@
  					{
 						ML.log("Registration failed: " + response);
 						EventProvider.fire('auth.registerFailed', response);
- 					}
- 					
+ 					}	
 					
  				})
 
-
  			}
- 		},
+ 		}
  		
- 		/*
- 		 * function to logout user how allready connect
- 		 */
- 		logout: function()
- 		{
- 			var endpoint = ML.getLogoutEndpoint();
- 			ML.post(endpoint, null, function(response, status){
- 				console.log("The post succeeded");
- 				ML.deleteSession();
- 				EventProvider.fire('auth.logout')
-	
-			});
- 			
- 		},
-		
- 		/*
- 		 * Function to get the login status of the user
- 		 * @return boolean
- 		 *
- 		 */
- 		 isUserLoggedIn : function()
- 		 {
-			 return ML.isUserLoggedIn();
-		 },
+ 		
 		 
 	 }
  	
