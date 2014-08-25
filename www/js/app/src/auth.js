@@ -20,7 +20,7 @@
  		{
  			if(email && password)
  			{
-	 		 	var endpoint = 'oauth/login';
+	 		 	var endpoint = ML.getLoginEndpoint();
 	 		 	var jsonRequest = {"email":email, "password":password};
 	 		 	ML.post(endpoint, jsonRequest, function(response, status){
 					
@@ -49,7 +49,7 @@
  		register:function(firstname, lastname, email, password, phone){
  			if(firstname && lastname && password && email && phone)
  			{
- 				var endpoint = "oauth/register";
+ 				var endpoint = ML.getRegisterEndpoint();
  				var jsonRequest = {
  					"firstname":firstname,
  					"lastname":lastname,
@@ -83,7 +83,7 @@
  		 */
  		logout: function()
  		{
- 			var endpoint = "oauth/logout";
+ 			var endpoint = ML.getLogoutEndpoint();
  			ML.post(endpoint, null, function(response, status){
  				console.log("The post succeeded");
  				ML.deleteSession();
