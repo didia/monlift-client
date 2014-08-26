@@ -61,9 +61,20 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		getLoginForm: function(){
 		
 		},
+<<<<<<< HEAD
 
 		getLogoutButton: function(){
 			return buttons.LogoutButton;
+=======
+		
+		getPassengerProfilePage: function()
+		{
+			return profile.PassengerProfile;
+>>>>>>> master
+		},
+		getDriverProfilePage: function()
+		{
+			return profile.DriverProfile;
 		},
 		
 		getParamettersPage : function()

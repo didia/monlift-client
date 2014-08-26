@@ -10,23 +10,18 @@ define(['jquery', 'react', 'app/monlift', 'components/lift'], function($, React,
 		render: function(){
 			
 			return (
-						<div id = "username-page" className = "vertical-centered-container"> 
-						<div className = "centered non-vertical-centered">
-							<h5> Lifts </h5>
-						</div>
 						
-						<div className = "vertical-centered">
-							
+							<div className = "vertical-centered">
+								
 							
 							{	
 								this.props.lifts.map(function(lift, i){
-								return <Lift  image = "img/car2.png" date = {lift.date} depart = {lift.from} arrivee = {lift.to} placesdisponible = {lift.availablePlace} prix = {lift.price +" $"}  driver = {lift.driver.fullname}  infosVoiture = {lift.car.name + " " +lift.car.description}/>
+								return  <Lift  image = "img/car2.png" date = {lift.date} depart = {lift.from} arrivee = {lift.to} placesdisponible = {lift.availablePlace} prix = {lift.price +" $"}  driver = {lift.driver.fullname}  infosVoiture = {lift.car.name + " " +lift.car.description}/>
 								
 								})
 								
 							}
 							
-							</div>				
 						</div>
 						
         			

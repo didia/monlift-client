@@ -58,12 +58,12 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 									 </div>
 									<div className="rightColumn">
 									   <div className="cardProfil">
-											<profilButton image = "img/Alert.png" id1="Alert"  id2="MyAlerts" label = "My Alerts" event= "ui.showAddCarFormPage"/>
+											<profilButton image = "img/addlift.png" id1="Alert"  id2="MyAlerts" label = "offer a ride" event= "ui.showAddLiftPage"/>     
 									   </div>
 										   
 									   
 									   <div className="cardProfil">
-										 <profilButton image = "img/addlift.png" id1="rev"  id2="MyReviews" label = "offer a ride" event= "ui.showAddLiftPage"/>     
+										 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= "ui.showLiftsListPage"/>     
 									   </div>
 									</div>
                           	</div>
@@ -92,7 +92,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	               </div>
                 	               
                 	               <div className="cardProfil">
-								   		<profilButton image = "img/road.svg" id1="addlift"  id2="MyCars" label = "See Lifts" event= "ui.showLiftsListPage"/> 
+								   		<profilButton image = "img/Alert.png" id1="addlift"  id2="MyCars" label = "My Alerts" event= "ui.showAddCarFormPage"/>
 								   </div>
                 	           </div>
 							   <div className="rightColumn">
@@ -101,7 +101,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	               </div>
 									   
                                    <div className="cardProfil">
-									 <profilButton image = "img/lift.png" id1="rev"  id2="MyReviews" label = "My Lifts" event= ""/>     
+									 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= "ui.showLiftsListPage"/>     
                                    </div>
 								</div>
                            </div>
