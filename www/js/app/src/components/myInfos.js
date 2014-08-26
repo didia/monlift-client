@@ -10,7 +10,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 	MyInfos :React.createClass({displayName:'myInfos',
 	render:function(){
 		return(
-			<div className = "card" >
+			<div className= "content">
 								<ul className="table-view">
 								<li className="table-view-cell media">
 								
@@ -22,14 +22,23 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								<span className="icon icon-star-filled "></span>
 								<span className="icon icon-star-filled "></span>
 								<span className="badge">(3)</span>
-								 <a className="icon icon-compose pull-right"></a>
+								
 								</p>
       							</div>
 								</li>
 								
   								<li className="table-view-cell">
 								Ville 
-								<span className="badge">Québec</span></li>
+								<span className="badge">Québec</span>
+								</li>
+								<li className="table-view-cell">
+								Email 
+								<span className="badge">{ML.getUser().getEmail()}</span></li>
+								
+								{ML.isCurrentUserDriver()?<li className="table-view-cell">
+								Username 
+								<span className="badge">{ML.getUser().getUsername()}</span></li>:""}
+								
 								<li className="table-view-cell">
 								Téléphone
 								<span className="badge">{ML.getUser().getPhone()}</span></li>
@@ -48,7 +57,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 								<span className="badge">0</span></li>
 								
 								</ul> 
-								</div>  
+								</div>
 
                    );
 					

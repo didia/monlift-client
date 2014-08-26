@@ -124,7 +124,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			ML.loginRequired();
 			
 			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
-			if(!ML.isCurrentUserDriver()) {
+			if(ML.isCurrentUserDriver()) {
 				try {
 					UI.showDriverProfilePage();
 					EventProvider.subscribe('ML.iscurrentUserDriver()', ML.bind(UI, 'showDriverProfilePage'));
@@ -278,6 +278,19 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 			
 		},
+		showEditUserInfos: function()
+		{
+			React.renderComponent(
+				<Header page='Edite Infos' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<EditeUserInfos/>,
+				document.getElementById('app-body')
+			);
+			
+		},
 		showAddCarFormPage : function()
 		{
 			React.renderComponent(
@@ -323,6 +336,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showSearchPage', UI.showSearchPage);
 	 EventProvider.subscribe('ui.showLiftsListPage', UI.showLiftsListPage);
 	 EventProvider.subscribe('ui.showAddCarFormPage', UI.showAddCarFormPage);
+	 EventProvider.subscribe('ui.showEditUserInfos', UI.showEditUserInfos);
 	
 	 
 	

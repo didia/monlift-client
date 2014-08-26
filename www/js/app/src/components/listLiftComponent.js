@@ -18,9 +18,7 @@ define(['jquery', 'react', 'app/monlift', 'components/liftList'], function($, Re
 							<div className = "centered non-vertical-centered">
 								<h5>Lifts </h5>
 							</div>
-							
-							
-							
+						
 							<liftLists lifts = {lifts}/> 
         				
 					</div>

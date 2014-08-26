@@ -63,7 +63,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
 										   
 									   
 									   <div className="cardProfil">
-										 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= "ui.showAddLiftPage"/>     
+										 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= "ui.showLiftsListPage"/>     
 									   </div>
 									</div>
                           	</div>
@@ -101,7 +101,7 @@ define(['jquery', 'react', 'app/monlift', 'components/buttons'], function($, Rea
                 	               </div>
 									   
                                    <div className="cardProfil">
-									 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= ""/>     
+									 <profilButton image = "img/road.svg" id1="rev"  id2="MyReviews" label = "My Lifts" event= "ui.showLiftsListPage"/>     
                                    </div>
 								</div>
                            </div>

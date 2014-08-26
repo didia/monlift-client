@@ -17,9 +17,10 @@ define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, 
 							
 									{
 											this.props.cars.map(function(car, i){
-												return <Car  nom = {car.name} description = {car.description}/>;
+												return <Car  nom = {car.name} description = {car.description} id  = {car.id}/>;
 											})
 										}
+						
 						
 						</div>
 				

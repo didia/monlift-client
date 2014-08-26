@@ -26,8 +26,11 @@ function($, React, monlift, auth, buttons){
 						case 'register':
 							ButtonRight = buttons.LoginButton;
 							break;
-					
-						
+						case 'Infos':
+							ButtonRight = buttons.moreVertical;
+							ButtonLeft =  buttons.leftnav;
+							
+							break;
 						default:
 							ButtonRight = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;
 							ButtonLeft =  buttons.ParametterButton;
@@ -37,13 +40,13 @@ function($, React, monlift, auth, buttons){
 					}
 					
 		        	return (
-		            	<div>
-		            		
+						
+							<div>
 						      <h1 className="title">{this.props.page}</h1>
-							  {(ButtonLeft != null)?<ButtonLeft />:''}
+							  {(ButtonLeft != null)?<ButtonLeft event = {(this.props.page == "Infos")?"ui.showProfilePage":""}/>:''}
 							  {(ButtonRight != null)?<ButtonRight />:''} 
 							
-                        </div>
+                        	</div>
                     );
                                                
               	 }

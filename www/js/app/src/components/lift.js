@@ -14,7 +14,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 					
   					<li className="table-view-cell media">
  
-						<a className="navigate-right">
+						<a className="navigate-right" >
 						
 						  <img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
 							<div className="media-body">
