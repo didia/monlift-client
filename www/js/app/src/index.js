@@ -20,10 +20,6 @@
  define(["jquery", "app/ui", "jquerymobile", "ratchet"], function($, ui) {
 
     var app = {
-        // Application Constructor
-        initialize: function() {
-            this.bindEvents();
-        },
         // Bind Event Listeners
         //
         // Bind any events that are required on startup. Common events are:
@@ -31,6 +27,12 @@
         bindEvents: function() {
             document.addEventListener('deviceready', this.onDeviceReady, false);
         },
+
+        // Application Constructor
+        initialize: function() {
+            this.bindEvents();
+        },
+        
         // deviceready Event Handler
         //
         // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -39,6 +41,7 @@
 		 console.log("device is ready");
           ui.go();
         },
+        
         // Update DOM on a Received Event
         receivedEvent: function(id) {
             

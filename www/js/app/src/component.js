@@ -6,54 +6,75 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 	 ML = monlift.getInstance();
 	 
 	 return {
-		getHeader: function(){
-			return headers.Header;
+	 	getAddCarPage : function() {
+			return addCar.AddCar;
 		},
 		
-		
-		getLogoutButton: function(){
-			return buttons.LogoutButton;
+		getAddFirstCarPage : function() {
+			return addFirstCar.AddFirstCar;
 		},
-		
-		getLoginButton: function(){
-			return buttons.LoginButton;
+
+		getAddLiftPage:function(){
+			return addLift.AddLift;
+		},	
+
+		getAddUsernamePage : function () {
+			return addUsername.AddUsername;
 		},
-		
-		getRegisterButton: function(){
-			return buttons.RegisterButton;
+
+		getCarsListPage: function()
+		{
+			return myCars.MyCarslistcomponent;
 		},
-		
- 		getHomePage: function(){
-			return Body.Body;
+
+		getDriverHomePage: function(){
 		
 		},
-		
+
 		getFooter: function()
 		{
 			return footers.IndexFooter;
 		},
+
+		getHeader: function(){
+			return headers.Header;
+		},
 		
+		getHomePage: function(){
+			return Body.Body;
+		
+		},
+		
+		getInfosPage: function()
+		{
+			return myInfos.MyInfos;
+		},
+
+		getLiftListPage : function(){
+			return liftListcomponent.LiftListcomponent;
+		},
+
+		getLoginButton: function(){
+			return buttons.LoginButton;
+		},
 		
 		getLoginForm: function(){
 		
 		},
-		
-		getRegisterForm: function(){
-		
-		},
-		
-		
-		getSearchForm: function(){
-			return forms.SearchForm;
-		},
-		
-		getDriverHomePage: function(){
-		
-		},
+<<<<<<< HEAD
+
+		getLogoutButton: function(){
+			return buttons.LogoutButton;
+=======
 		
 		getPassengerProfilePage: function()
 		{
 			return profile.PassengerProfile;
+>>>>>>> master
+		},
+		getDriverProfilePage: function()
+		{
+			return profile.DriverProfile;
 		},
 		getDriverProfilePage: function()
 		{
@@ -64,47 +85,29 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		{
 			return parametters.Parametters;
 		},
-		getInfosPage: function()
+
+		getProfilePage: function()
 		{
-			return myInfos.MyInfos;
+			return profile.PassengerProfile;
+		},
+
+		getRegisterButton: function(){
+			return buttons.RegisterButton;
 		},
 		
-		getCarsListPage: function()
-		{
-			return myCars.MyCarslistcomponent;
+		getRegisterForm: function(){
+		
 		},
 		
 		getRequestAlertPage:function(){
 			return requestAlert.RequestAlert;
 		},
 		
-
-		getAddLiftPage:function(){
-			return addLift.AddLift;
-		},
-
-		
-
-		getAddUsernamePage : function () {
-			return addUsername.AddUsername;
-		},
-
-
-		getLiftListPage : function(){
-			return liftListcomponent.LiftListcomponent;
-		},
-		
-		getAddCarPage : function() {
-			return addCar.AddCar;
-		},
-		
-		getAddFirstCarPage : function() {
-			return addFirstCar.AddFirstCar;
+		getSearchForm: function(){
+			return forms.SearchForm;
 		}
-
-
-		
-		
+	
+	
 		 
 	 }
  	

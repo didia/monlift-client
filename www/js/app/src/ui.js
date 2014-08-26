@@ -49,66 +49,97 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			
 		},
 		
-		showLoginPage: function()
+		showAddCarFormPage : function()
 		{
 			React.renderComponent(
-				<Header page='Login' />,
+				<Header page='Add Cars' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<LoginForm />,
+				<addCarForm/>,
 				document.getElementById('app-body')
 			);
-					
 		},
+
+		showAddFirstCarPage : function () {
+			ML.loginRequired();
+			
+			React.renderComponent(
+				<Header page ='Add a car'/>,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<AddFirstCarPage />,
+				document.getElementById('app-body')
+			);
+		},
+
+		showAddLiftPage : function (){
+			ML.loginRequired();
 		
+			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
+			if(!ML.isCurrentUserDriver()) {
+				try {
+					UI.showAddUsernamePage();
+					EventProvider.subscribe('ML.userPromoted', ML.bind(UI, 'showAddFirstCarPage'));
+					return;
+				}catch(e) {
+					if(e instanceof exceptions.PageAccessDeniedException) {
+						// this case cannot really happen here but ignore it anyway
+					}
+					else {
+						throw e;
+					}
+				}
+			}
+			
+			if(!ML.userHasCar()) {
+				UI.showAddFirstCarPage();
+				EventProvider.subscribe('ML.carCreated', ML.bind(UI, 'showAddLiftPage'));
+				return;
+			}
+			
+			React.renderComponent(
+				<Header page ='New Lift'/>,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<AddLiftPage/>,
+				document.getElementById('app-body')
+			);
+		},
+
+		showAddUsernamePage : function () {
+			ML.loginRequired();
+			if(ML.isCurrentUserDriver()) {
+				throw new exceptions.PageAccessDeniedException("User is already a driver");
+			}
+			
+			React.renderComponent(
+				<Header page ='Add a username'/>,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<AddUsernamePage />,
+				document.getElementById('app-body')
+			);
+			
+		},
+<<<<<<< HEAD
+
 		showHomePage: function()
 		{
-			
-			React.renderComponent(
-				<Header page='Home' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<HomePage />,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showRegisterPage: function()
-		{
-			React.renderComponent(
-				<Header page='Register' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<RegisterForm />,
-				document.getElementById('app-body')
-			);
-		},
-		
-		
-		showSearchPage: function()
-		{
-			React.renderComponent(
-				<Header page='Search' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				
-				<SearchForm />,
-				document.getElementById('app-body')
-			);
-		},
+=======
 		
 		showProfilePage: function()
 		{	
 			ML.loginRequired();
 			
+<<<<<<< HEAD
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
@@ -152,28 +183,108 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		{	
 			ML.loginRequired();
 			
+=======
+>>>>>>> g33k1ns1d3's-l0cal
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
 			);
 			React.renderComponent(
+<<<<<<< HEAD
 				<DriverProfilePage />,
+=======
+				<PassengerProfilePage />,
+>>>>>>> g33k1ns1d3's-l0cal
 				document.getElementById('app-body')
 			);
 
 		},
-		showParametterPage: function()
+		showProfilePage: function()
 		{	
+			ML.loginRequired();
 			
+			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
+			if(ML.isCurrentUserDriver()) {
+				try {
+					UI.showDriverProfilePage();
+					EventProvider.subscribe('ML.iscurrentUserDriver()', ML.bind(UI, 'showDriverProfilePage'));
+					return;
+				}catch(e) {
+					if(e instanceof exceptions.PageAccessDeniedException) {
+						
+					}
+					else {
+						throw e;
+					}
+				}
+			}
 			React.renderComponent(
-				<Header page='Parametters' />,
+				<Header page='Profil' />,
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<ParametterPage />,
+				<PassengerProfilePage />,
 				document.getElementById('app-body')
 			);
-				
+
+		},
+		showDriverProfilePage: function()
+		{	
+			ML.loginRequired();
+>>>>>>> master
+			
+			React.renderComponent(
+				<Header page='Home' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+<<<<<<< HEAD
+				<HomePage />,
+=======
+				<DriverProfilePage />,
+>>>>>>> master
+				document.getElementById('app-body')
+			);
+		},
+
+		showLiftsListPage:function(){
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Rides offered' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<LiftListComponent/>,
+				document.getElementById('app-body')
+			);
+		},
+
+		showLoginPage: function()
+		{
+			React.renderComponent(
+				<Header page='Login' />,
+				document.getElementById('header')
+			);
+			
+			React.renderComponent(
+				<LoginForm />,
+				document.getElementById('app-body')
+			);
+					
+		},
+		
+		showMyCarspage:function()
+		{
+			ML.loginRequired();
+			React.renderComponent(
+			<Header page='Cars' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<CarsListPage />,
+				document.getElementById('app-body')
+			);
 		},
 		
 		showMyInfospage:function()
@@ -188,92 +299,61 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
-		showMyCarspage:function()
-		{
-			ML.loginRequired();
+
+		showParametterPage: function()
+		{	
+			
 			React.renderComponent(
-			<Header page='Cars' />,
+				<Header page='Parametters' />,
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<CarsListPage />,
+				<ParametterPage />,
 				document.getElementById('app-body')
 			);
+				
+		},
+
+		showProfilePage: function()
+		{	
+			ML.loginRequired();
+			React.renderComponent(
+				<Header page='Profil' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<ProfilePage />,
+				document.getElementById('app-body')
+			);
+
 		},
 		
-		showLiftsListPage:function(){
-			ML.loginRequired();
+		showRegisterPage: function()
+		{
 			React.renderComponent(
-				<Header page='Rides offered' />,
+				<Header page='Register' />,
 				document.getElementById('header')
 			);
+			
 			React.renderComponent(
-				<LiftListComponent/>,
+				<RegisterForm />,
 				document.getElementById('app-body')
 			);
 		},
+<<<<<<< HEAD
 		
 		showRequestALert:function(){
 			ML.loginRequired();
+=======
+		showEditUserInfos: function()
+		{
 			React.renderComponent(
-				<Header page='Request' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<RequestAlertPage/>,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showAddLiftPage : function (){
-			ML.loginRequired();
-		
-			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
-			if(!ML.isCurrentUserDriver()) {
-				try {
-					UI.showAddUsernamePage();
-					EventProvider.subscribe('ML.userPromoted', ML.bind(UI, 'showAddFirstCarPage'));
-					return;
-				}catch(e) {
-					if(e instanceof exceptions.PageAccessDeniedException) {
-						// this case cannot really happen here but ignore it anyway
-					}
-					else {
-						throw e;
-					}
-				}
-			}
-			
-			if(!ML.userHasCar()) {
-				UI.showAddFirstCarPage();
-				EventProvider.subscribe('ML.carCreated', ML.bind(UI, 'showAddLiftPage'));
-				return;
-			}
-			
-			React.renderComponent(
-				<Header page ='New Lift'/>,
+				<Header page='Edite Infos' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<AddLiftPage/>,
-				document.getElementById('app-body')
-			);
-		},
-		
-		showAddUsernamePage : function () {
-			ML.loginRequired();
-			if(ML.isCurrentUserDriver()) {
-				throw new exceptions.PageAccessDeniedException("User is already a driver");
-			}
-			
-			React.renderComponent(
-				<Header page ='Add a username'/>,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<AddUsernamePage />,
+				<EditeUserInfos/>,
 				document.getElementById('app-body')
 			);
 			
@@ -293,31 +373,31 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		},
 		showAddCarFormPage : function()
 		{
+>>>>>>> master
 			React.renderComponent(
-				<Header page='Add Cars' />,
+				<Header page='Request' />,
 				document.getElementById('header')
 			);
-			
 			React.renderComponent(
-				<addCarForm/>,
+				<RequestAlertPage/>,
 				document.getElementById('app-body')
 			);
 		},
 		
-		showAddFirstCarPage : function () {
-			ML.loginRequired();
-			
+		showSearchPage: function()
+		{
 			React.renderComponent(
-				<Header page ='Add a car'/>,
+				<Header page='Search' />,
 				document.getElementById('header')
 			);
 			
 			React.renderComponent(
-				<AddFirstCarPage />,
+				
+				<SearchForm />,
 				document.getElementById('app-body')
 			);
 		}
-		
+	
 		
 		 
 	 }

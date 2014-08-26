@@ -21,30 +21,40 @@
  Lift.prototype = {
 	 constructor: Lift,
 	 
-	 getFrom:function(){
-		 return this.from ;
-	 },
-	 getTo:function(){
-		 return this.to;
-	 },
-	 gettime:function(){
-	 	return this.time;
-	 },
-	 getMeetingPLace:function(){
-		 return this.meetingPlace;
-	 },
-	 getTotalPlace:function(){
-		 return this.totalPlace;
-	 },
 	 getAvailablePLace:function(){
 		 return this.availablePLace;
 	 },
+
+	 getCar:function(){
+		 return this.car;
+	 },
+
 	 getDriver:function(){
 		 return this.driver;
 	 },
-	 getCar:function(){
-		 return this.car;
+
+	 getFrom:function(){
+		 return this.from;
+	 },
+
+	 getMeetingPLace:function(){
+		 return this.meetingPlace;
+	 },
+
+	 gettime:function(){
+	 	return this.time;
+	 },
+
+	 getTo:function(){
+		 return this.to;
+	 },
+	  
+	 getTotalPlace:function(){
+		 return this.totalPlace;
 	 }
+	 
+	 
+	 
  
  };
  return Lift;
