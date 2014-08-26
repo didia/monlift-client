@@ -23,22 +23,26 @@
  
 	User.prototype = {
 		constructor: User,
+
+		getEmail:function() {
+	 		return this.email;
+	 	},
+
+	 	getFirstname:function() {
+		 	return this.firstname;
+	 	},
 	 	
 		getId : function() {
 			return this.id;
 		},
-		
-	 	getFirstname:function() {
-		 	return this.firstname;
-	 	},
 	 	
 		getLastname:function() {
 		 	return this.lastname;
 	 	},
 	 	
-		getEmail:function() {
-	 		return this.email;
-	 	},
+		getLinkTo : function(theLink) {
+			return this.linkTo[theLink];
+		},
 	 	
 		getPhone:function(){
 		 	return this.phone;
@@ -55,11 +59,9 @@
 		setUsername:function(username){
 			this.username = username;
 			this.isDriver = true;
-		},
-		
-		getLinkTo : function(theLink) {
-			return this.linkTo[theLink];
 		}
+		
+		
 		
 		
 	

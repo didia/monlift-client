@@ -25,18 +25,21 @@
  Car.prototype = {
 	 constructor: Car,
 	 
+            getDescription:function(){
+                        return this.description;
+            },
+
+            getMatricule:function(){
+                        return this.matricule ;
+            },
+
 	 getNom:function(){
 		 return this.nom;
 	 },
-	 getMatricule:function(){
-		 return this.matricule ;
-	 },
-	 getDescription:function(){
-		 return this.description;
-	 },
+
 	 getOwner:function(){
 	 	return this.owner;
-	 },
+	 }
 	
 	
 	 
