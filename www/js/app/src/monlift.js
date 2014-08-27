@@ -144,15 +144,17 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 			 
 		 },
 
-		 addLift:function(lift){
-			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
-			 if(!this._lifts)
-			 {
-				 this._lifts = [];
-			 }
-			 this._lifts.push(lift);
-			 this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
-		 },
+
+                        addLift:function(lift){
+                                var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
+                                if(!this._lifts)
+                                { 
+                                    this._lifts = [];
+                                }
+                                this._lifts.push(lift);
+                                this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
+                        },
+	 
 
 		 bind: function(toObject, methodName){
     			return function(){toObject[methodName](Array.prototype.slice.call(arguments))};
@@ -447,6 +449,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 			 this.saveToLocalStorage(carsLocalStorageKey, this._cars);
 		 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -464,6 +467,9 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 		 },
 		 
 >>>>>>> master
+=======
+
+>>>>>>> g33k1ns1d3's-l0cal
 		 setLifts : function(liftsData) {
 			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
 			 this._lifts = liftsData;

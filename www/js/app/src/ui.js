@@ -23,6 +23,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var LiftListComponent = component. getLiftListPage();
 	 var addCarForm = component.getAddCarPage();
 	 var AddFirstCarPage = component.getAddFirstCarPage();
+	 var liftDisplaye = component.getliftDisplaye();
 
 	 console.log(Header, HomePage, Footer);
 	 
@@ -129,13 +130,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 			
 		},
-<<<<<<< HEAD
 
-		showHomePage: function()
-		{
-=======
-		
-		showProfilePage: function()
+		showDriverProfilePage: function()
 		{	
 			ML.loginRequired();
 			
@@ -145,39 +141,27 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('header')
 			);
 			React.renderComponent(
-				<PassengerProfilePage />,
+				<DriverProfilePage />,
 				document.getElementById('app-body')
 			);
 
 		},
-		showProfilePage: function()
-		{	
-			ML.loginRequired();
-			
-			console.log("iscurrentUserDriver() : " + ML.isCurrentUserDriver()); 
-			if(ML.isCurrentUserDriver()) {
-				try {
-					UI.showDriverProfilePage();
-					EventProvider.subscribe('ML.iscurrentUserDriver()', ML.bind(UI, 'showDriverProfilePage'));
-					return;
-				}catch(e) {
-					if(e instanceof exceptions.PageAccessDeniedException) {
-						
-					}
-					else {
-						throw e;
-					}
-				}
-			}
+
+		showEditUserInfos: function()
+		{
 			React.renderComponent(
-				<Header page='Profil' />,
+				<Header page='Edite Infos' />,
 				document.getElementById('header')
 			);
+			
 			React.renderComponent(
-				<PassengerProfilePage />,
+				<EditeUserInfos/>,
 				document.getElementById('app-body')
 			);
+			
+		},	
 
+<<<<<<< HEAD
 		},
 		showDriverProfilePage: function()
 		{	
@@ -232,6 +216,10 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		{	
 			ML.loginRequired();
 >>>>>>> master
+=======
+		showHomePage: function()
+		{
+>>>>>>> g33k1ns1d3's-l0cal
 			
 			React.renderComponent(
 				<Header page='Home' />,
@@ -239,15 +227,23 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 			
 			React.renderComponent(
-<<<<<<< HEAD
 				<HomePage />,
-=======
-				<DriverProfilePage />,
->>>>>>> master
 				document.getElementById('app-body')
 			);
 		},
 
+		showLiftDisplay:function(){
+			
+			React.renderComponent(
+				<Header page='liftDisplay' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<liftDisplaye/>,
+				document.getElementById('app-body')
+			);
+		},
+		
 		showLiftsListPage:function(){
 			ML.loginRequired();
 			React.renderComponent(
@@ -260,20 +256,6 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 		},
 
-		showLoginPage: function()
-		{
-			React.renderComponent(
-				<Header page='Login' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<LoginForm />,
-				document.getElementById('app-body')
-			);
-					
-		},
-		
 		showMyCarspage:function()
 		{
 			ML.loginRequired();
@@ -286,7 +268,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
-		
+
 		showMyInfospage:function()
 		{
 			ML.loginRequired();
@@ -313,37 +295,10 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			);
 				
 		},
-
-		showProfilePage: function()
-		{	
-			ML.loginRequired();
-			React.renderComponent(
-				<Header page='Profil' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-				<ProfilePage />,
-				document.getElementById('app-body')
-			);
-
-		},
-		
-		showRegisterPage: function()
-		{
-			React.renderComponent(
-				<Header page='Register' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<RegisterForm />,
-				document.getElementById('app-body')
-			);
-		},
-<<<<<<< HEAD
 		
 		showRequestALert:function(){
 			ML.loginRequired();
+<<<<<<< HEAD
 =======
 		showEditUserInfos: function()
 		{
@@ -374,6 +329,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		showAddCarFormPage : function()
 		{
 >>>>>>> master
+=======
+>>>>>>> g33k1ns1d3's-l0cal
 			React.renderComponent(
 				<Header page='Request' />,
 				document.getElementById('header')
@@ -382,22 +339,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				<RequestAlertPage/>,
 				document.getElementById('app-body')
 			);
-		},
-		
-		showSearchPage: function()
-		{
-			React.renderComponent(
-				<Header page='Search' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				
-				<SearchForm />,
-				document.getElementById('app-body')
-			);
 		}
-	
 		
 		 
 	 }
@@ -417,6 +359,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showLiftsListPage', UI.showLiftsListPage);
 	 EventProvider.subscribe('ui.showAddCarFormPage', UI.showAddCarFormPage);
 	 EventProvider.subscribe('ui.showEditUserInfos', UI.showEditUserInfos);
+	 EventProvider.subscribe('ui.showLiftDisplay', UI.showLiftDisplay);
 	
 	 
 	

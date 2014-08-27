@@ -31,6 +31,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		
 		},
 
+		getDriverProfilePage: function()
+		{
+			return profile.DriverProfile;
+		},
+
 		getFooter: function()
 		{
 			return footers.IndexFooter;
@@ -61,29 +66,23 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		getLoginForm: function(){
 		
 		},
-<<<<<<< HEAD
 
 		getLogoutButton: function(){
 			return buttons.LogoutButton;
-=======
+		},
+
+		getParamettersPage : function()
+		{
+			return parametters.Parametters;
+		},
+		getDriverProfilePage: function()
+		{
+			return profile.DriverProfile;
+		},
 		
 		getPassengerProfilePage: function()
 		{
 			return profile.PassengerProfile;
->>>>>>> master
-		},
-		getDriverProfilePage: function()
-		{
-			return profile.DriverProfile;
-		},
-		getDriverProfilePage: function()
-		{
-			return profile.DriverProfile;
-		},
-		
-		getParamettersPage : function()
-		{
-			return parametters.Parametters;
 		},
 
 		getProfilePage: function()
