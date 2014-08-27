@@ -134,8 +134,6 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		showDriverProfilePage: function()
 		{	
 			ML.loginRequired();
-			
-<<<<<<< HEAD
 			React.renderComponent(
 				<Header page='Profil' />,
 				document.getElementById('header')
@@ -161,28 +159,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 			
 		},	
 
-<<<<<<< HEAD
-		},
-		showDriverProfilePage: function()
-		{	
-			ML.loginRequired();
-			
-=======
->>>>>>> g33k1ns1d3's-l0cal
-			React.renderComponent(
-				<Header page='Profil' />,
-				document.getElementById('header')
-			);
-			React.renderComponent(
-<<<<<<< HEAD
-				<DriverProfilePage />,
-=======
-				<PassengerProfilePage />,
->>>>>>> g33k1ns1d3's-l0cal
-				document.getElementById('app-body')
-			);
 
-		},
 		showProfilePage: function()
 		{	
 			ML.loginRequired();
@@ -211,16 +188,9 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 
-		},
-		showDriverProfilePage: function()
-		{	
-			ML.loginRequired();
->>>>>>> master
-=======
+		},		
 		showHomePage: function()
-		{
->>>>>>> g33k1ns1d3's-l0cal
-			
+		{	
 			React.renderComponent(
 				<Header page='Home' />,
 				document.getElementById('header')
@@ -284,7 +254,6 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 
 		showParametterPage: function()
 		{	
-			
 			React.renderComponent(
 				<Header page='Parametters' />,
 				document.getElementById('header')
@@ -298,39 +267,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 		
 		showRequestALert:function(){
 			ML.loginRequired();
-<<<<<<< HEAD
-=======
-		showEditUserInfos: function()
-		{
-			React.renderComponent(
-				<Header page='Edite Infos' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<EditeUserInfos/>,
-				document.getElementById('app-body')
-			);
-			
-		},
-		showEditUserInfos: function()
-		{
-			React.renderComponent(
-				<Header page='Edite Infos' />,
-				document.getElementById('header')
-			);
-			
-			React.renderComponent(
-				<EditeUserInfos/>,
-				document.getElementById('app-body')
-			);
-			
-		},
-		showAddCarFormPage : function()
-		{
->>>>>>> master
-=======
->>>>>>> g33k1ns1d3's-l0cal
+
 			React.renderComponent(
 				<Header page='Request' />,
 				document.getElementById('header')

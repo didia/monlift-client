@@ -448,13 +448,6 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 			 this._cars = carsData;
 			 this.saveToLocalStorage(carsLocalStorageKey, this._cars);
 		 },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> g33k1ns1d3's-l0cal
 		
 		 addLift:function(lift){
 			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
@@ -466,10 +459,7 @@ define(["jquery", 'entities/user','entities/lift','app/event','app/exceptions', 
 			 this.saveToLocalStorage(liftsLocalStorageKey, this._lifts);
 		 },
 		 
->>>>>>> master
-=======
 
->>>>>>> g33k1ns1d3's-l0cal
 		 setLifts : function(liftsData) {
 			 var liftsLocalStorageKey = this.getLiftsLocalStorageKey();
 			 this._lifts = liftsData;
