@@ -30,6 +30,9 @@ function($, React, monlift, auth, buttons){
 							ButtonRight = buttons.moreVertical;
 							ButtonLeft =  buttons.leftnav;
 							
+						case 'liftDisplay':
+							ButtonRight = buttons.moreVertical;
+							ButtonLeft =  buttons.leftnav;
 							break;
 						default:
 							ButtonRight = ML.isUserLoggedIn()?buttons.LogoutButton:buttons.LoginButton;

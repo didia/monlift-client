@@ -10,11 +10,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/buttons'], fun
 	MyInfos :React.createClass({displayName:'myInfos',
 	render:function(){
 		return(
-			<div className= "content">
+			<div class= "content">
 								<ul className="table-view">
 								<li className="table-view-cell media">
 								
-					 			<img className = "media-object pull-left" src ="../img/D04.png"  height="80" weight="80" />
+					 			<img className = "media-object pull-left" src ="/img/D04.png"  height="80" weight="80" />
 								<span class="icon icon-edit "></span>
 								<div className="media-body">
        							{ML.getUser().getFirstname() }{" "}{ML.getUser().getLastname()}

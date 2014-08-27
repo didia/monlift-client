@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
-define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event', 'app/ui'], 
-function($, React, monlift, auth, EventProvider, UI){
+define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event', 'app/ui', 'components/menuMoreVertical'], 
+function($, React, monlift, auth, EventProvider, UI, menuMoreVertical){
 	 
 	 ML = monlift.getInstance();
-	 
+	 var menuVerticalcomponent = menuMoreVertical.MenuVerticale;
 	 return {
  		
 		LogoutButton : React.createClass({displayName:'LogoutButton',
@@ -97,16 +97,20 @@ function($, React, monlift, auth, EventProvider, UI){
 		}),
 		
 		moreVertical: React.createClass({displayName:'moreVertical',
-			handleClick:function(e){
-				
-				EventProvider.fire(this.props.event);
-			},
+			
 			render: function(){
 				return (
-				
-					<a className="icon icon-more-vertical pull-right" onClick={this.handleClick} href="#" ></a>
+					<div>
+						<a className="icon icon-more-vertical pull-right"  href="#popover" ></a>
+						
+						<div id="popover" className="popover">
+						 	<menuVerticalcomponent/>
+						</div>
+					</div>
+					
 					
 				);
+				
 			}
 		}),
 		leftnav: React.createClass({displayName:'leftnav',

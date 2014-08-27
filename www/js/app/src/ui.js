@@ -23,6 +23,7 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 var LiftListComponent = component. getLiftListPage();
 	 var addCarForm = component.getAddCarPage();
 	 var AddFirstCarPage = component.getAddFirstCarPage();
+	 var liftDisplaye = component.getliftDisplaye();
 
 	 console.log(Header, HomePage, Footer);
 	 
@@ -212,6 +213,17 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 				document.getElementById('app-body')
 			);
 		},
+		showLiftDisplay:function(){
+			
+			React.renderComponent(
+				<Header page='liftDisplay' />,
+				document.getElementById('header')
+			);
+			React.renderComponent(
+				<liftDisplaye/>,
+				document.getElementById('app-body')
+			);
+		},
 		
 		showRequestALert:function(){
 			ML.loginRequired();
@@ -337,8 +349,8 @@ define(['jquery','react', 'app/auth', 'app/component','components/forms', 'app/e
 	 EventProvider.subscribe('ui.showLiftsListPage', UI.showLiftsListPage);
 	 EventProvider.subscribe('ui.showAddCarFormPage', UI.showAddCarFormPage);
 	 EventProvider.subscribe('ui.showEditUserInfos', UI.showEditUserInfos);
+	 EventProvider.subscribe('ui.showLiftDisplay', UI.showLiftDisplay);
 	
-	 
 	
 	 return UI;
  	
