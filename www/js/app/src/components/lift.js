@@ -9,7 +9,7 @@ define(['jquery', 'react', 'app/monlift','app/event'], function($, React, monlif
 	var Lift = React.createClass({displayName:'Lift', 
 		handleClick:function(e){
 				
-				EventProvider.fire('ui.showLiftDisplay');
+				EventProvider.fire(this.props.event);
 			},
 		render: function(){
 			

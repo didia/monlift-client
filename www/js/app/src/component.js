@@ -59,10 +59,6 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 		{
 			return profile.DriverProfile;
 		},
-		getliftDisplaye: function()
-		{
-			return liftDisplay.Liftdisplay;
-		},
 		
 		getParamettersPage : function()
 		{
@@ -96,6 +92,11 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'components/header', 'comp
 
 		getLiftListPage : function(){
 			return liftListcomponent.LiftListcomponent;
+		},
+		
+		getliftDisplaye: function()
+		{
+			return liftDisplay.Liftdisplay;
 		},
 		
 		getAddCarPage : function() {

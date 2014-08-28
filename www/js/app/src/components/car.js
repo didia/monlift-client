@@ -5,9 +5,9 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 	var Car = React.createClass({displayName:'Lift', 
 		render: function(){
 			return (
-					<div>
-						<div className="card">
-							<a className="navigate-right" href = {"#"+this.props.id}>
+					<div id  = "lift">
+						<div className="card" id = {"#idlift"+this.props.id}>
+							<a className="navigate-right" href = {"#id"+this.props.num}>
                         
 							<img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
 									  
@@ -20,7 +20,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 							
 						</div>
 						
-						<div className="control-content" id = "{this.props.id}">
+						<div className="control-content" id = {"id"+this.props.num}>
 							
                         
 							<img className="media-object pull-left" src="../img/car2.png"  height="80" weight="80"/>
