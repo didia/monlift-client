@@ -13,11 +13,11 @@ define(['jquery', 'react', 'app/monlift', 'components/car'], function($, React, 
 	render:function(){
 		
 		return(
-					<div className="content">
+					<div className="content" id = "content">
 							
 									{
 											this.props.cars.map(function(car, i){
-												return <Car  nom = {car.name} description = {car.description} id  = {car.id}/>;
+												return <Car  nom = {car.name} description = {car.description} id  = {car.id} num = {i}/>;
 											})
 										}
 						

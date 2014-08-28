@@ -3,10 +3,14 @@
  * @author Trispa
  *
  */
-define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
+define(['jquery', 'react', 'app/monlift','app/event'], function($, React, monlift,EventProvider){
 	
 	ML  = monlift.getInstance();
 	var Lift = React.createClass({displayName:'Lift', 
+		handleClick:function(e){
+				
+				EventProvider.fire(this.props.event);
+			},
 		render: function(){
 			
 			return (
@@ -14,7 +18,7 @@ define(['jquery', 'react', 'app/monlift'], function($, React, monlift){
 					
   					<li className="table-view-cell media">
  
-						<a className="navigate-right" >
+						<a className="navigate-right"  onClick={this.handleClick} href="#">
 						
 						  <img className="media-object pull-left" src ={this.props.image} height="70" 	weight="70" />
 							<div className="media-body">

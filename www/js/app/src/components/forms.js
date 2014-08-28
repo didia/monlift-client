@@ -50,7 +50,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 				{
 					auth.login(email, password);
 				}
-			
+					  
+									
 			},
 			
 			componentWillUnmount: function(){
@@ -65,7 +66,7 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 			render: function(){
 				return (
 				<div className = "card1">
-					<form id = "login-form"  className = "form-horizontal" onSubmit= {this.handleSubmit} >
+					<form id = "login-form"  className = "form-horizontal" onSubmit = {this.handleSubmit} >
 						{this.state.errorMessage? <p>{this.state.errorMessage} </p>:''}
 						
 						<input type ="email" className="input-xlarge" id="email" name="email" placeholder="Email" ref= "email" required />
@@ -76,7 +77,8 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
                 		</label>
                 		<a href="#" className="pull-right need-help">Need help? </a>
 						<span className="clearfix"></span>
-                		<button className="btn btn-primary btn-block" type = "submit">Sign in</button>
+                		<button type="submit" id="loading-example-btn" className="btn btn-primary btn-block"   data-loading-text="Loading..." >Sign in</button>
+						
 						
             		</form> 
                 </div>	
@@ -360,8 +362,9 @@ define(['jquery', 'react', 'app/monlift', 'app/auth', 'app/event','components/bu
 
 				e.preventDefault();
 				var name = this.refs.name.getDOMNode().value;
-				var matricule = this.refs.matricule.getDOMNode().value;
 				var description = this.refs.description.getDOMNode().value;
+				var matricule = this.refs.matricule.getDOMNode().value;
+			
 
 				console.log(name + " " + matricule + " " + description);
 				if(this.validateForm(matricule))

@@ -10,18 +10,18 @@ define(['jquery', 'react', 'app/monlift','components/buttons'], function($, Reac
 	ButtonreDecliner =  buttons.DeclinerButton;
 	ButtonCanceler = buttons.CancelButton;
 	return{
-	RequestAlert :React.createClass({displayName:'myInfos',
+	RequestAlert :React.createClass({displayName:'request',
 	render:function(){
 		
 		return(
 			
-					<div className = "requestAlertcomponent" id = "requestAlertcomponent" > 
+					<div > 
 					
 						<header className="bar bar-nav">
 						<ul className="table-view">
 						  <li className="table-view-cell media">
 						  
-						  <a href="#popover"  class="tab-item">
+						  <a href="#popover"  className="tab-item">
 							  <span className="media-object pull-left icon icon-person"></span>
 							  <div className="media-body">
 								Demande de: {ML.getUser().getFirstname() }{" "}{ML.getUser().getLastname()}
